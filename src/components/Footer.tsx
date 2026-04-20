@@ -37,12 +37,12 @@ const Footer: React.FC<FooterProps> = ({ bedrijfsgegevens, policies = [] }) => {
         <div className="flex flex-col lg:flex-row justify-between items-start mb-20 border-b border-white/10 pb-16">
           <div className="max-w-xl mb-12 lg:mb-0">
             <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              Uw interieur, <span className="text-brand-primary">ons vakmanschap.</span>
+              Vakmanschap <span className="text-brand-primary">tot in detail.</span>
             </h2>
             <Link href="/" className="flex items-center group w-fit">
               <img
                 src="/footer-logo.png"
-                alt="PVC Vloeren Achterhoek Logo"
+                alt="BPM Parket Logo"
                 className="h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
@@ -77,12 +77,12 @@ const Footer: React.FC<FooterProps> = ({ bedrijfsgegevens, policies = [] }) => {
           <div>
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Diensten</h3>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><Link href="/producten/pvc-vloeren" className="hover:text-white transition-colors">PVC-vloeren</Link></li>
-              <li><Link href="/producten/houten-vloeren" className="hover:text-white transition-colors">Houten Vloeren</Link></li>
+              <li><Link href="/producten/parket-en-multiplanken" className="hover:text-white transition-colors">Parket en Multiplanken</Link></li>
+              <li><Link href="/producten/pvc-en-laminaat" className="hover:text-white transition-colors">PVC en Laminaat</Link></li>
+              <li><Link href="/producten/legservice" className="hover:text-white transition-colors">Legservice</Link></li>
               <li><Link href="/producten/traprenovatie" className="hover:text-white transition-colors">Traprenovatie</Link></li>
-              <li><Link href="/producten/vloerbedekking" className="hover:text-white transition-colors">Vloerbedekking</Link></li>
-              <li><Link href="/producten/raamdecoratie" className="hover:text-white transition-colors">Raamdecoratie</Link></li>
-              <li><Link href="/producten/gordijnen" className="hover:text-white transition-colors">Gordijnen</Link></li>
+              <li><Link href="/producten/buitenparket" className="hover:text-white transition-colors">Buitenparket</Link></li>
+              <li><Link href="/producten/interieurwerken" className="hover:text-white transition-colors">Interieurwerken</Link></li>
             </ul>
           </div>
 
@@ -118,9 +118,11 @@ const Footer: React.FC<FooterProps> = ({ bedrijfsgegevens, policies = [] }) => {
                   <a href={companyConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-white hover:text-black transition-all">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href={companyConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-white hover:text-black transition-all">
-                    <Linkedin className="h-4 w-4" />
-                  </a>
+                  {companyConfig.socials.linkedin && (
+                    <a href={companyConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-white hover:text-black transition-all">
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
