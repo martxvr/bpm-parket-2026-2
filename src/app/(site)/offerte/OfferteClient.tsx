@@ -3,26 +3,23 @@
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-    Box, LayoutGrid, ChevronsUp, Grid3x3, Blinds, Columns
+    Box, LayoutGrid, ChevronsUp, Layers, Wrench, Sun, Hammer
 } from 'lucide-react';
 import CheckedIcon from '@/components/ui/checked-icon';
 import ArrowNarrowRightIcon from '@/components/ui/arrow-narrow-right-icon';
 import ArrowBackIcon from '@/components/ui/arrow-back-icon';
-import SparklesIcon from '@/components/ui/sparkles-icon';
 import CameraIcon from '@/components/ui/camera-icon';
-import StarIcon from '@/components/ui/star-icon';
 import { companyConfig } from '@/config';
 import { submitOfferte } from '../actions';
 import { categories } from '@/data/brands';
 
 const FLOOR_TYPES = [
-    { id: 'pvc-vloeren', icon: LayoutGrid, title: 'PVC-vloeren', desc: 'Stijlvol en onderhoudsvriendelijk' },
-    { id: 'houten-vloeren', icon: Grid3x3, title: 'Houten Vloeren', desc: 'Warmte en comfort in huis' },
+    { id: 'parket-en-multiplanken', icon: Layers, title: 'Parket en Multiplanken', desc: 'Traditioneel parket sinds 1992' },
+    { id: 'pvc-en-laminaat', icon: LayoutGrid, title: 'PVC en Laminaat', desc: 'Duurzaam en onderhoudsvriendelijk' },
+    { id: 'legservice', icon: Wrench, title: 'Legservice', desc: 'Vakkundige montage door ons team' },
     { id: 'traprenovatie', icon: ChevronsUp, title: 'Traprenovatie', desc: 'Geef uw trap een nieuw leven' },
-    { id: 'vloerbedekking', icon: SparklesIcon, title: 'Vloerbedekking', desc: 'Sfeervol en zacht' },
-    { id: 'raamdecoratie', icon: Blinds, title: 'Raamdecoratie', desc: 'Perfecte lichtinval' },
-    { id: 'gordijnen', icon: Columns, title: 'Gordijnen', desc: 'Gordijnen op maat' },
-    { id: 'Anders', icon: CheckedIcon, title: 'Anders', desc: 'Specifieke wensen' },
+    { id: 'buitenparket', icon: Sun, title: 'Buitenparket', desc: 'Hardhout en composiet voor buiten' },
+    { id: 'interieurwerken', icon: Hammer, title: 'Interieurwerken', desc: 'Maatwerk plinten, ombouwen en meer' },
 ];
 
 export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) {
@@ -194,8 +191,8 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
 
                         <div className="space-y-8">
                             <div className="space-y-2">
-                                <h3 className="font-bold text-gray-900 text-3xl">Jouw Offerte</h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">Stel eenvoudig je ideale droomvloer samen. Wij verzorgen vervolgens een transparante en scherpe prijs.</p>
+                                <h1 className="font-bold text-gray-900 text-3xl">Vraag een vrijblijvende offerte aan</h1>
+                                <p className="text-sm text-gray-500 leading-relaxed">Stel eenvoudig uw ideale opdracht samen. Wij verzorgen vervolgens een transparante en scherpe prijs.</p>
                             </div>
 
                             <div className="space-y-4 pt-4">

@@ -3,8 +3,8 @@ import OfferteClient from './OfferteClient';
 import { getBedrijfsgegevens } from '@/lib/site-data';
 
 export const metadata: Metadata = {
-    title: 'Gratis Offerte Aanvragen',
-    description: 'Vraag een gratis en vrijblijvende offerte aan voor PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie of gordijnen bij PVC Vloeren Achterhoek.',
+    title: 'Vraag een vrijblijvende offerte aan',
+    description: 'Vraag een gratis en vrijblijvende offerte aan voor parket, PVC, laminaat, traprenovatie, buitenparket of interieurwerken bij BPM Parket.',
     alternates: { canonical: '/offerte' },
 }
 
