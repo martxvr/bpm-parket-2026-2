@@ -11,30 +11,34 @@ const roboto = Roboto({
   variable: '--font-roboto',
 })
 
-const BASE_URL = 'https://pvcvloerenachterhoek.nl'
+const BASE_URL = 'https://bpmparket.nl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'PVC Vloeren Achterhoek | Doetinchem',
-    template: '%s | PVC Vloeren Achterhoek',
+    default: 'BPM Parket | Traditioneel Parket sinds 1992 — Geldrop',
+    template: '%s | BPM Parket',
   },
-  description: 'Uw specialist in PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen in Doetinchem en de Achterhoek. 20+ jaar ervaring. Gratis advies en offerte.',
-  keywords: ['pvc vloeren', 'traprenovatie', 'vloerbedekking', 'raamdecoratie', 'gordijnen', 'Doetinchem', 'Achterhoek', 'vloeren leggen', 'pvc vloeren Doetinchem', 'trap renoveren'],
-  authors: [{ name: 'PVC Vloeren Achterhoek' }],
-  creator: 'PVC Vloeren Achterhoek',
+  description: 'Uw specialist in parket, PVC, laminaat, traprenovatie, buitenparket en interieurwerken. Al ruim 30 jaar vakmanschap uit Geldrop.',
+  keywords: [
+    'parket', 'traditioneel parket', 'parket leggen', 'multiplanken',
+    'pvc vloer', 'laminaat', 'traprenovatie', 'buitenparket',
+    'interieurwerken', 'legservice', 'Geldrop', 'Eindhoven', 'Brabant'
+  ],
+  authors: [{ name: 'BPM Parket' }],
+  creator: 'BPM Parket',
   openGraph: {
     type: 'website',
     locale: 'nl_NL',
     url: BASE_URL,
-    siteName: 'PVC Vloeren Achterhoek',
-    title: 'PVC Vloeren Achterhoek | Doetinchem',
-    description: 'Uw specialist in PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen in Doetinchem en de Achterhoek.',
+    siteName: 'BPM Parket',
+    title: 'BPM Parket | Traditioneel Parket sinds 1992 — Geldrop',
+    description: 'Uw specialist in parket, PVC, laminaat, traprenovatie, buitenparket en interieurwerken.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PVC Vloeren Achterhoek',
-    description: 'Specialist in PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen — Doetinchem & omgeving.',
+    title: 'BPM Parket',
+    description: 'Specialist in traditioneel parket, PVC/laminaat, traprenovatie en interieurwerken — Geldrop.',
   },
   robots: {
     index: true,
@@ -69,19 +73,19 @@ export default async function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: bedrijfsgegevens?.name || 'PVC Vloeren Achterhoek',
-    description: 'Specialist in PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen in Doetinchem en de Achterhoek.',
+    name: bedrijfsgegevens?.name || 'BPM Parket',
+    description: 'Specialist in traditioneel parket, PVC/laminaat, traprenovatie, buitenparket, legservice en interieurwerken in Geldrop en omgeving.',
     url: BASE_URL,
-    telephone: bedrijfsgegevens?.phone || '',
-    email: bedrijfsgegevens?.email || '',
+    telephone: bedrijfsgegevens?.phone || '06-53499361',
+    email: bedrijfsgegevens?.email || 'info@bpmparket.nl',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: bedrijfsgegevens?.address || '',
-      addressLocality: bedrijfsgegevens?.city || 'Doetinchem',
-      postalCode: bedrijfsgegevens?.postcode || '',
+      streetAddress: bedrijfsgegevens?.address || 'De Hooge Akker 19',
+      addressLocality: bedrijfsgegevens?.city || 'Geldrop',
+      postalCode: bedrijfsgegevens?.postcode || '5661 NG',
       addressCountry: 'NL',
     },
-    areaServed: 'Achterhoek, Gelderland, Nederland',
+    areaServed: 'Noord-Brabant, Nederland',
     priceRange: '€€',
   }
 
