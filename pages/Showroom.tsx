@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import {
-    Calendar, Clock, MapPin, Phone, Mail,
-    Send, CheckCircle, ArrowRight, ArrowLeft
-} from 'lucide-react';
+import { MapPin, Phone, Clock, CheckCircle, ArrowRight } from 'lucide-react';
 import { companyConfig } from '../config';
+import DatePicker from '../components/DatePicker';
 
 const Showroom: React.FC = () => {
     const [submitted, setSubmitted] = useState(false);
@@ -15,6 +13,13 @@ const Showroom: React.FC = () => {
         time: '',
         message: ''
     });
+    const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(null);
+
+    const handleDateChange = (d: Date) => {
+        setSelectedDateTime(d);
+        updateData('date', d.toLocaleDateString('nl-NL'));
+        updateData('time', `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`);
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -169,36 +174,9 @@ const Showroom: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-700 uppercase tracking-widest">Voorkeursdatum</label>
-                                    <div className="relative">
-                                        <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                                        <input
-                                            type="date"
-                                            required
-                                            className="w-full p-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all pr-12"
-                                            value={formData.date}
-                                            onChange={e => updateData('date', e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-700 uppercase tracking-widest">Voorkeurstijd</label>
-                                    <div className="relative">
-                                        <Clock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                                        <select
-                                            required
-                                            className="w-full p-4 bg-white border border-gray-200 rounded-2xl appearance-none focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all pr-12"
-                                            value={formData.time}
-                                            onChange={e => updateData('time', e.target.value)}
-                                        >
-                                            <option value="">Kies een tijd...</option>
-                                            <option value="ochtend">Ochtend (09:00 - 12:00)</option>
-                                            <option value="middag">Middag (13:00 - 17:00)</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-gray-700 uppercase tracking-widest">Voorkeursdatum & tijd</label>
+                                <DatePicker variant="light" value={selectedDateTime} onChange={handleDateChange} />
                             </div>
 
                             <div className="space-y-2">
