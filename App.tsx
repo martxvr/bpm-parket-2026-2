@@ -19,6 +19,8 @@ import Legservice from './pages/products/Legservice';
 import Traprenovatie from './pages/products/Traprenovatie';
 import Buitenparket from './pages/products/Buitenparket';
 import Interieurwerken from './pages/products/Interieurwerken';
+import AnnouncementBar from './components/AnnouncementBar';
+import CookieBanner from './components/CookieBanner';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -91,6 +93,7 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-900">
+      {!isFullscreenPage && currentPage !== 'admin' && <AnnouncementBar />}
       {!isFullscreenPage && currentPage !== 'admin' && <Navbar onNavigate={navigate} currentPage={currentPage} />}
 
       <main className="flex-grow">
@@ -113,6 +116,8 @@ const App: React.FC = () => {
 
       {/* Chatbot is available on all public pages if enabled, not on admin/login */}
       {!isFullscreenPage && currentPage !== 'admin' && chatbotEnabled && <Chatbot />}
+
+      <CookieBanner />
     </div>
   );
 };
