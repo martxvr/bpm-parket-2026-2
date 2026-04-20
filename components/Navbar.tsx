@@ -20,12 +20,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   ];
 
   const productLinks = [
-    { name: 'PVC en Laminaat', id: 'producten-pvc' },
-    { name: 'Parket en Multiplanken', id: 'producten-parket' },
-    { name: 'Legservice', id: 'producten-legservice' },
-    { name: 'Trap renovatie', id: 'producten-trap' },
-    { name: 'Buitenparket', id: 'producten-buitenparket' },
-    { name: 'Interieurwerken', id: 'producten-interieur' },
+    { name: 'PVC en Laminaat', id: 'producten-pvc', desc: 'Stijlvol, duurzaam en onderhoudsvriendelijk' },
+    { name: 'Parket en Multiplanken', id: 'producten-parket', desc: 'Traditioneel vakmanschap in massief hout' },
+    { name: 'Legservice', id: 'producten-legservice', desc: 'Professionele plaatsing door onze specialisten' },
+    { name: 'Trap renovatie', id: 'producten-trap', desc: 'Nieuwe uitstraling, vaak binnen één dag' },
+    { name: 'Buitenparket', id: 'producten-buitenparket', desc: 'Robuuste houten vloeren voor buiten' },
+    { name: 'Interieurwerken', id: 'producten-interieur', desc: 'Maatwerk meubels en interieurafwerking' },
   ];
 
   const handleNav = (id: string) => {
@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer group" onClick={() => handleNav('home')}>
             <div className="h-20 w-auto flex items-center justify-center">
-              <img src="/2023-10-02_12_09_56-BPM_Parket___Parket__PVC__Houten_Vloeren_en_nog_6_andere_pagina_s_-_Werk_-_Micro-removebg-preview.png" alt="BPM Parket" className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+              <img src="/logo.png" alt="BPM Parket" className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             </div>
           </div>
 
@@ -79,19 +79,63 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isProductsOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Dropdown Menu */}
+              {/* Mega Menu */}
               <div
-                className={`absolute top-full left-0 w-64 bg-white border border-brand-light rounded-2xl shadow-xl py-3 transform transition-all duration-200 origin-top-left ${isProductsOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
+                className={`fixed left-0 w-screen bg-white border-b border-gray-100 shadow-2xl transform transition-all duration-200 origin-top ${isProductsOpen ? 'opacity-100 scale-y-100 translate-y-0' : 'opacity-0 scale-y-95 -translate-y-2 pointer-events-none'}`}
+                style={{ top: '96px' }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                {productLinks.map((product) => (
-                  <button
-                    key={product.id}
-                    onClick={() => handleNav(product.id)}
-                    className="block w-full text-left px-6 py-2.5 text-sm text-brand-dark hover:bg-gray-50 hover:text-brand-red transition-colors"
-                  >
-                    {product.name}
-                  </button>
-                ))}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                  <div className="grid grid-cols-3 gap-8">
+                    {/* Column 1 */}
+                    <div className="space-y-1">
+                      {productLinks.slice(0, 3).map((product) => (
+                        <button
+                          key={product.id}
+                          onClick={() => handleNav(product.id)}
+                          className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors group"
+                        >
+                          <p className="font-semibold text-brand-dark group-hover:text-brand-red transition-colors">{product.name}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{product.desc}</p>
+                        </button>
+                      ))}
+                    </div>
+                    {/* Column 2 */}
+                    <div className="space-y-1">
+                      {productLinks.slice(3).map((product) => (
+                        <button
+                          key={product.id}
+                          onClick={() => handleNav(product.id)}
+                          className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors group"
+                        >
+                          <p className="font-semibold text-brand-dark group-hover:text-brand-red transition-colors">{product.name}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{product.desc}</p>
+                        </button>
+                      ))}
+                    </div>
+                    {/* Featured card */}
+                    <div className="bg-black rounded-2xl p-8 flex flex-col justify-between min-h-[200px] relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-20">
+                        <img
+                          src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600"
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="relative z-10">
+                        <p className="text-xs font-bold tracking-widest text-brand-red uppercase mb-2">Specialisaties</p>
+                        <h3 className="text-xl font-bold text-white leading-snug">Alle producten & diensten van BPM Parket</h3>
+                      </div>
+                      <button
+                        onClick={() => handleNav('producten-parket')}
+                        className="relative z-10 mt-6 bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:bg-gray-100 transition-colors w-fit"
+                      >
+                        Bekijk alle producten
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
