@@ -87,14 +87,19 @@ export async function POST(req: Request) {
             `- ${p.title} (${p.category}): ${p.description}`
         ).join('\n');
 
-        const phone = companyData?.phone || '0314-123456';
+        const companyName = companyData?.name || 'BPM Parket';
+        const companyPhone = companyData?.phone || '040-123456';
+        const companyAddress = companyData?.address || 'De Hooge Akker 19';
+        const companyCity = [companyData?.postcode, companyData?.city].filter(Boolean).join(' ') || 'Geldrop';
+        const companyEmail = companyData?.email || '';
+        const phone = companyPhone;
 
         const companyInfo = `
 BEDRIJFSGEGEVENS:
-- Naam: ${companyData?.name || 'PVC Vloeren Achterhoek'}
-- Adres: ${companyData?.address || ''}, ${companyData?.postcode || ''} ${companyData?.city || ''}
-- Telefoon: ${phone}
-- Email: ${companyData?.email || ''}
+- Naam: ${companyName}
+- Adres: ${companyAddress}, ${companyCity}
+- Telefoon: ${companyPhone}
+- Email: ${companyEmail}
 
 DIENSTEN & RECENTE PROJECTEN:
 ${projectContext}
@@ -103,50 +108,35 @@ VEELGESTELDE VRAGEN & KENNISBANK:
 ${knowledgeBase}
         `;
 
-        // 3. System prompt — focus on driving phone calls
-        const systemPrompt = `Je bent een vriendelijke, korte assistent van PVC Vloeren Achterhoek. Je HOOFDDOEL is om bezoekers te laten BELLEN naar ${phone}.
-
-COMMUNICATIESTIJL:
-- Informeel Nederlands (je/jij), warm en persoonlijk.
-- KORT: maximaal 2-3 zinnen per antwoord. Nooit lange opsommingen.
-- Stel maximaal één vraag per bericht.
-- Gebruik NOOIT emoji's in je antwoorden.
-
-WAT JE WEL BEANTWOORDT (kort en bondig):
-- Openingstijden: Ma 13-17, Di 10-17, Wo 12-17, Do 10-17, Vr 10-17, Za 9-15, Zo gesloten.
-- Locatie: Logistiekweg 20-32, Doetinchem.
-- Welke diensten jullie aanbieden (PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie, gordijnen).
-- Heel simpele ja/nee vragen ("Zijn jullie open op zaterdag?" → "Ja, van 9 tot 15 uur!").
-- Een showroomafspraak inplannen via de tools.
-
-WAT JE DOORVERWIJST NAAR BELLEN:
-- Prijsvragen → "Voor een accurate prijsindicatie kan ik je het beste doorverbinden met een adviseur. Bel gerust naar ${phone}, dan helpen ze je direct!"
-- Technische vloeradviezen → "Dat is een goede vraag! Onze specialisten kunnen je daar het beste bij helpen. Bel even naar ${phone} voor persoonlijk advies."
-- Specifieke productvragen → "Om je het allerbeste advies te geven, raad ik je aan om even te bellen met ${phone}. Ze kunnen alles over [product] vertellen!"
-- Offertes → "Een offerte maken we graag op maat! Bel ${phone} of kom langs in onze showroom, dan bespreken we alles."
-- Klachten/problemen → "Vervelend om te horen! Bel even naar ${phone}, dan zoeken we samen naar een oplossing."
-- Alles wat meer dan een basisfeitje is → belverwÿzing.
-
-AFSPRAAK INPLANNEN:
-Als iemand een afspraak wil, doe dan het volgende:
-1. Vraag hun naam.
-2. Vraag gewenste datum & tijd. Gebruik ALTIJD eerst 'check_availability' om te checken.
-3. Vraag telefoonnummer.
-4. Email (optioneel).
-5. Bevestig en gebruik 'create_appointment'.
-6. Zeg: "Top, je afspraak staat! Je ontvangt een bevestiging per mail."
-Service categorieën: 'pvc-vloeren', 'traprenovatie', 'vloerbedekking', 'raamdecoratie', 'gordijnen', 'anders'.
-
-BELANGRIJK:
-- Verwijs bij ELKE complexere vraag vriendelijk naar bellen. Maak het makkelijk: noem altijd het nummer.
-- Wees NOOIT opdringerig of onvriendelijk bij het doorverwijzen. Maak het een positieve suggestie.
-- Geef NOOIT prijzen, ook niet als indicatie.
-- De huidige datum is: ${new Date().toLocaleDateString('nl-NL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.
+        const kennisbankContext = `BEDRIJFSCONTEXT:
+${companyInfo}
 
 ${settings.system_prompt ? `EXTRA INSTRUCTIES VANUIT ADMIN:\n${settings.system_prompt}` : ''}
 
-BEDRIJFSCONTEXT:
-${companyInfo}`;
+De huidige datum is: ${new Date().toLocaleDateString('nl-NL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.`;
+
+        // 3. System prompt — focus on driving phone calls
+        const systemPrompt = `Je bent een vriendelijke assistent van ${companyName}. Je HOOFDDOEL is om bezoekers te laten bellen naar ${companyPhone} voor persoonlijk advies.
+
+COMMUNICATIESTIJL:
+- Informeel Nederlands, warm en vakkundig
+- KORT: max 2-3 zinnen
+- Gebruik NOOIT emojis
+
+WAT JE WEL BEANTWOORDT:
+- Openingstijden: op afspraak (bel voor afspraak)
+- Locatie: ${companyAddress}, ${companyCity}
+- 6 diensten: Parket en Multiplanken, PVC en Laminaat, Legservice, Traprenovatie, Buitenparket, Interieurwerken
+- Simpele ja/nee vragen
+- Afspraak inplannen via tools
+
+WAT JE DOORVERWIJST NAAR BELLEN:
+- Prijzen, technisch advies, offertes, klachten
+- Alles behalve basisfeiten: Bel ${companyPhone} voor persoonlijk advies
+
+${kennisbankContext}
+
+Tools: check_availability, create_appointment`;
 
         // 4. Map history to Claude format
         const claudeMessages: Anthropic.MessageParam[] = history
