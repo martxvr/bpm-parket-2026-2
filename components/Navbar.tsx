@@ -7,11 +7,14 @@ interface NavbarProps {
   currentPage: string;
 }
 
+const NAVBAR_HEIGHT_PX = 96; // matches h-24 on the nav element
+
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const timeoutRef = React.useRef<number | null>(null);
-  const NAVBAR_HEIGHT_PX = 96; // matches h-24 on the nav element
+  const navRef = React.useRef<HTMLElement>(null);
+  const [megaMenuTop, setMegaMenuTop] = useState(NAVBAR_HEIGHT_PX);
 
   const navLinks = [
     { name: 'Home', id: 'home' },
@@ -38,6 +41,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+    if (navRef.current) {
+      setMegaMenuTop(navRef.current.getBoundingClientRect().bottom);
+    }
     setIsProductsOpen(true);
   };
 
@@ -48,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-brand-light transition-all duration-300">
+    <nav ref={navRef} className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-brand-light transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
@@ -84,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               {/* Mega Menu */}
               <div
                 className={`fixed left-0 w-screen bg-white border-b border-gray-100 shadow-2xl transform transition-all duration-200 origin-top ${isProductsOpen ? 'opacity-100 scale-y-100 translate-y-0' : 'opacity-0 scale-y-95 -translate-y-2 pointer-events-none'}`}
-                style={{ top: `${NAVBAR_HEIGHT_PX}px` }}
+                style={{ top: `${megaMenuTop}px` }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
