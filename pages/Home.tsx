@@ -20,15 +20,28 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
   const [pickedTime, setPickedTime] = useState<string | null>(
     value ? `${String(value.getHours()).padStart(2, '0')}:${String(value.getMinutes()).padStart(2, '0')}` : null
   );
-  const ref = useRef<HTMLDivElement>(null);
+  const [dropdownStyle, setDropdownStyle] = useState<{ top: number; left: number; width: number }>({ top: 0, left: 0, width: 0 });
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (
+        triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
+        dropdownRef.current && !dropdownRef.current.contains(e.target as Node)
+      ) setOpen(false);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
+
+  const openPicker = () => {
+    if (triggerRef.current) {
+      const r = triggerRef.current.getBoundingClientRect();
+      setDropdownStyle({ top: r.bottom + 8, left: r.left, width: r.width });
+    }
+    setOpen(o => !o);
+  };
 
   const firstDay = new Date(view.getFullYear(), view.getMonth(), 1);
   const startOffset = (firstDay.getDay() + 6) % 7;
@@ -82,10 +95,11 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
     : 'Kies een datum & tijd';
 
   return (
-    <div ref={ref} className="relative">
+    <div className="relative">
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setOpen(o => !o)}
+        onClick={openPicker}
         className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
       >
         <span className={(pickedDate && pickedTime) ? 'text-white' : 'text-white/50'}>{label}</span>
@@ -93,7 +107,11 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 mt-2 bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-50">
+        <div
+          ref={dropdownRef}
+          className="fixed bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-[9998] overflow-y-auto max-h-[80vh]"
+          style={{ top: dropdownStyle.top, left: dropdownStyle.left, width: dropdownStyle.width }}
+        >
           {/* Month header */}
           <div className="flex items-center justify-between mb-4">
             <button type="button" onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors">
