@@ -11,6 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const timeoutRef = React.useRef<number | null>(null);
+  const NAVBAR_HEIGHT_PX = 96; // matches h-24 on the nav element
 
   const navLinks = [
     { name: 'Home', id: 'home' },
@@ -83,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               {/* Mega Menu */}
               <div
                 className={`fixed left-0 w-screen bg-white border-b border-gray-100 shadow-2xl transform transition-all duration-200 origin-top ${isProductsOpen ? 'opacity-100 scale-y-100 translate-y-0' : 'opacity-0 scale-y-95 -translate-y-2 pointer-events-none'}`}
-                style={{ top: '96px' }}
+                style={{ top: `${NAVBAR_HEIGHT_PX}px` }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >

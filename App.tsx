@@ -119,7 +119,7 @@ const App: React.FC = () => {
       {/* Chatbot is available on all public pages if enabled, not on admin/login */}
       {!isFullscreenPage && currentPage !== 'admin' && chatbotEnabled && <Chatbot />}
 
-      <CookieBanner />
+      {!isFullscreenPage && currentPage !== 'admin' && <CookieBanner />}
     </div>
   );
 };
