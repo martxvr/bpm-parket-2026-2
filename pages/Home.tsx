@@ -21,25 +21,38 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
   const [pickedTime, setPickedTime] = useState<string | null>(
     value ? `${String(value.getHours()).padStart(2, '0')}:${String(value.getMinutes()).padStart(2, '0')}` : null
   );
-  const [dropdownStyle, setDropdownStyle] = useState<{ top: number; left: number; width: number }>({ top: 0, left: 0, width: 0 });
+  const [dropdownStyle, setDropdownStyle] = useState<{ top?: number; bottom?: number; left: number; width: number; maxHeight: number }>({ left: 0, width: 0, maxHeight: 400 });
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent) => {
       if (
         triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
         dropdownRef.current && !dropdownRef.current.contains(e.target as Node)
       ) setOpen(false);
     };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    const handleScroll = () => setOpen(false);
+    document.addEventListener('mousedown', handleClick);
+    window.addEventListener('scroll', handleScroll, true);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
   }, []);
 
   const openPicker = () => {
     if (triggerRef.current) {
       const r = triggerRef.current.getBoundingClientRect();
-      setDropdownStyle({ top: r.bottom + 8, left: r.left, width: r.width });
+      const spaceBelow = window.innerHeight - r.bottom - 8;
+      const spaceAbove = r.top - 8;
+      if (spaceAbove > spaceBelow) {
+        const maxHeight = Math.min(spaceAbove, window.innerHeight * 0.8);
+        setDropdownStyle({ bottom: window.innerHeight - r.top + 8, left: r.left, width: r.width, maxHeight });
+      } else {
+        const maxHeight = Math.min(spaceBelow, window.innerHeight * 0.8);
+        setDropdownStyle({ top: r.bottom + 8, left: r.left, width: r.width, maxHeight });
+      }
     }
     setOpen(o => !o);
   };
@@ -110,8 +123,8 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
       {open && ReactDOM.createPortal(
         <div
           ref={dropdownRef}
-          className="fixed bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-[9998] overflow-y-auto max-h-[80vh]"
-          style={{ top: dropdownStyle.top, left: dropdownStyle.left, width: dropdownStyle.width }}
+          className="fixed bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-[9998] overflow-y-auto"
+          style={{ top: dropdownStyle.top, bottom: dropdownStyle.bottom, left: dropdownStyle.left, width: dropdownStyle.width, maxHeight: dropdownStyle.maxHeight }}
         >
           {/* Month header */}
           <div className="flex items-center justify-between mb-4">

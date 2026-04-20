@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, Facebook, Instagram, Linkedin, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { companyConfig } from '../config';
+"use client"
 
-const Contact: React.FC = () => {
+import React, { useState, useEffect, useRef } from 'react';
+
+import { Phone, Facebook, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { companyConfig } from '@/config';
+
+export default function ContactPage() {
     const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
     const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -39,7 +42,7 @@ const Contact: React.FC = () => {
 
                 {/* Breadcrumb */}
                 <div className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-12 flex items-center gap-2 reveal">
-                    <span className="hover:text-black cursor-pointer transition-colors">Home</span>
+                    <a href="#home" className="hover:text-black transition-colors">Home</a>
                     <span className="text-gray-300">/</span>
                     <span>Contact</span>
                 </div>
@@ -106,11 +109,9 @@ const Contact: React.FC = () => {
                         <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-gray-100 relative shadow-2xl">
                             <img
                                 src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1000"
-                                alt="Wooden interior"
+                                alt="Houten interieur"
                                 className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                             />
-
-                            {/* Floating contact pill top right */}
                             <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 shadow-sm border border-white/50">
                                 <Phone size={16} className="text-gray-900" />
                                 <span className="text-xs font-bold text-gray-900">{companyConfig.contact.phone}</span>
@@ -121,48 +122,35 @@ const Contact: React.FC = () => {
 
                 {/* Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-100 pt-20 mb-24 reveal delay-200">
-
-                    {/* Email */}
                     <div className="space-y-4 group">
                         <h3 className="text-xl font-bold text-gray-900">E-mail</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">
-                            Stuur ons uw vragen en wij reageren binnen 24 uur.
-                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed">Stuur ons uw vragen en wij reageren binnen 24 uur.</p>
                         <a href={`mailto:${companyConfig.contact.email}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
                             {companyConfig.contact.email}
                         </a>
                     </div>
 
-                    {/* Infoline */}
                     <div className="space-y-4 group">
                         <h3 className="text-xl font-bold text-gray-900">Infoline</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">
-                            Bel ons voor direct advies bij vragen over uw project.
-                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed">Bel ons voor direct advies bij vragen over uw project.</p>
                         <a href={`tel:${companyConfig.contact.phone}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
                             {companyConfig.contact.phone}
                         </a>
                     </div>
 
-                    {/* Socials */}
                     <div className="space-y-4">
                         <h3 className="text-xl font-bold text-gray-900">Socials</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">
-                            Volg ons online voor inspiratie en de laatste updates.
-                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed">Volg ons online voor inspiratie en de laatste updates.</p>
                         <div className="flex gap-3 pt-1">
-                            <a href={companyConfig.socials.facebook} className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Facebook size={16} /></a>
-                            <a href={companyConfig.socials.instagram} className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Instagram size={16} /></a>
-                            <a href={companyConfig.socials.linkedin} className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Linkedin size={16} /></a>
+                            <a href={companyConfig.socials.facebook} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Facebook size={16} /></a>
+                            <a href={companyConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Instagram size={16} /></a>
+                            <a href={companyConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Linkedin size={16} /></a>
                         </div>
                     </div>
 
-                    {/* Address */}
                     <div className="space-y-4 group">
                         <h3 className="text-xl font-bold text-gray-900">Adres</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">
-                            Bezoek onze showroom voor stalen.
-                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed">Bezoek onze showroom voor stalen.</p>
                         <a href={companyConfig.contact.mapsUrl} target="_blank" rel="noreferrer" className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-flex items-center">
                             {companyConfig.contact.address}, {companyConfig.contact.zipCity.split(' ')[1]} <ArrowUpRight size={12} className="ml-1" />
                         </a>
@@ -179,7 +167,7 @@ const Contact: React.FC = () => {
                         allowFullScreen
                         loading="lazy"
                         className="absolute inset-0 w-full h-full opacity-80 hover:opacity-100 transition-opacity"
-                    ></iframe>
+                    />
                     <div className="absolute bottom-8 left-8 bg-white px-6 py-4 rounded-2xl shadow-xl z-10 hidden md:block">
                         <p className="font-bold text-gray-900">{companyConfig.name} HQ</p>
                         <p className="text-xs text-gray-500">{companyConfig.contact.address}, {companyConfig.contact.zipCity}</p>
@@ -189,6 +177,4 @@ const Contact: React.FC = () => {
             </div>
         </div>
     );
-};
-
-export default Contact;
+}
