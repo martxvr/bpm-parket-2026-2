@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
 import { getProjects, getDynamicPolicies } from '@/lib/site-data'
+import { categories } from '@/data/brands'
 
-const BASE_URL = 'https://pvcvloerenachterhoek.nl'
+const BASE_URL = 'https://bpmparket.nl'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const [projects, policies] = await Promise.all([
@@ -17,12 +18,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/offerte`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
         { url: `${BASE_URL}/showroom`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
         { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-        { url: `${BASE_URL}/producten/pvc-vloeren`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-        { url: `${BASE_URL}/producten/traprenovatie`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-        { url: `${BASE_URL}/producten/vloerbedekking`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-        { url: `${BASE_URL}/producten/raamdecoratie`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-        { url: `${BASE_URL}/producten/gordijnen`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ]
+
+    const categoryPages: MetadataRoute.Sitemap = categories.map(cat => ({
+        url: `${BASE_URL}/producten/${cat.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }))
+
+    const brandPages: MetadataRoute.Sitemap = categories.flatMap(cat =>
+        cat.brands.map(brand => ({
+            url: `${BASE_URL}/producten/${cat.slug}/${brand.slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.6,
+        }))
+    )
 
     const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
         url: `${BASE_URL}/projecten/${project.id}`,
@@ -38,5 +50,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.4,
     }))
 
-    return [...staticPages, ...projectPages, ...policyPages]
+    return [...staticPages, ...categoryPages, ...brandPages, ...projectPages, ...policyPages]
 }
