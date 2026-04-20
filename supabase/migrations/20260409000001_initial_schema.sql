@@ -1,5 +1,5 @@
 -- =============================================================
--- PVC Vloeren Achterhoek — Initial Schema
+-- BPM Parket — Initial Schema
 -- =============================================================
 
 -- Extensions
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS appointments (
   id          uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
   customer_id uuid REFERENCES customers(id) ON DELETE SET NULL,
   date        timestamptz NOT NULL,
-  service     text CHECK (service IN ('pvc-vloeren','traprenovatie','vloerbedekking','raamdecoratie','gordijnen','anders')),
+  service     text CHECK (service IN ('parket-en-multiplanken','pvc-en-laminaat','legservice','traprenovatie','buitenparket','interieurwerken','anders')),
   status      text DEFAULT 'nieuw' CHECK (status IN ('nieuw','bevestigd','afgerond','geannuleerd')),
   notes       text,
   source      text DEFAULT 'handmatig' CHECK (source IN ('chatbot','handmatig')),
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS offertes (
   customer_name text NOT NULL,
   email         text,
   phone         text,
-  service       text CHECK (service IN ('pvc-vloeren','traprenovatie','vloerbedekking','raamdecoratie','gordijnen','andere')),
+  service       text CHECK (service IN ('parket-en-multiplanken','pvc-en-laminaat','legservice','traprenovatie','buitenparket','interieurwerken','andere')),
   message       text,
   status        text DEFAULT 'nieuw' CHECK (status IN ('nieuw','behandeling','verzonden','gesloten')),
   created_at    timestamptz DEFAULT now()
