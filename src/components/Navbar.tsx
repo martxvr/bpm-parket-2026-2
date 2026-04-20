@@ -10,7 +10,7 @@ import RightChevron from '@/components/ui/right-chevron';
 import ArrowNarrowRightIcon from '@/components/ui/arrow-narrow-right-icon';
 import Button from './Button';
 import { companyConfig } from '@/config';
-import { categories, getProductTypesForCategory } from '@/data/brands';
+import { categories } from '@/data/brands';
 
 const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
   const pathname = usePathname();
@@ -162,50 +162,26 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
                   </Link>
                   <div className="h-px bg-gradient-to-r from-brand-primary/40 to-transparent" />
                   
-                  {/* Brand Links or Type Links */}
+                  {/* Brand Links */}
                   <div className="space-y-1">
-                    {(() => {
-                      // Gordijnen + Raamdecoratie: show types (user clicks type → sees brands)
-                      const isTypeCategory = category.slug === 'gordijnen' || category.slug === 'raamdecoratie'
-                      const types = isTypeCategory ? getProductTypesForCategory(category.slug) : []
-
-                      if (isTypeCategory && types.length > 0) {
-                        return types.map((type) => (
-                          <Link
-                            key={type.slug}
-                            href={`/producten/${category.slug}/type/${type.slug}`}
-                            className="block text-sm text-white/50 hover:text-brand-primary hover:pl-1 transition-all duration-200 py-1"
-                          >
-                            {type.name}
-                          </Link>
-                        ))
-                      }
-
-                      if (category.brands.length > 0) {
-                        return (
-                          <>
-                            {category.brands.map((brand) => (
-                              <Link
-                                key={brand.slug}
-                                href={`/producten/${category.slug}/${brand.slug}`}
-                                className="block text-sm text-white/50 hover:text-brand-primary hover:pl-1 transition-all duration-200 py-1"
-                              >
-                                {brand.name}
-                              </Link>
-                            ))}
-                          </>
-                        )
-                      }
-
-                      return (
+                    {category.brands.length > 0 ? (
+                      category.brands.slice(0, 6).map((brand) => (
                         <Link
-                          href={`/producten/${category.slug}`}
-                          className="block text-sm text-white/50 hover:text-brand-primary transition-colors py-1"
+                          key={brand.slug}
+                          href={`/producten/${category.slug}/${brand.slug}`}
+                          className="block text-sm text-white/50 hover:text-brand-primary hover:pl-1 transition-all duration-200 py-1"
                         >
-                          Bekijk assortiment →
+                          {brand.name}
                         </Link>
-                      )
-                    })()}
+                      ))
+                    ) : (
+                      <Link
+                        href={`/producten/${category.slug}`}
+                        className="block text-sm text-white/50 hover:text-brand-primary italic transition-colors py-1"
+                      >
+                        Meer info →
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}
@@ -254,10 +230,7 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
               {mobileExpandedCategory === '__diensten__' && (
                 <div className="pl-2 mt-1 space-y-0.5">
                   {categories.map((category) => {
-                    const isTypeCategory = category.slug === 'gordijnen' || category.slug === 'raamdecoratie'
-                    const types = isTypeCategory ? getProductTypesForCategory(category.slug) : []
-                    const showTypes = isTypeCategory && types.length > 0
-                    const hasSubItems = showTypes || category.brands.length > 0
+                    const hasSubItems = category.brands.length > 0
                     return (
                     <div key={category.slug}>
                       {/* Category name as expandable or direct link */}
@@ -284,29 +257,16 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
                               >
                                 Alle {category.name} →
                               </Link>
-                              {showTypes ? (
-                                types.map((type) => (
-                                  <Link
-                                    key={type.slug}
-                                    href={`/producten/${category.slug}/type/${type.slug}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-4 py-2 rounded-lg text-sm text-white/50 hover:text-white"
-                                  >
-                                    {type.name}
-                                  </Link>
-                                ))
-                              ) : (
-                                category.brands.map((brand) => (
-                                  <Link
-                                    key={brand.slug}
-                                    href={`/producten/${category.slug}/${brand.slug}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-4 py-2 rounded-lg text-sm text-white/50 hover:text-white"
-                                  >
-                                    {brand.name}
-                                  </Link>
-                                ))
-                              )}
+                              {category.brands.slice(0, 6).map((brand) => (
+                                <Link
+                                  key={brand.slug}
+                                  href={`/producten/${category.slug}/${brand.slug}`}
+                                  onClick={() => setIsOpen(false)}
+                                  className="block px-4 py-2 rounded-lg text-sm text-white/50 hover:text-white"
+                                >
+                                  {brand.name}
+                                </Link>
+                              ))}
                             </div>
                           )}
                         </>
@@ -314,7 +274,7 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
                         <Link
                           href={`/producten/${category.slug}`}
                           onClick={() => setIsOpen(false)}
-                          className={`block px-4 py-2.5 rounded-lg text-sm font-semibold ${
+                          className={`block px-4 py-2.5 rounded-lg text-sm font-semibold italic ${
                             pathname.includes(category.slug) ? 'text-brand-primary' : 'text-white/60 hover:text-white'
                           }`}
                         >
