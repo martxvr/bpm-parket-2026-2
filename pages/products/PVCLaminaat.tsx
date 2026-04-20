@@ -22,27 +22,23 @@ const PVCLaminaat = () => {
     return (
         <div className="flex flex-col w-full bg-white text-brand-dark">
             {/* Hero */}
-            <section className="relative pt-24 pb-32 bg-gray-50 overflow-hidden">
+            <section className="relative pt-24 pb-32 bg-black overflow-hidden">
+                <div className="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=2000" alt="" className="w-full h-full object-cover opacity-30" />
+                </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-3xl reveal">
-                        <span className="text-xs font-bold tracking-widest text-brand-sand uppercase mb-4 block">Onze Collectie</span>
-                        <h1 className="text-5xl lg:text-7xl font-bold text-brand-dark mb-8 leading-tight">
+                        <span className="text-xs font-bold tracking-widest text-brand-red uppercase mb-4 block">Onze Collectie</span>
+                        <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                             PVC en <span className="text-brand-red">Laminaat</span>
                         </h1>
-                        <p className="text-xl text-gray-500 leading-relaxed mb-10">
+                        <p className="text-xl text-white/70 leading-relaxed mb-10">
                             Stijlvol, duurzaam en onderhoudsvriendelijk. De perfecte vloeroplossing voor elk modern interieur.
                         </p>
                         <Button size="lg" withIcon onClick={() => window.location.hash = 'quote'}>
                             Gratis Offerte
                         </Button>
                     </div>
-                </div>
-                <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
-                    <img
-                        src="https://images.unsplash.com/photo-1581850518616-bcb8188c4436?auto=format&fit=crop&q=80&w=2000"
-                        alt="PVC Vloer"
-                        className="w-full h-full object-cover opacity-20"
-                    />
                 </div>
             </section>
 

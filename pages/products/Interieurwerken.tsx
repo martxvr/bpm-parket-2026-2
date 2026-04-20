@@ -20,14 +20,17 @@ const Interieurwerken = () => {
 
     return (
         <div className="flex flex-col w-full bg-white text-brand-dark">
-            <section className="relative pt-24 pb-32 bg-brand-dark text-white overflow-hidden">
+            <section className="relative pt-24 pb-32 bg-black overflow-hidden">
+                <div className="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000" alt="" className="w-full h-full object-cover opacity-30" />
+                </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-3xl reveal">
-                        <span className="text-xs font-bold tracking-widest text-brand-sand uppercase mb-4 block">Maatwerk</span>
-                        <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-tight">
+                        <span className="text-xs font-bold tracking-widest text-brand-red uppercase mb-4 block">Maatwerk</span>
+                        <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                             Exclusieve <span className="text-brand-red">Interieurwerken</span>
                         </h1>
-                        <p className="text-xl opacity-80 leading-relaxed mb-10">
+                        <p className="text-xl text-white/70 leading-relaxed mb-10">
                             Van akoestische wandpanelen tot op maat gemaakte aanpassingen; wij realiseren uw visie met precisie.
                         </p>
                         <Button size="lg" withIcon onClick={() => window.location.hash = 'quote'}>Uw droominterieur</Button>
