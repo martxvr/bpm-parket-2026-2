@@ -79,7 +79,7 @@ export default async function ReviewEditorPage({
                                         name="location"
                                         defaultValue={review?.location}
                                         className="w-full px-4 py-2 text-sm bg-gray-50 border border-gray-100 rounded-xl focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary focus:bg-white transition-all outline-none font-bold text-gray-900 pr-9"
-                                        placeholder="Doetinchem"
+                                        placeholder="Geldrop"
                                     />
                                     <MapPinIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
                                 </div>

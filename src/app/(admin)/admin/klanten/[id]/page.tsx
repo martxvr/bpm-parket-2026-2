@@ -152,7 +152,7 @@ export default async function CustomerEditorPage(props: {
                                 name="city"
                                 defaultValue={customer?.city}
                                 className="w-full px-4 py-2 text-sm bg-gray-50 border border-gray-100 rounded-xl focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary focus:bg-white transition-all outline-none font-bold text-gray-900"
-                                placeholder="Doetinchem"
+                                placeholder="Geldrop"
                             />
                         </div>
                     </div>

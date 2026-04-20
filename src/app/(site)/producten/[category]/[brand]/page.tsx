@@ -367,7 +367,7 @@ export default function BrandDetailPage() {
                             Interesse in <span className="text-brand-primary">{brand.name}</span>?
                         </h2>
                         <p className="text-lg opacity-60 mb-10">
-                            Bekijk de volledige collectie in onze showroom in Doetinchem of vraag direct een vrijblijvende offerte aan.
+                            Bekijk de volledige collectie in onze showroom in Geldrop of vraag direct een vrijblijvende offerte aan.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <Button size="lg" withIcon onClick={() => router.push('/offerte')}>Offerte Aanvragen</Button>

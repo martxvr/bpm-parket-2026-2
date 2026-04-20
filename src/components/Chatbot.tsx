@@ -11,7 +11,7 @@ const Chatbot: React.FC = () => {
     {
       id: 'welcome',
       role: 'model',
-      text: 'Hoi! Ik ben de assistent van PVC Vloeren Achterhoek. Ik help je graag met basisvragen of het inplannen van een showroombezoek. Voor persoonlijk advies kun je ons altijd bellen!',
+      text: 'Hoi! Ik ben de assistent van BPM Parket. Ik help je graag met basisvragen of het inplannen van een showroombezoek. Voor persoonlijk advies kun je ons altijd bellen!',
       timestamp: Date.now()
     }
   ]);

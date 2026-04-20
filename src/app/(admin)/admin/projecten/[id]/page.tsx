@@ -143,7 +143,7 @@ export default async function ProjectEditorPage({
                                 name="location"
                                 defaultValue={project?.location}
                                 className="w-full px-4 py-2 text-sm bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary focus:bg-white transition-all outline-none font-bold text-gray-800"
-                                placeholder="Bijv. Doetinchem"
+                                placeholder="Bijv. Geldrop"
                             />
                         </div>
 

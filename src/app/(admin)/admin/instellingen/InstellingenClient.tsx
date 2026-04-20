@@ -151,7 +151,7 @@ export default function InstellingenClient({ bedrijfsgegevens, chatbotSettings, 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="md:col-span-2">
                                     <label className={labelClass}>Bedrijfsnaam</label>
-                                    <input type="text" name="name" defaultValue={bedrijfsgegevens?.name} className={inputClass} placeholder="PVC Vloeren Achterhoek" />
+                                    <input type="text" name="name" defaultValue={bedrijfsgegevens?.name} className={inputClass} placeholder="BPM Parket" />
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className={labelClass}>Adres</label>
@@ -163,7 +163,7 @@ export default function InstellingenClient({ bedrijfsgegevens, chatbotSettings, 
                                 </div>
                                 <div>
                                     <label className={labelClass}>Woonplaats</label>
-                                    <input type="text" name="city" defaultValue={bedrijfsgegevens?.city} className={inputClass} placeholder="Doetinchem" />
+                                    <input type="text" name="city" defaultValue={bedrijfsgegevens?.city} className={inputClass} placeholder="Geldrop" />
                                 </div>
                                 <div>
                                     <label className={labelClass}>Telefoon</label>
@@ -200,15 +200,15 @@ export default function InstellingenClient({ bedrijfsgegevens, chatbotSettings, 
                         <form action={(fd) => handleFormAction(fd, saveSeoSettings, 'seo')} className="space-y-4 animate-fade-in">
                             <div>
                                 <label className={labelClass}>Standaard Meta Titel</label>
-                                <input type="text" name="meta_title" defaultValue={seoSettings?.meta_title} className={inputClass} placeholder="PVC Vloeren Achterhoek" />
+                                <input type="text" name="meta_title" defaultValue={seoSettings?.meta_title} className={inputClass} placeholder="BPM Parket" />
                             </div>
                             <div>
                                 <label className={labelClass}>Meta Omschrijving</label>
-                                <textarea name="meta_description" defaultValue={seoSettings?.meta_description} rows={3} className={textareaClass} placeholder="Uw specialist in PVC-vloeren, traprenovatie, vloerbedekking..." />
+                                <textarea name="meta_description" defaultValue={seoSettings?.meta_description} rows={3} className={textareaClass} placeholder="Uw specialist in traditioneel parket, PVC, laminaat, traprenovatie..." />
                             </div>
                             <div>
                                 <label className={labelClass}>Zoekwoorden (komma-gescheiden)</label>
-                                <input type="text" name="keywords" defaultValue={seoSettings?.keywords} className={inputClass} placeholder="pvc vloeren, traprenovatie, Doetinchem" />
+                                <input type="text" name="keywords" defaultValue={seoSettings?.keywords} className={inputClass} placeholder="parket, pvc, laminaat, traprenovatie, Geldrop" />
                             </div>
                             <div>
                                 <label className={labelClass}>Google Verificatie Code</label>

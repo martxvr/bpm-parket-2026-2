@@ -68,7 +68,7 @@ export const getProjects = cache(async (limit = 100) => {
         brand: doc.brand || '',
         brandSlug: doc.brand_slug || '',
         date: doc.date ? new Date(doc.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' }) : '',
-        location: doc.location || 'Achterhoek',
+        location: doc.location || 'Brabant',
         areaSize: doc.area_size || 0,
         longDescription: doc.long_description || '',
         techniques: doc.techniques || []
@@ -96,7 +96,7 @@ export const getProject = cache(async (id: string) => {
         images: Array.isArray(data.images) ? data.images : [],
         category: data.category,
         date: data.date ? new Date(data.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' }) : '',
-        location: data.location || 'Achterhoek',
+        location: data.location || 'Brabant',
         areaSize: data.area_size || 0,
         longDescription: data.long_description || '',
         techniques: data.techniques || []

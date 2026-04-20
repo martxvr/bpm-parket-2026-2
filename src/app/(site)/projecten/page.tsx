@@ -4,7 +4,7 @@ import { getProjects } from '@/lib/site-data'
 
 export const metadata: Metadata = {
     title: 'Projecten & Portfolio',
-    description: 'Bekijk onze gerealiseerde projecten: PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen in Doetinchem en de Achterhoek.',
+    description: 'Bekijk onze gerealiseerde projecten: parket, PVC, laminaat, traprenovatie, buitenparket en interieurwerken in Geldrop en heel Noord-Brabant.',
     alternates: { canonical: '/projecten' },
 }
 
