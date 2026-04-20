@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Button from '../components/Button';
-import { Star, ShieldCheck, Zap, Award, Layers, ArrowUpRight, CheckCircle2, Users, HardHat, PenTool, ArrowRight, ExternalLink } from 'lucide-react';
+import { Star, ShieldCheck, Zap, Award, Layers, ArrowUpRight, CheckCircle2, Users, HardHat, PenTool, ArrowRight, ExternalLink, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { getProjects } from '../services/mockDatabase';
 import { Project } from '../types';
 
@@ -9,6 +9,119 @@ interface HomeProps {
   onProjectSelect: (project: Project) => void;
 }
 
+const DAYS = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
+const MONTHS = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
+
+const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Date) => void }) => {
+  const [open, setOpen] = useState(false);
+  const [view, setView] = useState(() => value ?? new Date());
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const firstDay = new Date(view.getFullYear(), view.getMonth(), 1);
+  // Monday-first: (0=Sun→6, 1=Mon→0, ..., 6=Sat→5)
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+  const today = new Date();
+
+  const prevMonth = () => setView(v => new Date(v.getFullYear(), v.getMonth() - 1, 1));
+  const nextMonth = () => setView(v => new Date(v.getFullYear(), v.getMonth() + 1, 1));
+
+  const cells: (number | null)[] = [
+    ...Array(startOffset).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+
+  const label = value
+    ? value.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })
+    : 'Kies een datum';
+
+  const isSelected = (d: number) =>
+    value?.getFullYear() === view.getFullYear() &&
+    value?.getMonth() === view.getMonth() &&
+    value?.getDate() === d;
+
+  const isToday = (d: number) =>
+    today.getFullYear() === view.getFullYear() &&
+    today.getMonth() === view.getMonth() &&
+    today.getDate() === d;
+
+  const isPast = (d: number) => {
+    const date = new Date(view.getFullYear(), view.getMonth(), d);
+    date.setHours(0, 0, 0, 0);
+    const t = new Date(); t.setHours(0, 0, 0, 0);
+    return date < t;
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
+      >
+        <span className={value ? 'text-white' : 'text-white/50'}>{label}</span>
+        <Calendar className="h-4 w-4 text-white/40 flex-shrink-0" />
+      </button>
+
+      {open && (
+        <div className="absolute left-0 right-0 mt-2 bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-50">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <button type="button" onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="text-sm font-semibold text-white">
+              {MONTHS[view.getMonth()]} {view.getFullYear()}
+            </span>
+            <button type="button" onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Day labels */}
+          <div className="grid grid-cols-7 mb-2">
+            {DAYS.map(d => (
+              <span key={d} className="text-center text-[10px] font-bold text-white/30 uppercase tracking-wider py-1">{d}</span>
+            ))}
+          </div>
+
+          {/* Day cells */}
+          <div className="grid grid-cols-7 gap-y-1">
+            {cells.map((day, i) => {
+              if (!day) return <div key={i} />;
+              const past = isPast(day);
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  disabled={past}
+                  onClick={() => { onChange(new Date(view.getFullYear(), view.getMonth(), day)); setOpen(false); }}
+                  className={`
+                    h-8 w-full rounded-lg text-sm font-medium transition-colors
+                    ${past ? 'text-white/20 cursor-not-allowed' : 'hover:bg-white/10 cursor-pointer'}
+                    ${isSelected(day) ? 'bg-brand-red text-white hover:bg-brand-red/90' : ''}
+                    ${isToday(day) && !isSelected(day) ? 'text-brand-red font-bold' : 'text-white/80'}
+                  `}
+                >
+                  {day}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
   const images = [
     "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000",
@@ -16,6 +129,7 @@ const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
     "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=2000"
   ];
   const [currentImage, setCurrentImage] = useState(0);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -89,7 +203,6 @@ const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
                 'Gratis inmeting',
                 '20+ jaar ervaring',
                 'Binnen 1 dag geplaatst',
-                'Geldrop & omgeving',
               ].map((usp) => (
                 <span key={usp} className="flex items-center gap-1.5 text-sm text-white/80">
                   <CheckCircle2 className="h-4 w-4 text-brand-red flex-shrink-0" />
@@ -116,7 +229,7 @@ const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
                 </div>
                 <div>
                   <label className="sr-only">Datum</label>
-                  <input required type="date" className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all" style={{colorScheme: 'dark'}} />
+                  <DatePicker value={selectedDate} onChange={setSelectedDate} />
                 </div>
                 <button type="submit" className="w-full bg-brand-red text-white py-4 rounded-xl font-bold hover:bg-brand-red/90 transition-all shadow-lg shadow-brand-red/20 active:scale-[0.98]">
                   Plan Afspraak
