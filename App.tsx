@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Showroom from './pages/Showroom';
 import Policy from './pages/Policy';
+import AboutUs from './pages/AboutUs';
 import { Project } from './types';
 import { getSettings } from './services/mockDatabase';
 import PVCLaminaat from './pages/products/PVCLaminaat';
@@ -80,6 +81,7 @@ const App: React.FC = () => {
       case 'producten-trap': return <Traprenovatie />;
       case 'producten-buitenparket': return <Buitenparket />;
       case 'producten-interieur': return <Interieurwerken />;
+      case 'over-ons': return <AboutUs onNavigate={navigate} />;
       case 'admin':
         return isAuthenticated ? <Admin /> : <Login onLogin={handleLogin} onNavigate={navigate} />;
       case 'login':
