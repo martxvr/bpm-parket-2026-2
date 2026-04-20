@@ -6,44 +6,32 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 async function seed() {
-    // Media was already seeded successfully in the previous run, but we'll get the URLs for the settings update
     const { data: mediaData } = await supabase
         .from('media')
         .select('url')
         .in('filename', [
-            'modern-woonkamer-pvc.jpg',
-            'visgraat-vloer-detail.jpg',
-            'keuken-pvc-tegels.jpg',
-            'trap-renovatie-pvc.jpg',
-            'badkamer-pvc.jpg',
-            'industriele-vloer.jpg'
+            'klassiek-parket-eiken.jpg',
+            'visgraat-parket-woonkamer.jpg',
+            'pvc-laminaat-modern.jpg',
+            'traprenovatie-eiken.jpg',
+            'buitenparket-terras.jpg',
+            'interieurwerk-radiatorombouw.jpg'
         ])
 
     const mediaUrls = mediaData?.map((m: any) => m.url) || []
 
-    console.log('Seeding Projects with fixed categories...')
-    // Note: Since I don't know the exact allowed values, I'll use common ones or omit if nullable.
-    // Based on the error, "Residentieel" failed. Let's try matching typical categories like 'PVC Vloeren', 'Laminaat', etc.
+    console.log('Seeding Projects...')
     const { error: projectError } = await supabase
         .from('projects')
         .insert([
-            { title: 'Moderne Villa Doetinchem', description: 'Volledige benedenverdieping voorzien van hoogwaardig PVC in visgraatmotief.', image_url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop', category: 'pvc-vloeren', location: 'Doetinchem', area_size: 120, date: '2024-02-15', techniques: ["Egaliseren", "Visgraat PVC", "Mdf plinten"] },
-            { title: 'Kantoor Renovatie Zutphen', description: 'Duurzame PVC vloer voor een modern kantoorpand, inclusief traprenovatie.', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop', category: 'pvc-vloeren', location: 'Zutphen', area_size: 250, date: '2024-01-10', techniques: ["Geluidsdemping", "Project PVC", "Traprenovatie"] }
+            { title: 'Klassieke Parketvloer Villa', description: 'Volledige woonkamer voorzien van eiken multiplank in visgraatmotief.', image_url: 'https://images.unsplash.com/photo-1615971677499-5467cbab01c0?q=80&w=2070&auto=format&fit=crop', category: 'parket-en-multiplanken', location: 'Eindhoven', area_size: 85, date: '2026-01-20', techniques: ['Egaliseren', 'Visgraat leggen', 'Geolied afwerken'] },
+            { title: 'Modern PVC Appartement', description: 'Strak PVC in hele appartement met naadloze overgangen.', image_url: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=2070&auto=format&fit=crop', category: 'pvc-en-laminaat', location: 'Geldrop', area_size: 95, date: '2026-02-10', techniques: ['Egaliseren', 'PVC-klik leggen'] },
+            { title: 'Traprenovatie Massief Eiken', description: 'Oude tapijt-trap vervangen door massief eiken overzettreden.', image_url: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?q=80&w=2070&auto=format&fit=crop', category: 'traprenovatie', location: 'Nuenen', area_size: 0, date: '2026-02-25', techniques: ['Demontage tapijt', 'Overzettreden monteren'] },
+            { title: 'Buitenparket Terras', description: 'Bangkirai terras 50m² — volledig op maat gezaagd.', image_url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070&auto=format&fit=crop', category: 'buitenparket', location: 'Waalre', area_size: 50, date: '2026-03-15', techniques: ['Fundering', 'Bangkirai leggen', 'Olie-afwerking'] }
         ])
 
     if (projectError) {
         console.error('Project Error:', projectError)
-        // If it still fails, I'll try without category
-        console.log('Retrying without category...')
-        const { error: retryError } = await supabase
-            .from('projects')
-            .insert([
-                { title: 'Moderne Villa Doetinchem', description: 'Volledige benedenverdieping voorzien van hoogwaardig PVC in visgraatmotief.', image_url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop', location: 'Doetinchem', area_size: 120, date: '2024-02-15', techniques: ["Egaliseren", "Visgraat PVC", "Mdf plinten"] },
-                { title: 'Kantoor Renovatie Zutphen', description: 'Duurzame PVC vloer voor een modern kantoorpand, inclusief traprenovatie.', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop', location: 'Zutphen', area_size: 250, date: '2024-01-10', techniques: ["Geluidsdemping", "Project PVC", "Traprenovatie"] },
-                { title: 'Woonboerderij Winterswijk', description: 'Rustieke houtlook PVC vloer passend bij het authentieke karakter.', image_url: 'https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?q=80&w=2070&auto=format&fit=crop', location: 'Winterswijk', area_size: 180, date: '2023-11-20', techniques: ["Egaliseren", "Brede stroken", "Vloerverwarming"] },
-                { title: 'Showroom Doesburg', description: 'Strakke betonlook PVC tegels voor een industriële uitstraling.', image_url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop', location: 'Doesburg', area_size: 400, date: '2023-09-05', techniques: ["PVC Tegels", "Hoge plinten", "Inloopmat"] }
-            ])
-        if (retryError) console.error('Retry Error:', retryError)
     }
 
     console.log('Updating Gallery Settings...')

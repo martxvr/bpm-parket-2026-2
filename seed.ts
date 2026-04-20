@@ -8,12 +8,12 @@ async function seed() {
     const { data: mediaData, error: mediaError } = await supabase
         .from('media')
         .insert([
-            { filename: 'modern-woonkamer-pvc.jpg', url: 'https://images.unsplash.com/photo-1581850518616-bcb8077fa233?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 102400 },
-            { filename: 'visgraat-vloer-detail.jpg', url: 'https://images.unsplash.com/photo-1505691938895-1758d7eaa511?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 150000 },
-            { filename: 'keuken-pvc-tegels.jpg', url: 'https://images.unsplash.com/photo-1556911220-e15202883677?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 120000 },
-            { filename: 'trap-renovatie-pvc.jpg', url: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 95000 },
-            { filename: 'badkamer-pvc.jpg', url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 110000 },
-            { filename: 'industriele-vloer.jpg', url: 'https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=2072&auto=format&fit=crop', mime_type: 'image/jpeg', size: 130000 }
+            { filename: 'klassiek-parket-eiken.jpg', url: 'https://images.unsplash.com/photo-1615971677499-5467cbab01c0?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 102400 },
+            { filename: 'visgraat-parket-woonkamer.jpg', url: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 150000 },
+            { filename: 'pvc-laminaat-modern.jpg', url: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 120000 },
+            { filename: 'traprenovatie-eiken.jpg', url: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 95000 },
+            { filename: 'buitenparket-terras.jpg', url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070&auto=format&fit=crop', mime_type: 'image/jpeg', size: 110000 },
+            { filename: 'interieurwerk-radiatorombouw.jpg', url: 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?q=80&w=2072&auto=format&fit=crop', mime_type: 'image/jpeg', size: 130000 }
         ])
         .select()
 
@@ -28,10 +28,10 @@ async function seed() {
     const { error: projectError } = await supabase
         .from('projects')
         .insert([
-            { title: 'Moderne Villa Doetinchem', description: 'Volledige benedenverdieping voorzien van hoogwaardig PVC in visgraatmotief.', image_url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop', category: 'Residentieel', location: 'Doetinchem', area_size: 120, date: '2024-02-15', techniques: ["Egaliseren", "Visgraat PVC", "Mdf plinten"] },
-            { title: 'Kantoor Renovatie Zutphen', description: 'Duurzame PVC vloer voor een modern kantoorpand, inclusief traprenovatie.', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop', category: 'Zakelijk', location: 'Zutphen', area_size: 250, date: '2024-01-10', techniques: ["Geluidsdemping", "Project PVC", "Traprenovatie"] },
-            { title: 'Woonboerderij Winterswijk', description: 'Rustieke houtlook PVC vloer passend bij het authentieke karakter.', image_url: 'https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?q=80&w=2070&auto=format&fit=crop', category: 'Residentieel', location: 'Winterswijk', area_size: 180, date: '2023-11-20', techniques: ["Egaliseren", "Brede stroken", "Vloerverwarming"] },
-            { title: 'Showroom Doesburg', description: 'Strakke betonlook PVC tegels voor een industriële uitstraling.', image_url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop', category: 'Industrie', location: 'Doesburg', area_size: 400, date: '2023-09-05', techniques: ["PVC Tegels", "Hoge plinten", "Inloopmat"] }
+            { title: 'Klassieke Parketvloer Villa', description: 'Volledige woonkamer voorzien van eiken multiplank in visgraatmotief.', image_url: 'https://images.unsplash.com/photo-1615971677499-5467cbab01c0?q=80&w=2070&auto=format&fit=crop', category: 'parket-en-multiplanken', location: 'Eindhoven', area_size: 85, date: '2026-01-20', techniques: ['Egaliseren', 'Visgraat leggen', 'Geolied afwerken'] },
+            { title: 'Modern PVC Appartement', description: 'Strak PVC in hele appartement met naadloze overgangen.', image_url: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=2070&auto=format&fit=crop', category: 'pvc-en-laminaat', location: 'Geldrop', area_size: 95, date: '2026-02-10', techniques: ['Egaliseren', 'PVC-klik leggen'] },
+            { title: 'Traprenovatie Massief Eiken', description: 'Oude tapijt-trap vervangen door massief eiken overzettreden.', image_url: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?q=80&w=2070&auto=format&fit=crop', category: 'traprenovatie', location: 'Nuenen', area_size: 0, date: '2026-02-25', techniques: ['Demontage tapijt', 'Overzettreden monteren'] },
+            { title: 'Buitenparket Terras', description: 'Bangkirai terras 50m² — volledig op maat gezaagd.', image_url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070&auto=format&fit=crop', category: 'buitenparket', location: 'Waalre', area_size: 50, date: '2026-03-15', techniques: ['Fundering', 'Bangkirai leggen', 'Olie-afwerking'] }
         ])
 
     if (projectError) {
