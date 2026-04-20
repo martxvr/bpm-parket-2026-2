@@ -11,10 +11,15 @@ interface HomeProps {
 
 const DAYS = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
 const MONTHS = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
+const TIME_SLOTS = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
 
 const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Date) => void }) => {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState(() => value ?? new Date());
+  const [pickedDate, setPickedDate] = useState<Date | null>(value);
+  const [pickedTime, setPickedTime] = useState<string | null>(
+    value ? `${String(value.getHours()).padStart(2, '0')}:${String(value.getMinutes()).padStart(2, '0')}` : null
+  );
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,7 +31,6 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
   }, []);
 
   const firstDay = new Date(view.getFullYear(), view.getMonth(), 1);
-  // Monday-first: (0=Sun→6, 1=Mon→0, ..., 6=Sat→5)
   const startOffset = (firstDay.getDay() + 6) % 7;
   const daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
   const today = new Date();
@@ -39,14 +43,10 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
 
-  const label = value
-    ? value.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })
-    : 'Kies een datum';
-
-  const isSelected = (d: number) =>
-    value?.getFullYear() === view.getFullYear() &&
-    value?.getMonth() === view.getMonth() &&
-    value?.getDate() === d;
+  const isSelectedDay = (d: number) =>
+    pickedDate?.getFullYear() === view.getFullYear() &&
+    pickedDate?.getMonth() === view.getMonth() &&
+    pickedDate?.getDate() === d;
 
   const isToday = (d: number) =>
     today.getFullYear() === view.getFullYear() &&
@@ -60,6 +60,27 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
     return date < t;
   };
 
+  const selectDay = (day: number) => {
+    const d = new Date(view.getFullYear(), view.getMonth(), day);
+    setPickedDate(d);
+    setPickedTime(null);
+  };
+
+  const selectTime = (time: string) => {
+    if (!pickedDate) return;
+    const [h, m] = time.split(':').map(Number);
+    const d = new Date(pickedDate);
+    d.setHours(h, m, 0, 0);
+    setPickedTime(time);
+    onChange(d);
+    setOpen(false);
+  };
+
+  const label = pickedDate
+    ? pickedDate.toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'long' }) +
+      (pickedTime ? ` — ${pickedTime}` : '')
+    : 'Kies een datum & tijd';
+
   return (
     <div ref={ref} className="relative">
       <button
@@ -67,13 +88,13 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
         onClick={() => setOpen(o => !o)}
         className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all"
       >
-        <span className={value ? 'text-white' : 'text-white/50'}>{label}</span>
+        <span className={(pickedDate && pickedTime) ? 'text-white' : 'text-white/50'}>{label}</span>
         <Calendar className="h-4 w-4 text-white/40 flex-shrink-0" />
       </button>
 
       {open && (
         <div className="absolute left-0 right-0 mt-2 bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-50">
-          {/* Header */}
+          {/* Month header */}
           <div className="flex items-center justify-between mb-4">
             <button type="button" onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors">
               <ChevronLeft className="h-4 w-4" />
@@ -103,12 +124,12 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
                   key={i}
                   type="button"
                   disabled={past}
-                  onClick={() => { onChange(new Date(view.getFullYear(), view.getMonth(), day)); setOpen(false); }}
+                  onClick={() => selectDay(day)}
                   className={`
                     h-8 w-full rounded-lg text-sm font-medium transition-colors
                     ${past ? 'text-white/20 cursor-not-allowed' : 'hover:bg-white/10 cursor-pointer'}
-                    ${isSelected(day) ? 'bg-brand-red text-white hover:bg-brand-red/90' : ''}
-                    ${isToday(day) && !isSelected(day) ? 'text-brand-red font-bold' : 'text-white/80'}
+                    ${isSelectedDay(day) ? 'bg-brand-red text-white hover:bg-brand-red/90' : ''}
+                    ${isToday(day) && !isSelectedDay(day) ? 'text-brand-red font-bold' : 'text-white/80'}
                   `}
                 >
                   {day}
@@ -116,6 +137,28 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
               );
             })}
           </div>
+
+          {/* Time slots — shown after a date is picked */}
+          {pickedDate && (
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <p className="text-[10px] font-bold text-white/30 uppercase tracking-wider mb-3">Kies een tijd</p>
+              <div className="grid grid-cols-4 gap-1.5">
+                {TIME_SLOTS.map(slot => (
+                  <button
+                    key={slot}
+                    type="button"
+                    onClick={() => selectTime(slot)}
+                    className={`
+                      py-2 rounded-lg text-xs font-semibold transition-colors
+                      ${pickedTime === slot ? 'bg-brand-red text-white' : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'}
+                    `}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
