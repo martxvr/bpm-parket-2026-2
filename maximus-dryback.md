@@ -1,0 +1,752 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - link "Invictus" [ref=e6] [cursor=pointer]:
+      - /url: /nl-be
+      - img [ref=e7]
+    - generic [ref=e80]:
+      - link "Startpagina" [ref=e82] [cursor=pointer]:
+        - /url: /nl-be
+      - generic [ref=e84] [cursor=pointer]: Luxe Vinylvloeren
+      - generic [ref=e86] [cursor=pointer]: Tapijt
+      - generic [ref=e88] [cursor=pointer]: Inspiratie
+      - generic [ref=e90] [cursor=pointer]: Advies
+      - generic [ref=e92] [cursor=pointer]: Over Invictus
+      - link [ref=e94] [cursor=pointer]:
+        - /url: ""
+        - img [ref=e96]
+    - generic [ref=e98]:
+      - img [ref=e101] [cursor=pointer]
+      - button "Sample Request Cart" [ref=e110] [cursor=pointer]:
+        - img [ref=e111]
+      - link "Vind een winkel" [ref=e113] [cursor=pointer]:
+        - /url: /nl-be/vind-een-winkel-in-je-buurt
+        - img [ref=e115]
+        - text: Vind een winkel
+      - link "MyInvictus Inloggen" [ref=e117] [cursor=pointer]:
+        - /url: /nl-be/myinvictus
+        - img [ref=e119]
+        - generic [ref=e121]:
+          - generic [ref=e122]: MyInvictus
+          - generic [ref=e123]: Inloggen
+  - complementary [ref=e124]:
+    - list [ref=e125]:
+      - listitem [ref=e126]:
+        - link "Tapijt" [ref=e127] [cursor=pointer]:
+          - /url: /nl-be/tapijt/productzoeker
+          - img [ref=e129]
+          - generic [ref=e131]: Tapijt
+      - listitem [ref=e132]:
+        - link "Luxe vinylvloeren" [ref=e133] [cursor=pointer]:
+          - /url: /nl-be/luxe-vinylvloeren/productzoeker
+          - img [ref=e135]
+          - generic [ref=e151]: Luxe vinylvloeren
+      - listitem [ref=e152]:
+        - link "LVT Stalen aanvragen" [ref=e153] [cursor=pointer]:
+          - /url: /nl-be/vraag-stalen-aan
+          - img [ref=e155]
+          - generic [ref=e157]: LVT Stalen aanvragen
+      - listitem [ref=e158]:
+        - link "Room visualiser" [ref=e159] [cursor=pointer]:
+          - /url: /nl-be/room-visualiser
+          - img [ref=e161]
+          - generic [ref=e164]: Room visualiser
+      - listitem [ref=e165]:
+        - link "Download lookbook" [ref=e166] [cursor=pointer]:
+          - /url: /nl-be/download-brochure
+          - img [ref=e168]: 
+          - generic [ref=e170]: Download lookbook
+  - generic [ref=e171]:
+    - banner [ref=e172]:
+      - navigation [ref=e173]:
+        - generic [ref=e174]: "U bent hier:"
+        - list [ref=e175]:
+          - listitem [ref=e176]:
+            - link "Startpagina" [ref=e177] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e178]:
+            - link "Luxe vinylvloeren" [ref=e179] [cursor=pointer]:
+              - /url: /nl-be/luxe-vinylvloeren
+          - listitem [ref=e180]: Maximus Click
+      - generic [ref=e185]:
+        - heading "Maximus Click" [level=1] [ref=e186]
+        - text: Invictus Maximus bestaat uit luxe vinylplanken en -tegels met een slijtlaag van 0.55 mm. Ze bieden een uitstekende slijtvastheid en duurzaamheid, waardoor ze zelfs geschikt zijn voor intensief projectgebruik, zoals in care-, hospitality-, office- en retail-omgevingen.
+    - generic [ref=e189]:
+      - generic [ref=e191]:
+        - heading "Zoekcriteria" [level=2] [ref=e193]
+        - generic [ref=e321]:
+          - generic [ref=e322]:
+            - heading "Op Vloertype" [level=4] [ref=e324] [cursor=pointer]
+            - generic [ref=e327]:
+              - generic [ref=e329]:
+                - checkbox "Hout plank XL" [ref=e330]
+                - text: Hout plank XL
+              - generic [ref=e332]:
+                - checkbox "Hout plank" [ref=e333]
+                - text: Hout plank
+              - generic [ref=e335]:
+                - checkbox "Steen tegel" [ref=e336]
+                - text: Steen tegel
+              - generic [ref=e338]:
+                - checkbox "Steen tegel XL" [ref=e339]
+                - text: Steen tegel XL
+              - generic [ref=e341]:
+                - checkbox "Visgraat" [ref=e342]
+                - text: Visgraat
+          - generic [ref=e343]:
+            - heading "Op Kleur" [level=4] [ref=e345] [cursor=pointer]
+            - generic [ref=e347]:
+              - img "Beige Natural" [ref=e349] [cursor=pointer]
+              - img "Zwart" [ref=e351] [cursor=pointer]
+              - img "Bruin" [ref=e353] [cursor=pointer]
+              - img "Koel grijs" [ref=e355] [cursor=pointer]
+              - img "Donker naturel" [ref=e357] [cursor=pointer]
+              - img "Warm grijs" [ref=e359] [cursor=pointer]
+              - img "Wit cream" [ref=e361] [cursor=pointer]
+          - heading "Op Design" [level=4] [ref=e364] [cursor=pointer]
+          - heading "Op Formaat (mm)" [level=4] [ref=e367] [cursor=pointer]
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - heading "19 Resultaten" [level=2] [ref=e368]
+          - list [ref=e204]:
+            - listitem [ref=e205]: Sorteer volgens
+            - listitem [ref=e206]:
+              - button "Relevantie" [ref=e208] [cursor=pointer]
+        - generic [ref=e371]:
+          - generic:
+            - list
+          - generic:
+            - list
+        - generic [ref=e373]:
+          - generic [ref=e374]:
+            - generic [ref=e375]:
+              - list [ref=e377]:
+                - listitem [ref=e378]:
+                  - button [ref=e379] [cursor=pointer]:
+                    - img [ref=e381]
+                - listitem [ref=e383]:
+                  - button [ref=e384] [cursor=pointer]:
+                    - img [ref=e386]
+              - link "Maximus Click Riverside Oak - Sunshine Riverside Oak" [ref=e388] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-riversideoak-sunshine?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e389]:
+                  - heading "Maximus Click" [level=6] [ref=e390]
+                  - heading "Riverside Oak - Sunshine" [level=5] [ref=e391]
+                - img "Riverside Oak" [ref=e392]
+            - img [ref=e393]
+            - generic [ref=e394]:
+              - generic [ref=e395]:
+                - generic [ref=e396]:
+                  - generic [ref=e398]: Beschikbare kleuren
+                  - generic [ref=e399]:
+                    - generic [ref=e400] [cursor=pointer]:
+                      - img "36" [ref=e401]
+                      - text: 
+                    - img "46" [ref=e403] [cursor=pointer]
+                - generic [ref=e406]:
+                  - generic [ref=e408]: Installatiemethode
+                  - generic [ref=e409]: RIGID CLICK
+                  - generic [ref=e411]: Contactgeluidsisolatie
+                  - generic [ref=e413]: 20 dB
+                  - generic [ref=e415]: Afmetingen
+                  - generic [ref=e416]: 225x1500 mm
+              - list [ref=e418]
+              - link "Meer info" [ref=e420] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-riversideoak-sunshine?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e421]:
+            - generic [ref=e422]:
+              - list [ref=e424]:
+                - listitem [ref=e425]:
+                  - button [ref=e426] [cursor=pointer]:
+                    - img [ref=e428]
+                - listitem [ref=e430]:
+                  - button [ref=e431] [cursor=pointer]:
+                    - img [ref=e433]
+              - link "Maximus Click Divine Oak - Pure Divine Oak" [ref=e435] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-divineoak-pure?dimensions=145x743&sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e436]:
+                  - heading "Maximus Click" [level=6] [ref=e437]
+                  - heading "Divine Oak - Pure" [level=5] [ref=e438]
+                - img "Divine Oak" [ref=e439]
+            - img [ref=e440]
+            - generic [ref=e441]:
+              - generic [ref=e442]:
+                - generic [ref=e443]:
+                  - generic [ref=e445]: Beschikbare kleuren
+                  - generic [ref=e446]:
+                    - generic [ref=e447] [cursor=pointer]:
+                      - img "03" [ref=e448]
+                      - text: 
+                    - img "31" [ref=e450] [cursor=pointer]
+                    - img "32" [ref=e452] [cursor=pointer]
+                - generic [ref=e455]:
+                  - generic [ref=e457]: Installatiemethode
+                  - generic [ref=e458]: RIGID CLICK
+                  - generic [ref=e460]: Contactgeluidsisolatie
+                  - generic [ref=e462]: 20 dB
+                  - generic [ref=e464]: Afmetingen
+                  - generic [ref=e465]: 145x743 mm
+              - list [ref=e467]
+              - link "Meer info" [ref=e469] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-divineoak-pure?dimensions=145x743&sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e470]:
+            - generic [ref=e471]:
+              - list [ref=e473]:
+                - listitem [ref=e474]:
+                  - button [ref=e475] [cursor=pointer]:
+                    - img [ref=e477]
+                - listitem [ref=e479]:
+                  - button [ref=e480] [cursor=pointer]:
+                    - img [ref=e482]
+              - link "Maximus Click Belrose Oak - Truffle Belrose Oak" [ref=e484] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-belroseoak-truffle?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e485]:
+                  - heading "Maximus Click" [level=6] [ref=e486]
+                  - heading "Belrose Oak - Truffle" [level=5] [ref=e487]
+                - img "Belrose Oak" [ref=e488]
+            - img [ref=e489]
+            - generic [ref=e490]:
+              - generic [ref=e491]:
+                - generic [ref=e492]:
+                  - generic [ref=e494]: Beschikbare kleuren
+                  - generic [ref=e495]:
+                    - generic [ref=e496] [cursor=pointer]:
+                      - img "31" [ref=e497]
+                      - text: 
+                    - img "36" [ref=e499] [cursor=pointer]
+                    - img "37" [ref=e501] [cursor=pointer]
+                - generic [ref=e504]:
+                  - generic [ref=e506]: Installatiemethode
+                  - generic [ref=e507]: RIGID CLICK
+                  - generic [ref=e509]: Contactgeluidsisolatie
+                  - generic [ref=e511]: 20 dB
+                  - generic [ref=e513]: Afmetingen
+                  - generic [ref=e514]: 241x1518 mm
+              - list [ref=e516]
+              - link "Meer info" [ref=e518] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-belroseoak-truffle?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e519]:
+            - generic [ref=e520]:
+              - list [ref=e522]:
+                - listitem [ref=e523]:
+                  - button [ref=e524] [cursor=pointer]:
+                    - img [ref=e526]
+                - listitem [ref=e528]:
+                  - button [ref=e529] [cursor=pointer]:
+                    - img [ref=e531]
+              - link "Maximus Click Silk Oak - Latte Silk Oak" [ref=e533] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-silkoak-latte?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e534]:
+                  - heading "Maximus Click" [level=6] [ref=e535]
+                  - heading "Silk Oak - Latte" [level=5] [ref=e536]
+                - img "Silk Oak" [ref=e537]
+            - img [ref=e538]
+            - generic [ref=e539]:
+              - generic [ref=e540]:
+                - generic [ref=e541]:
+                  - generic [ref=e543]: Beschikbare kleuren
+                  - generic [ref=e544]:
+                    - generic [ref=e545] [cursor=pointer]:
+                      - img "30" [ref=e546]
+                      - text: 
+                    - img "32" [ref=e548] [cursor=pointer]
+                - generic [ref=e551]:
+                  - generic [ref=e553]: Installatiemethode
+                  - generic [ref=e554]: RIGID CLICK
+                  - generic [ref=e556]: Contactgeluidsisolatie
+                  - generic [ref=e558]: 20 dB
+                  - generic [ref=e560]: Afmetingen
+                  - generic [ref=e561]: 228x1210 mm
+              - list [ref=e563]
+              - link "Meer info" [ref=e565] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-silkoak-latte?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e566]:
+            - generic [ref=e567]:
+              - list [ref=e569]:
+                - listitem [ref=e570]:
+                  - button [ref=e571] [cursor=pointer]:
+                    - img [ref=e573]
+                - listitem [ref=e575]:
+                  - button [ref=e576] [cursor=pointer]:
+                    - img [ref=e578]
+              - link "Maximus Click Nativa - Sandshell Nativa" [ref=e580] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-nativa-sandshell?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e581]:
+                  - heading "Maximus Click" [level=6] [ref=e582]
+                  - heading "Nativa - Sandshell" [level=5] [ref=e583]
+                - img "Nativa" [ref=e584]
+            - img [ref=e585]
+            - generic [ref=e586]:
+              - generic [ref=e587]:
+                - generic [ref=e588]:
+                  - generic [ref=e590]: Beschikbare kleuren
+                  - generic [ref=e591]:
+                    - generic [ref=e592] [cursor=pointer]:
+                      - img "03" [ref=e593]
+                      - text: 
+                    - img "05" [ref=e595] [cursor=pointer]
+                    - img "96" [ref=e597] [cursor=pointer]
+                    - img "99" [ref=e599] [cursor=pointer]
+                - generic [ref=e602]:
+                  - generic [ref=e604]: Installatiemethode
+                  - generic [ref=e605]: RIGID CLICK
+                  - generic [ref=e607]: Contactgeluidsisolatie
+                  - generic [ref=e609]: 20 dB
+                  - generic [ref=e611]: Afmetingen
+                  - generic [ref=e612]: 450x907 mm
+              - list [ref=e614]
+              - link "Meer info" [ref=e616] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-nativa-sandshell?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e617]:
+            - generic [ref=e618]:
+              - list [ref=e620]:
+                - listitem [ref=e621]:
+                  - button [ref=e622] [cursor=pointer]:
+                    - img [ref=e624]
+                - listitem [ref=e626]:
+                  - button [ref=e627] [cursor=pointer]:
+                    - img [ref=e629]
+              - link "Maximus Click Regency Oak - Scone Regency Oak" [ref=e631] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-regencyoak-scone?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e632]:
+                  - heading "Maximus Click" [level=6] [ref=e633]
+                  - heading "Regency Oak - Scone" [level=5] [ref=e634]
+                - img "Regency Oak" [ref=e635]
+            - img [ref=e636]
+            - generic [ref=e637]:
+              - generic [ref=e638]:
+                - generic [ref=e639]:
+                  - generic [ref=e641]: Beschikbare kleuren
+                  - generic [ref=e642]:
+                    - generic [ref=e643] [cursor=pointer]:
+                      - img "30" [ref=e644]
+                      - text: 
+                    - img "33" [ref=e646] [cursor=pointer]
+                    - img "45" [ref=e648] [cursor=pointer]
+                - generic [ref=e651]:
+                  - generic [ref=e653]: Installatiemethode
+                  - generic [ref=e654]: RIGID CLICK
+                  - generic [ref=e656]: Contactgeluidsisolatie
+                  - generic [ref=e658]: 20 dB
+                  - generic [ref=e660]: Afmetingen
+                  - generic [ref=e661]: 241x1518 mm
+              - list [ref=e663]
+              - link "Meer info" [ref=e665] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-regencyoak-scone?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e666]:
+            - generic [ref=e667]:
+              - list [ref=e669]:
+                - listitem [ref=e670]:
+                  - button [ref=e671] [cursor=pointer]:
+                    - img [ref=e673]
+                - listitem [ref=e675]:
+                  - button [ref=e676] [cursor=pointer]:
+                    - img [ref=e678]
+              - link "Maximus Click Premium Oak - Ecru Premium Oak" [ref=e680] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-premiumoak-ecru?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e681]:
+                  - heading "Maximus Click" [level=6] [ref=e682]
+                  - heading "Premium Oak - Ecru" [level=5] [ref=e683]
+                - img "Premium Oak"
+            - img [ref=e684]
+            - generic [ref=e685]:
+              - generic [ref=e686]:
+                - generic [ref=e687]:
+                  - generic [ref=e689]: Beschikbare kleuren
+                  - generic [ref=e690]:
+                    - generic [ref=e691] [cursor=pointer]:
+                      - img "03" [ref=e692]
+                      - text: 
+                    - img "05" [ref=e694] [cursor=pointer]
+                - generic [ref=e697]:
+                  - generic [ref=e699]: Installatiemethode
+                  - generic [ref=e700]: RIGID CLICK
+                  - generic [ref=e702]: Contactgeluidsisolatie
+                  - generic [ref=e704]: 20 dB
+                  - generic [ref=e706]: Afmetingen
+                  - generic [ref=e707]: 225x1500 mm
+              - list [ref=e709]
+              - link "Meer info" [ref=e711] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-premiumoak-ecru?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e712]:
+            - generic [ref=e713]:
+              - list [ref=e715]:
+                - listitem [ref=e716]:
+                  - button [ref=e717] [cursor=pointer]:
+                    - img [ref=e719]
+                - listitem [ref=e721]:
+                  - button [ref=e722] [cursor=pointer]:
+                    - img [ref=e724]
+              - link "Maximus Click Tropical Forest - Havana Tropical Forest" [ref=e726] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-tropicalforest-havana?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e727]:
+                  - heading "Maximus Click" [level=6] [ref=e728]
+                  - heading "Tropical Forest - Havana" [level=5] [ref=e729]
+                - img "Tropical Forest"
+            - img [ref=e730]
+            - generic [ref=e731]:
+              - generic [ref=e732]:
+                - generic [ref=e733]:
+                  - generic [ref=e735]: Beschikbare kleuren
+                  - generic [ref=e737] [cursor=pointer]:
+                    - img "38" [ref=e738]
+                    - text: 
+                - generic [ref=e741]:
+                  - generic [ref=e743]: Installatiemethode
+                  - generic [ref=e744]: RIGID CLICK
+                  - generic [ref=e746]: Contactgeluidsisolatie
+                  - generic [ref=e748]: 20 dB
+                  - generic [ref=e750]: Afmetingen
+                  - generic [ref=e751]: 228x1210 mm
+              - list [ref=e753]
+              - link "Meer info" [ref=e755] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-tropicalforest-havana?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e756]:
+            - generic [ref=e757]:
+              - list [ref=e759]:
+                - listitem [ref=e760]:
+                  - button [ref=e761] [cursor=pointer]:
+                    - img [ref=e763]
+                - listitem [ref=e765]:
+                  - button [ref=e766] [cursor=pointer]:
+                    - img [ref=e768]
+              - link "Maximus Click Velvet Oak - Celeste Velvet Oak" [ref=e770] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-velvetoak-celeste?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e771]:
+                  - heading "Maximus Click" [level=6] [ref=e772]
+                  - heading "Velvet Oak - Celeste" [level=5] [ref=e773]
+                - img "Velvet Oak"
+            - img [ref=e774]
+            - generic [ref=e775]:
+              - generic [ref=e776]:
+                - generic [ref=e777]:
+                  - generic [ref=e779]: Beschikbare kleuren
+                  - generic [ref=e780]:
+                    - generic [ref=e781] [cursor=pointer]:
+                      - img "36" [ref=e782]
+                      - text: 
+                    - img "44" [ref=e784] [cursor=pointer]
+                - generic [ref=e787]:
+                  - generic [ref=e789]: Installatiemethode
+                  - generic [ref=e790]: RIGID CLICK
+                  - generic [ref=e792]: Contactgeluidsisolatie
+                  - generic [ref=e794]: 20 dB
+                  - generic [ref=e796]: Afmetingen
+                  - generic [ref=e797]: 177x1210 mm
+              - list [ref=e799]
+              - link "Meer info" [ref=e801] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-velvetoak-celeste?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e802]:
+            - generic [ref=e803]:
+              - list [ref=e805]:
+                - listitem [ref=e806]:
+                  - button [ref=e807] [cursor=pointer]:
+                    - img [ref=e809]
+                - listitem [ref=e811]:
+                  - button [ref=e812] [cursor=pointer]:
+                    - img [ref=e814]
+              - link "Maximus Click Groovy Granite - Alabaster Groovy Granite" [ref=e816] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-groovygranite-alabaster?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e817]:
+                  - heading "Maximus Click" [level=6] [ref=e818]
+                  - heading "Groovy Granite - Alabaster" [level=5] [ref=e819]
+                - img "Groovy Granite"
+            - img [ref=e820]
+            - generic [ref=e821]:
+              - generic [ref=e822]:
+                - generic [ref=e823]:
+                  - generic [ref=e825]: Beschikbare kleuren
+                  - generic [ref=e826]:
+                    - generic [ref=e827] [cursor=pointer]:
+                      - img "03" [ref=e828]
+                      - text: 
+                    - img "05" [ref=e830] [cursor=pointer]
+                    - img "91" [ref=e832] [cursor=pointer]
+                    - img "99" [ref=e834] [cursor=pointer]
+                - generic [ref=e837]:
+                  - generic [ref=e839]: Installatiemethode
+                  - generic [ref=e840]: RIGID CLICK
+                  - generic [ref=e842]: Contactgeluidsisolatie
+                  - generic [ref=e844]: 20 dB
+                  - generic [ref=e846]: Afmetingen
+                  - generic [ref=e847]: 467x908 mm
+              - list [ref=e849]
+              - link "Meer info" [ref=e851] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-groovygranite-alabaster?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e852]:
+            - generic [ref=e853]:
+              - list [ref=e855]:
+                - listitem [ref=e856]:
+                  - button [ref=e857] [cursor=pointer]:
+                    - img [ref=e859]
+                - listitem [ref=e861]:
+                  - button [ref=e862] [cursor=pointer]:
+                    - img [ref=e864]
+              - link "Maximus Click Hudson Stone - Silver Hudson Stone" [ref=e866] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-hudsonstone-silver?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e867]:
+                  - heading "Maximus Click" [level=6] [ref=e868]
+                  - heading "Hudson Stone - Silver" [level=5] [ref=e869]
+                - img "Hudson Stone"
+            - img [ref=e870]
+            - generic [ref=e871]:
+              - generic [ref=e872]:
+                - generic [ref=e873]:
+                  - generic [ref=e875]: Beschikbare kleuren
+                  - generic [ref=e876]:
+                    - generic [ref=e877] [cursor=pointer]:
+                      - img "91" [ref=e878]
+                      - text: 
+                    - img "97" [ref=e880] [cursor=pointer]
+                - generic [ref=e883]:
+                  - generic [ref=e885]: Installatiemethode
+                  - generic [ref=e886]: RIGID CLICK
+                  - generic [ref=e888]: Contactgeluidsisolatie
+                  - generic [ref=e890]: 20 dB
+                  - generic [ref=e892]: Afmetingen
+                  - generic [ref=e893]: 450x907 mm
+              - list [ref=e895]
+              - link "Meer info" [ref=e897] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-hudsonstone-silver?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e898]:
+            - generic [ref=e899]:
+              - list [ref=e901]:
+                - listitem [ref=e902]:
+                  - button [ref=e903] [cursor=pointer]:
+                    - img [ref=e905]
+                - listitem [ref=e907]:
+                  - button [ref=e908] [cursor=pointer]:
+                    - img [ref=e910]
+              - link "Maximus Click French Oak - Polar French Oak" [ref=e912] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-frenchoak-polar?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e913]:
+                  - heading "Maximus Click" [level=6] [ref=e914]
+                  - heading "French Oak - Polar" [level=5] [ref=e915]
+                - img "French Oak"
+            - img [ref=e916]
+            - generic [ref=e917]:
+              - generic [ref=e918]:
+                - generic [ref=e919]:
+                  - generic [ref=e921]: Beschikbare kleuren
+                  - generic [ref=e922]:
+                    - generic [ref=e923] [cursor=pointer]:
+                      - img "03" [ref=e924]
+                      - text: 
+                    - img "30" [ref=e926] [cursor=pointer]
+                    - img "33" [ref=e928] [cursor=pointer]
+                    - img "92" [ref=e930] [cursor=pointer]
+                - generic [ref=e933]:
+                  - generic [ref=e935]: Installatiemethode
+                  - generic [ref=e936]: RIGID CLICK
+                  - generic [ref=e938]: Contactgeluidsisolatie
+                  - generic [ref=e940]: 20 dB
+                  - generic [ref=e942]: Afmetingen
+                  - generic [ref=e943]: 178x1213 mm
+              - list [ref=e945]
+              - link "Meer info" [ref=e947] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-frenchoak-polar?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e948]:
+            - generic [ref=e949]:
+              - list [ref=e951]:
+                - listitem [ref=e952]:
+                  - button [ref=e953] [cursor=pointer]:
+                    - img [ref=e955]
+                - listitem [ref=e957]:
+                  - button [ref=e958] [cursor=pointer]:
+                    - img [ref=e960]
+              - link "Maximus Click Concrete Crush - Smoke Concrete Crush" [ref=e962] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-concretecrush-smoke?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e963]:
+                  - heading "Maximus Click" [level=6] [ref=e964]
+                  - heading "Concrete Crush - Smoke" [level=5] [ref=e965]
+                - img "Concrete Crush"
+            - img [ref=e966]
+            - generic [ref=e967]:
+              - generic [ref=e968]:
+                - generic [ref=e969]:
+                  - generic [ref=e971]: Beschikbare kleuren
+                  - generic [ref=e972]:
+                    - generic [ref=e973] [cursor=pointer]:
+                      - img "96" [ref=e974]
+                      - text: 
+                    - img "99" [ref=e976] [cursor=pointer]
+                - generic [ref=e979]:
+                  - generic [ref=e981]: Installatiemethode
+                  - generic [ref=e982]: RIGID CLICK
+                  - generic [ref=e984]: Contactgeluidsisolatie
+                  - generic [ref=e986]: 20 dB
+                  - generic [ref=e988]: Afmetingen
+                  - generic [ref=e989]: 298x603 mm
+              - list [ref=e991]
+              - link "Meer info" [ref=e993] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-concretecrush-smoke?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e994]:
+            - generic [ref=e995]:
+              - list [ref=e997]:
+                - listitem [ref=e998]:
+                  - button [ref=e999] [cursor=pointer]:
+                    - img [ref=e1001]
+                - listitem [ref=e1003]:
+                  - button [ref=e1004] [cursor=pointer]:
+                    - img [ref=e1006]
+              - link "Maximus Click Cosmopolitan - Golden Cream Cosmopolitan" [ref=e1008] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-cosmopolitan-goldencream?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e1009]:
+                  - heading "Maximus Click" [level=6] [ref=e1010]
+                  - heading "Cosmopolitan - Golden Cream" [level=5] [ref=e1011]
+                - img "Cosmopolitan"
+            - img [ref=e1012]
+            - generic [ref=e1013]:
+              - generic [ref=e1014]:
+                - generic [ref=e1015]:
+                  - generic [ref=e1017]: Beschikbare kleuren
+                  - generic [ref=e1018]:
+                    - generic [ref=e1019] [cursor=pointer]:
+                      - img "03" [ref=e1020]
+                      - text: 
+                    - img "90" [ref=e1022] [cursor=pointer]
+                    - img "95" [ref=e1024] [cursor=pointer]
+                - generic [ref=e1027]:
+                  - generic [ref=e1029]: Installatiemethode
+                  - generic [ref=e1030]: RIGID CLICK
+                  - generic [ref=e1032]: Contactgeluidsisolatie
+                  - generic [ref=e1034]: 20 dB
+                  - generic [ref=e1036]: Afmetingen
+                  - generic [ref=e1037]: 406x806 mm
+              - list [ref=e1039]
+              - link "Meer info" [ref=e1041] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-cosmopolitan-goldencream?sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+          - generic [ref=e1042]:
+            - generic [ref=e1043]:
+              - list [ref=e1045]:
+                - listitem [ref=e1046]:
+                  - button [ref=e1047] [cursor=pointer]:
+                    - img [ref=e1049]
+                - listitem [ref=e1051]:
+                  - button [ref=e1052] [cursor=pointer]:
+                    - img [ref=e1054]
+              - link "Maximus Click Highland Oak - Classic Highland Oak" [ref=e1056] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-highlandoak-classic?dimensions=145x743&sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+                - generic [ref=e1057]:
+                  - heading "Maximus Click" [level=6] [ref=e1058]
+                  - heading "Highland Oak - Classic" [level=5] [ref=e1059]
+                - img "Highland Oak"
+            - img [ref=e1060]
+            - generic [ref=e1061]:
+              - generic [ref=e1062]:
+                - generic [ref=e1063]:
+                  - generic [ref=e1065]: Beschikbare kleuren
+                  - generic [ref=e1066]:
+                    - generic [ref=e1067] [cursor=pointer]:
+                      - img "33" [ref=e1068]
+                      - text: 
+                    - img "34" [ref=e1070] [cursor=pointer]
+                    - img "42" [ref=e1072] [cursor=pointer]
+                - generic [ref=e1075]:
+                  - generic [ref=e1077]: Installatiemethode
+                  - generic [ref=e1078]: RIGID CLICK
+                  - generic [ref=e1080]: Contactgeluidsisolatie
+                  - generic [ref=e1082]: 20 dB
+                  - generic [ref=e1084]: Afmetingen
+                  - generic [ref=e1085]: 145x743 mm
+              - list [ref=e1087]
+              - link "Meer info" [ref=e1089] [cursor=pointer]:
+                - /url: "/nl-be/lvt-maximusclick-highlandoak-classic?dimensions=145x743&sc_trk={254AF85D-8A2B-4925-8DD4-DCC0EB1A71FC}"
+    - contentinfo [ref=e222]:
+      - generic [ref=e226]:
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - heading "Associated Weavers Europe NV/SA" [level=5] [ref=e231]
+            - list [ref=e233]:
+              - listitem [ref=e234]:
+                - generic [ref=e235]:
+                  - text: Weverijstraat 1
+                  - text: 9600 Ronse
+                  - text: Belgium
+            - list [ref=e236]:
+              - listitem [ref=e237]:
+                - strong [ref=e239]: T
+              - listitem [ref=e240]:
+                - link "+32 55 230 200" [ref=e241] [cursor=pointer]:
+                  - /url: tel:+32 55 230 200
+          - generic [ref=e242]:
+            - heading "Over Invictus" [level=5] [ref=e244]
+            - list [ref=e245]:
+              - listitem [ref=e246]:
+                - link "Over Invictus" [ref=e247] [cursor=pointer]:
+                  - /url: /nl-be/over-invictus
+              - listitem [ref=e248]:
+                - link "Werken bij Invictus" [ref=e249] [cursor=pointer]:
+                  - /url: /nl-be/werken-bij-invictus
+              - listitem [ref=e250]:
+                - link "Word Invictus partner" [ref=e251] [cursor=pointer]:
+                  - /url: /nl-be/word-invictus-partner
+          - generic [ref=e252]:
+            - heading "Producten" [level=5] [ref=e254]
+            - list [ref=e255]:
+              - listitem [ref=e256]:
+                - link "Luxe vinyl-vloeren" [ref=e257] [cursor=pointer]:
+                  - /url: /nl-be/luxe-vinylvloeren
+              - listitem [ref=e258]:
+                - link "Tapijt" [ref=e259] [cursor=pointer]:
+                  - /url: /nl-be/tapijt
+          - generic [ref=e260]:
+            - heading "Advies" [level=5] [ref=e262]
+            - list [ref=e263]:
+              - listitem [ref=e264]:
+                - link "Vind een winkel" [ref=e265] [cursor=pointer]:
+                  - /url: /nl-be/vind-een-winkel-in-je-buurt
+              - listitem [ref=e266]:
+                - link "Installatie" [ref=e267] [cursor=pointer]:
+                  - /url: /nl-be/downloads#installation
+              - listitem [ref=e268]:
+                - link "Onderhoud" [ref=e269] [cursor=pointer]:
+                  - /url: /nl-be/downloads#maintenance
+              - listitem [ref=e270]:
+                - link "Garantievoorwaarden" [ref=e271] [cursor=pointer]:
+                  - /url: /nl-be/downloads#warranty
+              - listitem [ref=e272]:
+                - link "Garantieregistratie" [ref=e273] [cursor=pointer]:
+                  - /url: /nl-be/garantieregistratie
+              - listitem [ref=e274]:
+                - link "Downloads" [ref=e275] [cursor=pointer]:
+                  - /url: /nl-be/downloads
+              - listitem [ref=e276]:
+                - link "Contacteer ons" [ref=e277] [cursor=pointer]:
+                  - /url: /nl-be/contacteer-ons
+        - generic [ref=e280]:
+          - link [ref=e284] [cursor=pointer]:
+            - /url: https://associated-weavers.com/
+          - list [ref=e287]:
+            - listitem [ref=e288]:
+              - link "Facebook icon" [ref=e289] [cursor=pointer]:
+                - /url: https://www.facebook.com/invictuscarpetflooring
+                - img "Facebook icon" [ref=e291]
+            - listitem [ref=e292]:
+              - link "Instagram - icon" [ref=e293] [cursor=pointer]:
+                - /url: https://www.instagram.com/invictusflooring/
+                - img "Instagram - icon" [ref=e295]
+            - listitem [ref=e296]:
+              - link "Pinterest Icon" [ref=e297] [cursor=pointer]:
+                - /url: https://www.pinterest.com/invictusflooring/
+                - img "Pinterest Icon" [ref=e299]
+            - listitem [ref=e300]:
+              - link "LinkedIn - icon" [ref=e301] [cursor=pointer]:
+                - /url: https://www.linkedin.com/showcase/invictus-flooring/
+                - img "LinkedIn - icon" [ref=e303]
+        - list [ref=e308]:
+          - listitem [ref=e309]:
+            - link "Wijzig je cookies" [ref=e310] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e311]:
+            - link "Privacy disclaimer" [ref=e312] [cursor=pointer]:
+              - /url: https://old.invictus.eu:443/nl-be/disclaimer
+          - listitem [ref=e313]:
+            - link "Cookiebeleid" [ref=e314] [cursor=pointer]:
+              - /url: https://old.invictus.eu:443/nl-be/cookie-beleid
+          - listitem [ref=e315]:
+            - link "Terms and conditions" [ref=e316] [cursor=pointer]:
+              - /url: /nl-be/competition-terms
+          - listitem [ref=e317]:
+            - link "webmaster@awe.be" [ref=e318] [cursor=pointer]:
+              - /url: mailto:webmaster@awe.be
+          - listitem [ref=e319]: © 2026, Associated Weavers Europe NV/SA
