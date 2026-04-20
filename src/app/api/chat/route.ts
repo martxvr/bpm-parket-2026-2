@@ -88,10 +88,10 @@ export async function POST(req: Request) {
         ).join('\n');
 
         const companyName = companyData?.name || 'BPM Parket';
-        const companyPhone = companyData?.phone || '040-123456';
+        const companyPhone = companyData?.phone || '06 - 534 993 61';
         const companyAddress = companyData?.address || 'De Hooge Akker 19';
-        const companyCity = [companyData?.postcode, companyData?.city].filter(Boolean).join(' ') || 'Geldrop';
-        const companyEmail = companyData?.email || '';
+        const companyCity = [companyData?.postcode, companyData?.city].filter(Boolean).join(' ') || '5661 NG Geldrop';
+        const companyEmail = companyData?.email || 'info@bpmparket.nl';
         const phone = companyPhone;
 
         const companyInfo = `
