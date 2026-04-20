@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-    Box, LayoutGrid, ChevronsUp, Grid3x3, Blinds, Columns, Sun
+    Box, LayoutGrid, ChevronsUp, Grid3x3, Blinds, Columns
 } from 'lucide-react';
 import CheckedIcon from '@/components/ui/checked-icon';
 import ArrowNarrowRightIcon from '@/components/ui/arrow-narrow-right-icon';
@@ -75,12 +75,11 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
         // Routing Logic
         if (step === 1) {
             const hasBrands = selectedCategory?.brands && selectedCategory.brands.length > 0;
-            const hasTypes = (selectedCategory as any)?.raamdecoratieTypes && (selectedCategory as any).raamdecoratieTypes.length > 0;
-            
-            if (!hasBrands && !hasTypes) {
-                setStep(4); // Skip to area size if no brands or types available
+
+            if (!hasBrands) {
+                setStep(4); // Skip to area size if no brands available (service categories)
             } else {
-                setStep(2); // Go to brand/type selection
+                setStep(2); // Go to brand selection
             }
             return;
         }
@@ -101,10 +100,9 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
         if (step === 4) {
             const hasVariants = availableVariants.length > 0;
             const hasBrands = availableBrands.length > 0;
-            const hasTypes = (selectedCategory as any)?.raamdecoratieTypes && (selectedCategory as any).raamdecoratieTypes.length > 0;
 
-            if (!hasVariants || formData.brand === 'Geen voorkeur' || formData.brand === 'Nog geen voorkeur' || hasTypes) {
-                if (!hasBrands && !hasTypes) {
+            if (!hasVariants || formData.brand === 'Geen voorkeur' || formData.brand === 'Nog geen voorkeur') {
+                if (!hasBrands) {
                     setStep(1);
                 } else {
                     setStep(2);
@@ -143,8 +141,7 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
         updateData('floorType', typeId);
         const category = categories.find(c => c.slug === typeId);
         const hasBrands = category?.brands && category.brands.length > 0;
-        const hasTypes = (category as any)?.raamdecoratieTypes && (category as any).raamdecoratieTypes.length > 0;
-        setStep(!hasBrands && !hasTypes ? 4 : 2);
+        setStep(!hasBrands ? 4 : 2);
     };
 
     const selectBrand = (brandName: string) => {
@@ -268,12 +265,10 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
                             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                                 <div className="mb-8">
                                     <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                                        {selectedCategory?.slug === 'raamdecoratie' ? 'Welk type raamdecoratie zoekt u?' : 'Heb je een voorkeur voor een merk?'}
+                                        Heb je een voorkeur voor een merk?
                                     </h2>
                                     <p className="text-gray-500">
-                                        {selectedCategory?.slug === 'raamdecoratie' 
-                                            ? 'Kies het type raamdecoratie dat het beste bij uw wensen past.' 
-                                            : `Kies een van onze premium ${selectedCategory?.name.toLowerCase() || 'vloer'} merken of sla deze stap over.`}
+                                        {`Kies een van onze premium ${selectedCategory?.name.toLowerCase() || 'vloer'} merken of sla deze stap over.`}
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -292,23 +287,6 @@ export default function OfferteClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
                                             ) : (
                                                 <span className={`font-bold text-sm ${formData.brand === brand.name ? 'text-gray-900' : 'text-gray-600'}`}>{brand.name}</span>
                                             )}
-                                        </button>
-                                    ))}
-
-                                    {/* Raamdecoratie Types Grid */}
-                                    {selectedCategory?.raamdecoratieTypes?.map((type) => (
-                                        <button
-                                            key={type.slug}
-                                            onClick={() => selectBrand(type.name)}
-                                            className={`relative p-4 h-28 rounded-2xl border-2 transition-all duration-300 flex flex-col items-center justify-center bg-white overflow-hidden ${formData.brand === type.name ? 'border-[#5EBE1B] ring-2 ring-[#5EBE1B]/10 bg-[#5EBE1B]/5' : 'border-gray-100 hover:border-gray-200 hover:shadow-md hover:-translate-y-1'}`}
-                                        >
-                                            <div className="absolute top-2 right-2">
-                                                {formData.brand === type.name && <CheckedIcon className="text-[#5EBE1B]" size={16} />}
-                                            </div>
-                                            <div className={`p-2 rounded-lg mb-2 ${formData.brand === type.name ? 'bg-[#5EBE1B]/10' : 'bg-gray-100'}`}>
-                                                <Sun className={`w-6 h-6 ${formData.brand === type.name ? 'text-[#5EBE1B]' : 'text-gray-400'}`} />
-                                            </div>
-                                            <span className={`font-bold text-xs text-center leading-tight ${formData.brand === type.name ? 'text-gray-900' : 'text-gray-600'}`}>{type.name}</span>
                                         </button>
                                     ))}
                                     <button
