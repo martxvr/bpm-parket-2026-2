@@ -161,21 +161,6 @@ export const getSitePassword = cache(async () => {
     return data?.value as { enabled: boolean; password: string; backgroundImage?: string } | null
 })
 
-export const getPublicActievloeren = cache(async () => {
-    const supabase = createStaticClient()
-    const { data, error } = await supabase
-        .from('actievloeren')
-        .select('*')
-        .eq('active', true)
-        .order('sort_order', { ascending: true })
-
-    if (error) {
-        console.error('Error fetching actievloeren:', error)
-        return []
-    }
-    return data
-})
-
 export const getDynamicPolicies = cache(async () => {
     const supabase = createStaticClient()
     const { data, error } = await supabase

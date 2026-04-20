@@ -193,11 +193,6 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
                                 {brand.name}
                               </Link>
                             ))}
-                            {category.slug === 'pvc-vloeren' && (
-                              <Link href="/actievloeren" className="flex items-center gap-2 text-brand-primary font-bold text-sm mt-3 pt-3 border-t border-white/10 hover:text-white transition-colors">
-                                Actievloeren
-                              </Link>
-                            )}
                           </>
                         )
                       }
@@ -244,14 +239,6 @@ const Navbar = ({ bedrijfsgegevens }: { bedrijfsgegevens?: any }) => {
               className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium ${pathname === '/' ? 'bg-white/10 text-brand-primary' : 'text-white/70 hover:text-white hover:bg-white/5'}`}
             >
               Home
-            </Link>
-
-            <Link
-              href="/actievloeren"
-              onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-bold ${pathname === '/actievloeren' ? 'bg-white/10 text-brand-primary' : 'text-brand-primary hover:text-white hover:bg-white/5'}`}
-            >
-              Actievloeren
             </Link>
 
             {/* Mobile Diensten Section */}

@@ -14,7 +14,6 @@ import {
 } from 'lucide-react'
 import UsersIcon from '@/components/ui/users-icon'
 import MessageCircleIcon from '@/components/ui/message-circle-icon'
-import StarIcon from '@/components/ui/star-icon'
 import GlobeIcon from '@/components/ui/globe-icon'
 import FileDescriptionIcon from '@/components/ui/file-description-icon'
 import { logout } from '../../login/actions'
@@ -26,7 +25,6 @@ const navGroups = [
         items: [
             { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
             { name: 'Projecten', href: '/admin/projecten', icon: Folder },
-            { name: 'Actievloeren', href: '/admin/actievloeren', icon: StarIcon },
             { name: 'Offerte aanvragen', href: '/admin/aanvragen', icon: MessageCircleIcon },
             { name: 'Agenda', href: '/admin/afspraken', icon: Calendar },
             { name: 'AI Kennisbank', href: '/admin/kennisbank', icon: BookOpen },

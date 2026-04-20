@@ -138,29 +138,6 @@ export async function getAIKennisitem(id: string) {
     return data
 }
 
-export async function getActievloeren() {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('actievloeren')
-        .select('*')
-        .order('sort_order', { ascending: true })
-
-    if (error) throw error
-    return data
-}
-
-export async function getActievloer(id: string) {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('actievloeren')
-        .select('*')
-        .eq('id', id)
-        .single()
-
-    if (error) throw error
-    return data
-}
-
 export async function getSettings(key: string) {
     const supabase = await createClient()
     const { data, error } = await supabase
