@@ -1,13 +1,14 @@
-import { Outfit } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import RootLayoutContent from './RootLayoutContent'
 import './globals.css'
 import { getBedrijfsgegevens, getPromoPopup, getDynamicPolicies, getChatbotSettings, getAnnouncementBar, getSitePassword } from '@/lib/site-data'
 import { Metadata } from 'next'
 
-const outfit = Outfit({
+const roboto = Roboto({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-roboto',
 })
 
 const BASE_URL = 'https://pvcvloerenachterhoek.nl'
@@ -85,7 +86,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="nl" className={outfit.variable}>
+    <html lang="nl" className={roboto.variable}>
       <head>
         <script
           type="application/ld+json"
