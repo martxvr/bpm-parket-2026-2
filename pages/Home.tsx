@@ -9,6 +9,128 @@ interface HomeProps {
   onProjectSelect: (project: Project) => void;
 }
 
+const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
+  const images = [
+    "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1581850518616-bcb8186c243c?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=2000"
+  ];
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <section className="relative w-full min-h-[90vh] flex items-center pt-24 pb-24 overflow-hidden">
+      {/* Background Slideshow */}
+      <div className="absolute inset-0 z-0 bg-black">
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentImage ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          >
+            <img 
+              src={img} 
+              alt="Background Slide" 
+              className="w-full h-full object-cover origin-center"
+              style={{
+                transform: idx === currentImage ? 'scale(1)' : 'scale(1.1)',
+                transition: 'transform 8s ease-out'
+              }}
+            />
+          </div>
+        ))}
+        {/* Overlay to make text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30 z-20"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          
+          {/* Left Text Layer */}
+          <div className="space-y-8 max-w-2xl text-white">
+            <div className="flex items-center space-x-2">
+              <div className="flex text-brand-red">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <span className="text-sm font-semibold text-white/90">49+ 5 Sterren</span>
+            </div>
+
+            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+              Vakmanschap<br />
+              in Parket &<br />
+              <span className="text-brand-sand">Vloeren</span>
+            </h1>
+
+            <p className="text-lg text-white/80 max-w-lg leading-relaxed">
+              De specialist in traditioneel parket, PVC en traprenovaties. Wij combineren jarenlange ervaring met passie voor het vak in Geldrop en omgeving.
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-4">
+              <Button size="lg" withIcon onClick={() => onNavigate('quote')}>
+                Offerte aanvragen
+              </Button>
+              <button
+                onClick={() => onNavigate('projects')}
+                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition-all backdrop-blur-sm"
+              >
+                Bekijk Projecten
+              </button>
+            </div>
+
+            <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
+              {[
+                'Gratis inmeting',
+                '20+ jaar ervaring',
+                'Binnen 1 dag geplaatst',
+                'Geldrop & omgeving',
+              ].map((usp) => (
+                <span key={usp} className="flex items-center gap-1.5 text-sm text-white/80">
+                  <CheckCircle2 className="h-4 w-4 text-brand-red flex-shrink-0" />
+                  {usp}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Form Layer */}
+          <div className="w-full max-w-md ml-auto">
+            <div className="bg-black/40 backdrop-blur-xl p-8 rounded-[2rem] border border-white/10 shadow-2xl relative z-10">
+              <h3 className="text-2xl font-bold text-white mb-2">Showroom Bezoek</h3>
+              <p className="text-white/70 text-sm mb-6">Plan direct een afspraak in. De koffie in Geldrop staat klaar!</p>
+              
+              <form onSubmit={(e) => { e.preventDefault(); alert('Bedankt voor je aanvraag! We nemen zo spoedig mogelijk contact met je op.'); }} className="space-y-4">
+                <div>
+                  <label className="sr-only">Naam</label>
+                  <input required type="text" placeholder="Uw Naam" className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all" />
+                </div>
+                <div>
+                  <label className="sr-only">Telefoon</label>
+                  <input required type="tel" placeholder="Telefoonnummer" className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all" />
+                </div>
+                <div>
+                  <label className="sr-only">Datum</label>
+                  <input required type="date" className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-brand-red/50 transition-all" style={{colorScheme: 'dark'}} />
+                </div>
+                <button type="submit" className="w-full bg-brand-red text-white py-4 rounded-xl font-bold hover:bg-brand-red/90 transition-all shadow-lg shadow-brand-red/20 active:scale-[0.98]">
+                  Plan Afspraak
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
 
@@ -66,88 +188,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
     <div className="flex flex-col w-full overflow-hidden bg-white text-brand-dark">
 
       {/* Hero Section */}
-      <section className="relative w-full pt-16 pb-24 lg:pt-24 lg:pb-32 reveal reveal-active">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-
-            {/* Left: Text */}
-            <div className="space-y-8 max-w-2xl">
-              <div className="flex items-center space-x-2">
-                <div className="flex text-brand-red">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm font-semibold text-brand-dark">49+ 5 Sterren</span>
-              </div>
-
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05]">
-                Vakmanschap<br />
-                in Parket &<br />
-                <span className="text-brand-sand">Vloeren</span>
-              </h1>
-
-              <p className="text-lg text-gray-500 max-w-lg leading-relaxed">
-                De specialist in traditioneel parket, PVC en traprenovaties. Wij combineren jarenlange ervaring met passie voor het vak in Geldrop en omgeving.
-              </p>
-
-              <div className="pt-2 flex gap-4">
-                <Button size="lg" withIcon onClick={() => onNavigate('quote')}>
-                  Plan Afspraak
-                </Button>
-                <Button size="lg" variant="ghost" onClick={() => onNavigate('projects')}>
-                  Onze Projecten
-                </Button>
-              </div>
-            </div>
-
-            {/* Right: Image Grid */}
-            <div className="relative lg:pl-10">
-              <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] lg:aspect-[3/4]">
-                <img
-                  src="https://www.bpmparket.nl/wp-content/uploads/2023/10/2023-10-02-12_27_45-WhatsApp-en-nog-9-andere-paginas-Werk-Microsoft%E2%80%8B-Edge-e1696335757551.png"
-                  alt="Wooden interior"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Floating Card: Happy Clients - Moved outside overflow-hidden wrapper */}
-              <div className="absolute bottom-12 left-8 lg:-left-8 bg-white p-6 rounded-3xl shadow-2xl max-w-[240px] z-10 border border-brand-light">
-                <p className="text-xs text-brand-sand mb-2 font-medium uppercase tracking-wider">Tevreden Klanten</p>
-                <h3 className="text-4xl font-bold text-brand-red mb-4">50+</h3>
-                <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-500">Passie voor<br />Vakmanschap</div>
-                  <div className="flex -space-x-2">
-                    {[10, 11, 12].map((i) => (
-                      <img key={i} className="w-8 h-8 rounded-full border-2 border-white" src={`https://picsum.photos/seed/${i}/100/100`} alt="Avatar" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <HeroSlider onNavigate={onNavigate} />
 
       {/* Logos Strip */}
       <section className="py-12 border-y border-gray-100 reveal delay-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop View: Static Grid */}
-          <div className="hidden md:flex flex-wrap justify-between items-center gap-8 opacity-40 grayscale hover:opacity-100 transition-opacity duration-500">
-            {["LOGO", "LOGO", "LOGO", "LOGO", "LOGO"].map((logo, i) => (
-              <span key={i} className="text-xl font-bold font-sans tracking-widest">{logo}</span>
+        <div className="w-full relative opacity-50 grayscale hover:opacity-100 transition-opacity duration-500">
+          <div className="animate-marquee flex items-center">
+            {/* Repeat the logos array completely symmetrical so translateX(-50%) loops perfectly */}
+            {[...logos, ...logos, ...logos, ...logos, ...logos, ...logos, ...logos, ...logos].map((logo, i) => (
+              <span key={i} className="text-xl font-bold font-sans text-brand-dark tracking-widest mx-12 whitespace-nowrap">{logo}</span>
             ))}
-          </div>
-
-          {/* Mobile View: Sliding Marquee */}
-          <div className="md:hidden overflow-hidden relative w-full opacity-50 grayscale">
-            <div className="animate-marquee flex items-center">
-              {/* Duplicate list for seamless loop */}
-              {[...logos, ...logos].map((logo, i) => (
-                <span key={i} className="text-xl font-bold font-sans tracking-widest mx-8 whitespace-nowrap">{logo}</span>
-              ))}
-            </div>
           </div>
         </div>
       </section>
