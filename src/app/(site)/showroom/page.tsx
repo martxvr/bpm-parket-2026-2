@@ -4,7 +4,7 @@ import { getBedrijfsgegevens } from '@/lib/site-data';
 
 export const metadata: Metadata = {
     title: 'Showroom Bezoeken',
-    description: 'Bezoek onze showroom in Doetinchem en bekijk ons assortiment PVC-vloeren, vloerbedekking, raamdecoratie en gordijnen. Gratis koffie en persoonlijk advies.',
+    description: 'Bezoek onze showroom in Geldrop en bekijk ons assortiment parket, PVC, laminaat en buitenparket. Persoonlijk advies van onze parket-specialist.',
     alternates: { canonical: '/showroom' },
 }
 

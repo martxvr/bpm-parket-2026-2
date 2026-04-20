@@ -100,16 +100,16 @@ export default function ShowroomClient({ bedrijfsgegevens }: { bedrijfsgegevens?
                 <div className="absolute inset-0 opacity-40">
                     <img
                         src="/images/showroom-groen.jpg.webp"
-                        alt="Onze luxe showroom in Doetinchem"
+                        alt="Onze showroom in Geldrop"
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-transparent"></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <span className="text-brand-primary font-bold tracking-widest uppercase text-xs mb-4 block decoration-brand-primary/30 decoration-4 underline-offset-8">Beleef onze producten</span>
-                    <h1 className="text-5xl md:text-[5.5rem] font-bold tracking-tight mb-8 leading-[1.1]">Onze <span className="text-brand-primary">Showroom</span></h1>
+                    <h1 className="text-5xl md:text-[5.5rem] font-bold tracking-tight mb-8 leading-[1.1]">Bezoek onze showroom in <span className="text-brand-primary">Geldrop</span></h1>
                     <p className="text-xl text-gray-300 max-w-2xl leading-relaxed font-light opacity-90">
-                        Kom langs in Doetinchem en laat u inspireren door onze uitgebreide collectie PVC-vloeren, vloerbedekking, raamdecoratie en gordijnen. Wij staan klaar met persoonlijk advies en een goede kop koffie.
+                        Zie onze collectie parket, PVC, laminaat en buitendek live — op afspraak. Persoonlijk advies van onze parket-specialist en een goede kop koffie.
                     </p>
                 </div>
             </section>
@@ -167,13 +167,13 @@ export default function ShowroomClient({ bedrijfsgegevens }: { bedrijfsgegevens?
                         {/* Map */}
                         <div className="rounded-[2rem] overflow-hidden h-[350px] shadow-lg border border-gray-100 grayscale hover:grayscale-0 transition-all duration-700">
                             <iframe
-                                src="https://maps.google.com/maps?q=Logistiekweg+20,+7007+CJ+Doetinchem&output=embed"
+                                src="https://maps.google.com/maps?q=De+Hooge+Akker+19,+5661+NG+Geldrop&output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
                                 allowFullScreen
                                 loading="lazy"
-                                title="Locatie PVC Vloeren Achterhoek"
+                                title="Locatie BPM Parket"
                             />
                         </div>
                     </div>
@@ -263,6 +263,34 @@ export default function ShowroomClient({ bedrijfsgegevens }: { bedrijfsgegevens?
                         </form>
                     </div>
 
+                </div>
+            </section>
+
+            {/* Wat kunt u ervaren */}
+            <section className="py-20 bg-white reveal">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <span className="text-xs font-bold tracking-widest text-brand-primary uppercase mb-4 block">Wat kunt u ervaren</span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-10">
+                            Live in onze <span className="text-brand-primary">showroom</span>
+                        </h2>
+                        <ul className="space-y-4">
+                            {[
+                                'Massief eiken parket uit Duitsland, Denemarken en Zwitserland',
+                                'PVC en laminaat samples in meer dan 50 kleuren',
+                                'Buitenparket in hardhout en composiet',
+                                'Traprenovatie-voorbeelden in diverse houtsoorten',
+                                'Persoonlijk advies van onze parket-specialist',
+                            ].map((item, i) => (
+                                <li key={i} className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 mt-1 bg-brand-primary/10 p-2 rounded-lg text-brand-primary">
+                                        <CheckedIcon size={18} />
+                                    </div>
+                                    <p className="text-lg text-gray-600 leading-relaxed">{item}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </section>
 
