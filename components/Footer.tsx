@@ -1,13 +1,11 @@
-"use client"
-
 import React, { useEffect, useState } from 'react';
 import { Facebook, Instagram, Linkedin, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
-import { companyConfig } from '@/config';
-import { getPolicies } from '@/services/mockDatabase';
-import { Policy } from '@/types';
+import { companyConfig } from '../config';
+import { getPolicies } from '../services/mockDatabase';
+import { Policy } from '../types';
 
 interface FooterProps {
-  onNavigate?: (page: string) => void;
+  onNavigate: (page: string) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
@@ -27,18 +25,18 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
               Uw interieur, <span className="text-brand-sand">ons vakmanschap.</span>
             </h2>
-            <a href="#home" className="flex items-center group w-fit">
+            <button onClick={() => onNavigate('home')} className="flex items-center group w-fit">
               <img
                 src="/logo.png"
                 alt="BPM Parket Logo"
                 className="h-24 w-auto object-contain bg-white pb-4 rounded-xl transition-transform duration-300 group-hover:scale-105"
               />
-            </a>
+            </button>
           </div>
 
           <div className="flex flex-col items-start lg:items-end">
             <button
-              onClick={() => onNavigate ? onNavigate('quote') : window.location.hash = 'quote'}
+              onClick={() => onNavigate('quote')}
               className="group flex items-center bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-200 transition-all duration-300"
             >
               Start Project
@@ -54,10 +52,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Menu</h3>
             <ul className="space-y-4 text-lg font-medium text-gray-300">
-              <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="#projects" className="hover:text-white transition-colors">Portfolio</a></li>
-              <li><a href="#quote" className="hover:text-white transition-colors">Offerte Aanvragen</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li><button onClick={() => onNavigate('home')} className="hover:text-white transition-colors">Home</button></li>
+              <li><button onClick={() => onNavigate('projects')} className="hover:text-white transition-colors">Portfolio</button></li>
+              <li><button onClick={() => onNavigate('quote')} className="hover:text-white transition-colors">Offerte Aanvragen</button></li>
+              <li><button onClick={() => onNavigate('contact')} className="hover:text-white transition-colors">Contact</button></li>
             </ul>
           </div>
 
@@ -117,7 +115,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 text-xs text-gray-500">
           <p>&copy; {new Date().getFullYear()} {companyConfig.legalName}</p>
           <div className="flex flex-wrap space-x-6 mt-4 md:mt-0">
-            <a href="#admin" className="hover:text-gray-300">Admin Login</a>
+            <button onClick={() => onNavigate('admin')} className="hover:text-gray-300">Admin Login</button>
             {policies.map(p => (
               <a key={p.id} href={`#policy-${p.id}`} className="hover:text-gray-300">
                 {p.title}
