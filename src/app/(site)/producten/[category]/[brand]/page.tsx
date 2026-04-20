@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import ArrowBackIcon from '@/components/ui/arrow-back-icon';
 import CheckedIcon from '@/components/ui/checked-icon';
@@ -11,7 +11,7 @@ import XIcon from '@/components/ui/x-icon';
 import ExpandIcon from '@/components/ui/expand-icon';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Button from '@/components/Button';
-import { getCategoryBySlug, getBrandBySlug, productMatchesType, getTypeBySlug } from '@/data/brands';
+import { getCategoryBySlug, getBrandBySlug } from '@/data/brands';
 
 const getProxyUrl = (url?: string) => {
     if (!url) return '';
@@ -22,21 +22,13 @@ export default function BrandDetailPage() {
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
     const router = useRouter();
     const params = useParams();
-    const searchParams = useSearchParams();
     const categorySlug = params.category as string;
     const brandSlug = params.brand as string;
-    const typeFilter = searchParams?.get('type') ?? null;
 
     const category = getCategoryBySlug(categorySlug);
     const brand = getBrandBySlug(categorySlug, brandSlug);
-    // Try to resolve the type from either the current category or any category (since types are cross-category)
-    const filterType = typeFilter
-        ? (getTypeBySlug(categorySlug, typeFilter) || getTypeBySlug('raamdecoratie', typeFilter) || getTypeBySlug('gordijnen', typeFilter))
-        : null;
 
-    const filteredProducts = typeFilter && brand
-        ? brand.products.filter(p => productMatchesType(p, typeFilter))
-        : brand?.products || [];
+    const filteredProducts = brand?.products || [];
 
     const [brandProjects, setBrandProjects] = useState<any[]>([]);
 
@@ -205,37 +197,10 @@ export default function BrandDetailPage() {
                         <div className="text-center mb-16">
                             <span className="text-xs font-bold tracking-[0.2em] text-brand-primary uppercase mb-4 block">Collectie</span>
                             <h2 className="text-4xl lg:text-5xl font-bold text-brand-dark mb-4">
-                                {brand.name} <span className="text-brand-primary">{filterType ? filterType.name.toLowerCase() : 'producten'}</span>
+                                {brand.name} <span className="text-brand-primary">producten</span>
                             </h2>
-                            {filterType && (
-                                <div className="flex items-center justify-center gap-3 mt-4">
-                                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 text-brand-primary rounded-full text-sm font-bold">
-                                        Filter: {filterType.name}
-                                        <span className="text-xs opacity-70">({filteredProducts.length} {filteredProducts.length === 1 ? 'variant' : 'varianten'})</span>
-                                    </span>
-                                    <button
-                                        onClick={() => router.push(`/producten/${categorySlug}/${brandSlug}`)}
-                                        className="text-sm text-gray-400 hover:text-brand-dark transition-colors underline"
-                                    >
-                                        Toon alle producten
-                                    </button>
-                                </div>
-                            )}
                         </div>
 
-                        {filteredProducts.length === 0 ? (
-                            <div className="text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-100">
-                                <p className="text-gray-400 font-medium">
-                                    {brand.name} heeft momenteel geen {filterType?.name.toLowerCase()} in de collectie.
-                                </p>
-                                <button
-                                    onClick={() => router.push(`/producten/${categorySlug}/${brandSlug}`)}
-                                    className="mt-4 text-brand-primary font-bold text-sm hover:underline"
-                                >
-                                    Bekijk alle producten van {brand.name}
-                                </button>
-                            </div>
-                        ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filteredProducts.map((product, idx) => (
                                 <div
@@ -271,7 +236,6 @@ export default function BrandDetailPage() {
                                 </div>
                             ))}
                         </div>
-                        )}
                     </div>
                 </section>
             )}
