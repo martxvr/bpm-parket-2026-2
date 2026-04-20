@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import Button from '../components/Button';
 import { Star, ShieldCheck, Zap, Award, Layers, ArrowUpRight, CheckCircle2, Users, HardHat, PenTool, ArrowRight, ExternalLink, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { getProjects } from '../services/mockDatabase';
@@ -106,7 +107,7 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
         <Calendar className="h-4 w-4 text-white/40 flex-shrink-0" />
       </button>
 
-      {open && (
+      {open && ReactDOM.createPortal(
         <div
           ref={dropdownRef}
           className="fixed bg-[#1a1a1a] border border-white/10 rounded-2xl p-4 shadow-2xl z-[9998] overflow-y-auto max-h-[80vh]"
@@ -177,7 +178,8 @@ const DatePicker = ({ value, onChange }: { value: Date | null; onChange: (d: Dat
               </div>
             </div>
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
