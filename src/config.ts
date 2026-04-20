@@ -4,43 +4,45 @@ import TelephoneIcon from '@/components/ui/telephone-icon'
 import MailFilledIcon from '@/components/ui/mail-filled-icon';
 
 export const companyConfig = {
-  name: "PVC Vloeren Achterhoek",
-  legalName: "PVC Vloeren Achterhoek",
-  tagline: "PVC-vloeren, Traprenovatie, Vloerbedekking, Raamdecoratie & Gordijnen",
-  description: "PVC Vloeren Achterhoek is uw specialist in hoogwaardige PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen. Wij combineren vakmanschap met een eigentijdse kijk op uw interieur.",
+  name: "BPM Parket",
+  legalName: "B.P.M. van Baar Parket Montage",
+  tagline: "Uw specialist in Traditioneel Parket sinds 1992",
+  description: "BPM Parket is uw vertrouwde specialist in traditioneel parket, PVC, laminaat, traprenovatie, buitenparket en interieurwerken. Al ruim 30 jaar vakmanschap vanuit Geldrop.",
 
   contact: {
-    phone: "06 - 251 932 84",
-    email: "info@pvcvloerenachterhoek.nl",
-    address: "Logistiekweg 20-32",
-    zipCity: "7007 CJ Doetinchem",
-    mapsUrl: "https://maps.google.com/?q=Logistiekweg+20,+7007+CJ+Doetinchem",
+    phone: "06 - 534 993 61",
+    phoneSecondary: "06 - 112 890 94",
+    email: "info@bpmparket.nl",
+    address: "De Hooge Akker 19",
+    zipCity: "5661 NG Geldrop",
+    mapsUrl: "https://maps.google.com/?q=De+Hooge+Akker+19,+5661+NG+Geldrop",
     kvk: "91700981",
     btw: "NL865742625B01",
-    iban: "NL99 RABO 0123 4567 89"
+    iban: ""
   },
-  
+
   openingHours: {
-    monday: "13.00 – 17.00 uur",
-    tuesday: "10.00 – 17.00 uur",
-    wednesday: "12.00 – 17.00 uur",
-    thursday: "10.00 – 17.00 uur",
-    friday: "10.00 – 17.00 uur",
-    saturday: "09.00 – 15.00 uur",
+    monday: "Op afspraak",
+    tuesday: "Op afspraak",
+    wednesday: "Op afspraak",
+    thursday: "Op afspraak",
+    friday: "Op afspraak",
+    saturday: "Op afspraak",
     sunday: "Gesloten"
   },
 
   socials: {
-    facebook: "#",
-    instagram: "#",
-    linkedin: "#"
+    facebook: "https://facebook.com/bpmparket",
+    instagram: "https://instagram.com/bpmparket",
+    linkedin: ""
   },
 
   colors: {
-    primary: "#A2C523",
-    secondary: "#2D5A27",
-    accent: "#F4F4F4",
-    background: "#FFFFFF",
-    text: "#222222"
+    primary: "#865D41",
+    secondary: "#F0AD4E",
+    dark: "#192A3D",
+    accent: "#F5EEE6",
+    background: "#FAFBFC",
+    text: "#192A3D"
   }
 };
