@@ -61,9 +61,12 @@ export default function ContactClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
 
                     {/* Left: Content & Form */}
                     <div className="flex flex-col justify-center reveal">
-                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-16 tracking-tight leading-[1.05]">
-                            Laten we uw<br />interieur<br />transformeren
+                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.05]">
+                            Neem contact op met<br /><span className="text-brand-primary">BPM Parket</span>
                         </h1>
+                        <p className="text-lg text-gray-500 leading-relaxed max-w-lg mb-12">
+                            Vragen over parket, een offerte, of wilt u de showroom bezoeken? Bel of mail ons — we reageren binnen 24 uur.
+                        </p>
 
                         <form onSubmit={handleSubmit} className="space-y-8 max-w-lg">
                             <div className="space-y-2">
@@ -120,8 +123,8 @@ export default function ContactClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
                     <div className="relative hidden lg:block reveal delay-100">
                         <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-gray-100 relative shadow-2xl">
                             <img
-                                src="https://kunstgrasachterhoek.com/wp-content/uploads/2021/01/website-1024x624.png.webp"
-                                alt="Houten interieur"
+                                src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?q=80&w=1600&auto=format&fit=crop"
+                                alt="Traditioneel parket interieur"
                                 className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                             />
                             <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 shadow-sm border border-white/50">
@@ -136,7 +139,7 @@ export default function ContactClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-100 pt-20 mb-24 reveal delay-200">
                     <div className="space-y-4 group">
                         <h3 className="text-xl font-bold text-gray-900">E-mail</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">Stuur ons uw vragen en wij reageren binnen 24 uur.</p>
+                        <p className="text-sm text-gray-500 leading-relaxed">We reageren binnen 24 uur op uw bericht.</p>
                         <a href={`mailto:${companyEmail}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
                             {companyEmail}
                         </a>
@@ -144,7 +147,7 @@ export default function ContactClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
 
                     <div className="space-y-4 group">
                         <h3 className="text-xl font-bold text-gray-900">Infoline</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">Bel ons voor direct advies bij vragen over uw project.</p>
+                        <p className="text-sm text-gray-500 leading-relaxed">Voor urgente zaken bel ons direct op {companyPhone}.</p>
                         <a href={`tel:${companyPhone}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
                             {companyPhone}
                         </a>
@@ -172,7 +175,7 @@ export default function ContactClient({ bedrijfsgegevens }: { bedrijfsgegevens?:
                 {/* Map Section */}
                 <div className="w-full h-[400px] lg:h-[500px] bg-gray-100 rounded-[3rem] overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-1000 shadow-inner reveal delay-300">
                     <iframe
-                        src="https://maps.google.com/maps?q=Logistiekweg+20,+7007+CJ+Doetinchem&output=embed"
+                        src="https://maps.google.com/maps?q=De+Hooge+Akker+19,+5661+NG+Geldrop&output=embed"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
