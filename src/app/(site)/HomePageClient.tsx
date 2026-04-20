@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
 import ProjectDetail from '@/components/ProjectDetail';
 import {
-  Zap, LayoutGrid, ChevronsUp, Grid3x3, Blinds, Columns, ChevronLeft, ChevronRight
+  LayoutGrid, ChevronsUp, ChevronLeft, ChevronRight, Layers, Wrench, Sun, Hammer
 } from 'lucide-react';
 import StarIcon from '@/components/ui/star-icon';
 import ShieldCheck from '@/components/ui/shield-check';
@@ -157,13 +157,13 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[5.5rem] font-bold tracking-tight text-white leading-[1.02]">
-                  Vakmanschap<br />
-                  in Vloeren &{' '}
-                  <span className="text-brand-primary">Interieur</span>
+                  Uw specialist in{' '}
+                  <span className="text-brand-primary">Traditioneel Parket</span>{' '}
+                  sinds 1992
                 </h1>
 
                 <p className="text-lg text-white/60 max-w-xl leading-relaxed">
-                  Dé specialist in PVC-vloeren, traprenovatie, vloerbedekking, raamdecoratie en gordijnen — jarenlange ervaring in Doetinchem en de Achterhoek.
+                  Al ruim 30 jaar leveren wij niet alleen hoogwaardige parketvloeren, maar gaan we verder dan dat. PVC, laminaat, stijlvolle radiator-ombouwen, duurzame buitenparket en maatwerk interieurwerken — BPM Parket is uw vertrouwde partner.
                 </p>
 
                 <div className="pt-1 flex flex-wrap gap-3 lg:gap-4">
@@ -181,9 +181,9 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
                 {/* Subtle USP badges */}
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1">
                   {[
-                    { icon: TrophyIcon, text: '20+ jaar ervaring' },
-                    { icon: ShieldCheck, text: '50+ tevreden klanten' },
-                    { icon: PlugConnectedIcon, text: 'Gratis advies' },
+                    { icon: TrophyIcon, text: '30+ jaar vakmanschap' },
+                    { icon: ShieldCheck, text: 'Eigen legservice' },
+                    { icon: PlugConnectedIcon, text: 'Maatwerk op maat' },
                   ].map((usp, i) => (
                     <div key={i} className="flex items-center space-x-2 text-white/50 group">
                       <usp.icon size={20} className="text-brand-primary/70" />
@@ -209,7 +209,7 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
                   ) : (
                     <>
                       <h3 className="text-lg font-bold text-white mb-1">Showroom Bezoek</h3>
-                      <p className="text-sm text-white/50 mb-4">Plan een gratis afspraak in Doetinchem</p>
+                      <p className="text-sm text-white/50 mb-4">Plan een gratis afspraak in Geldrop</p>
                       <form className="space-y-3" onSubmit={handleHeroSubmit}>
                         <input
                           type="text"
@@ -294,12 +294,12 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
           {/* Header with inline arrows on desktop */}
           <div className="mb-12 lg:flex lg:items-end lg:justify-between gap-8">
             <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
-              <span className="text-xs font-bold tracking-[0.2em] text-brand-primary uppercase mb-4 block">Premium Partners</span>
+              <span className="text-xs font-bold tracking-[0.2em] text-brand-primary uppercase mb-4 block">Onze Diensten</span>
               <h2 className="text-4xl lg:text-5xl font-bold text-brand-dark mb-4">
-                Wij werken met de <span className="text-brand-primary">beste merken</span>
+                Vakmanschap tot in <span className="text-brand-primary">detail</span>
               </h2>
               <p className="text-gray-400">
-                Uitsluitend geselecteerde, hoogwaardige merken voor het beste resultaat in uw interieur.
+                Van traditioneel parket tot interieurwerken — wij leveren en leggen alles zelf.
               </p>
             </div>
 
@@ -329,14 +329,14 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
           </div>
 
           {(() => {
-            const filteredCats = categories.filter(c => c.brands.length > 0);
+            const filteredCats = categories;
             const bgImages: Record<string, string> = {
-              'pvc-vloeren': '/images/brands/riviera-maison/mood-2-src.jpg',
-              'houten-vloeren': 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800',
-              'traprenovatie': 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800',
-              'raamdecoratie': 'https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?auto=format&fit=crop&q=80&w=800',
-              'vloerbedekking': '/images/brands/gelasta/mood-1.webp',
-              'gordijnen': '/images/brands/dc-line/mood-1.webp',
+              'parket-en-multiplanken': 'https://images.unsplash.com/photo-1615971677499-5467cbab01c0?q=80&w=800&auto=format&fit=crop',
+              'pvc-en-laminaat': 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=800&auto=format&fit=crop',
+              'legservice': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop',
+              'traprenovatie': 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?q=80&w=800&auto=format&fit=crop',
+              'buitenparket': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop',
+              'interieurwerken': 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?q=80&w=800&auto=format&fit=crop',
             };
             return (
               <div className="relative">
@@ -366,19 +366,25 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
                           </h3>
 
                           <div className="space-y-2 opacity-70 group-hover:opacity-100 transition-opacity duration-400">
-                            {cat.brands.slice(0, 4).map(b => (
-                              <div key={b.slug} className="flex items-center space-x-2 text-white/90">
-                                <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
-                                <span className="text-sm font-medium">{b.name}</span>
-                              </div>
-                            ))}
-                            {cat.brands.length > 4 && (
-                              <p className="text-xs italic text-brand-primary mt-3">+{cat.brands.length - 4} meer topmerken</p>
+                            {cat.brands.length > 0 ? (
+                              <>
+                                {cat.brands.slice(0, 4).map(b => (
+                                  <div key={b.slug} className="flex items-center space-x-2 text-white/90">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+                                    <span className="text-sm font-medium">{b.name}</span>
+                                  </div>
+                                ))}
+                                {cat.brands.length > 4 && (
+                                  <p className="text-xs italic text-brand-primary mt-3">+{cat.brands.length - 4} meer topmerken</p>
+                                )}
+                              </>
+                            ) : (
+                              <p className="text-sm text-white/80 leading-relaxed">{cat.description}</p>
                             )}
                           </div>
 
                           <div className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-primary/70 group-hover:text-brand-primary transition-colors duration-300">
-                            Ontdek Collectie <ArrowNarrowRightIcon size={16} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                            {cat.brands.length > 0 ? 'Ontdek Collectie' : 'Meer Info'} <ArrowNarrowRightIcon size={16} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />
                           </div>
                         </div>
                       </Link>
@@ -404,25 +410,26 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
           <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 block">Onze Passie</span>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <h2 className="text-4xl lg:text-5xl font-bold text-brand-primary leading-tight max-w-xl">
-              De kunst van hoogwaardige vloeren en interieur, bij u thuis.
+              Vakmanschap tot in detail.
             </h2>
             <div className="space-y-8">
               <p className="text-gray-500 text-lg leading-relaxed">
-                Bij PVC Vloeren Achterhoek geloven we dat een sterke basis essentieel is voor uw woongenot. Wij realiseren hoogwaardige PVC-vloeren, traprenovaties, vloerbedekking, raamdecoratie en gordijnen met oog voor detail en authentiek vakmanschap.
+                Bij BPM Parket geloven we dat een sterke basis essentieel is voor uw woongenot. Al ruim 30 jaar realiseren wij traditioneel parket, PVC, laminaat, traprenovaties, buitenparket en interieurwerken met oog voor detail en authentiek vakmanschap — vanuit Geldrop, voor heel Brabant.
               </p>
-              <div className="flex gap-12">
-                <div>
-                  <div className="text-4xl font-bold text-brand-primary mb-1">
-                    <StatCounter end={20} suffix="+" />
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+                {[
+                  { value: 30, suffix: '+', label: 'Jaar ervaring' },
+                  { value: 1000, suffix: '+', label: 'Projecten gerealiseerd' },
+                  { value: 6, suffix: '', label: 'Specialismen' },
+                  { value: 100, suffix: '%', label: 'Vakmanschap' },
+                ].map((stat, i) => (
+                  <div key={i}>
+                    <div className="text-4xl font-bold text-brand-primary mb-1">
+                      <StatCounter end={stat.value} suffix={stat.suffix} />
+                    </div>
+                    <p className="text-sm text-gray-400">{stat.label}</p>
                   </div>
-                  <p className="text-sm text-gray-400">Jaar Ervaring</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-brand-primary mb-1">
-                    <StatCounter end={100} suffix="%" />
-                  </div>
-                  <p className="text-sm text-gray-400">Maatwerk</p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -450,15 +457,16 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 block">Specialisaties</span>
           <h2 className="text-4xl font-bold text-brand-primary mb-16 max-w-2xl">
-            Van PVC-vloeren tot gordijnen: alles voor uw interieur
+            Van traditioneel parket tot interieurwerken: alles in één hand
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: LayoutGrid, title: "PVC-vloeren", desc: "Stijlvolle en onderhoudsvriendelijke vloeren die perfect passen bij een modern interieur." },
-              { icon: ChevronsUp, title: "Traprenovatie", desc: "Geef uw trap een volledig nieuwe look met duurzame en stijlvolle materialen." },
-              { icon: Grid3x3, title: "Vloerbedekking", desc: "Breng warmte en comfort in uw huis met onze hoogwaardige vloerbedekking." },
-              { icon: Blinds, title: "Raamdecoratie", desc: "Van rolgordijnen tot shutters: sfeervolle oplossingen voor elk raam." },
-              { icon: Columns, title: "Gordijnen", desc: "Maak uw interieur compleet met prachtige gordijnen op maat." }
+              { icon: Layers, title: "Parket en Multiplanken", desc: "Traditioneel parket en multiplanken — onze kernspecialiteit sinds 1992." },
+              { icon: LayoutGrid, title: "PVC en Laminaat", desc: "Duurzame, onderhoudsvriendelijke vloeren met houten of steenlook." },
+              { icon: Wrench, title: "Legservice", desc: "Vakkundige legservice door ons eigen team — van voorbereiding tot afwerking." },
+              { icon: ChevronsUp, title: "Traprenovatie", desc: "Geef uw trap een nieuwe look met hoogwaardige houtsoorten en vakmanschap." },
+              { icon: Sun, title: "Buitenparket", desc: "Weer- en UV-bestendig buitenparket voor terras, vlonder en tuin." },
+              { icon: Hammer, title: "Interieurwerken", desc: "Maatwerk radiator-ombouwen, plinten, drempels en meer." }
             ].map((service, i) => (
               <div key={i} className={`bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 reveal delay-${(i + 1) * 100} border border-gray-100`}>
                 <div className="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center mb-6 text-white text-brand-primary">
@@ -566,7 +574,7 @@ export default function HomePageClient({ initialProjects, testimonials }: { init
                 Kies voor de <span className="text-brand-primary">kwaliteit</span> van een echte specialist.
               </h2>
               <p className="text-lg text-brand-light opacity-80 max-w-lg mb-8">
-                Vraag vandaag nog een vrijblijvende offerte aan voor uw nieuwe vloer, traprenovatie of raamdecoratie in Doetinchem en omgeving.
+                Vraag vandaag nog een vrijblijvende offerte aan voor uw nieuwe parketvloer, PVC, traprenovatie of interieurwerken in Geldrop, Brabant en omgeving.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
