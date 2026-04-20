@@ -10,12 +10,16 @@ const config: Config = {
         extend: {
             colors: {
                 brand: {
-                    primary: '#5EBE1B',
-                    secondary: '#2D5A27',
-                    dark: '#222222',
-                    text: '#4A4A4A',
-                    'bg-light': '#F4F4F4',
+                    primary: '#865D41',
+                    secondary: '#F0AD4E',
+                    dark: '#192A3D',
+                    accent: '#F5EEE6',
+                    text: '#192A3D',
+                    'bg-light': '#FAFBFC',
                 }
+            },
+            fontFamily: {
+                sans: ['var(--font-roboto)', 'system-ui', '-apple-system', 'sans-serif'],
             }
         }
     },
