@@ -20,6 +20,7 @@ import Legservice from './pages/products/Legservice';
 import Traprenovatie from './pages/products/Traprenovatie';
 import Buitenparket from './pages/products/Buitenparket';
 import Interieurwerken from './pages/products/Interieurwerken';
+import LandingPVC from './pages/LandingPVC';
 import AnnouncementBar from './components/AnnouncementBar';
 import CookieBanner from './components/CookieBanner';
 
@@ -87,6 +88,7 @@ const App: React.FC = () => {
       case 'producten-trap': return <Traprenovatie />;
       case 'producten-buitenparket': return <Buitenparket />;
       case 'producten-interieur': return <Interieurwerken />;
+      case 'landing-pvc': return <LandingPVC />;
       case 'over-ons': return <AboutUs onNavigate={navigate} />;
       case 'admin':
         return isAuthenticated ? <Admin onLogout={handleLogout} /> : <Login onLogin={handleLogin} onNavigate={navigate} />;
@@ -97,7 +99,7 @@ const App: React.FC = () => {
   };
 
   // Check if we are in a "fullscreen" page like Login/Admin to optionally hide Navbar/Footer
-  const isFullscreenPage = currentPage === 'login' || (currentPage === 'admin' && !isAuthenticated);
+  const isFullscreenPage = currentPage === 'login' || (currentPage === 'admin' && !isAuthenticated) || currentPage === 'landing-pvc';
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-900">
