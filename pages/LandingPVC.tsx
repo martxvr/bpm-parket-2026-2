@@ -46,7 +46,10 @@ const LandingPVC: React.FC = () => {
   };
 
   const scrollToForm = () => {
-    document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth' });
+    const form = document.getElementById('hero-form');
+    form?.scrollIntoView({ behavior: 'smooth' });
+    const firstInput = form?.querySelector<HTMLElement>('input, button');
+    firstInput?.focus({ preventScroll: true });
   };
 
   return (
@@ -140,7 +143,7 @@ const LandingPVC: React.FC = () => {
       </section>
 
       {/* ── 3. Trust bar ── */}
-      <section className="bg-brand-sand/20 py-8 px-4">
+      <section className="bg-brand-sand/20 py-8 px-4" aria-label="Waarom BPM Parket">
         <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
           {[
             { icon: <Users className="h-5 w-5" />, label: 'Vader & zoon vakmannen' },
@@ -196,11 +199,11 @@ const LandingPVC: React.FC = () => {
                 quote: 'Zo blij met mijn nieuwe pvc vloer. Ze zijn erg vakkundig, werken zeer netjes en geven je absoluut mooie en goede adviezen.',
                 name: 'Anja Kardol',
               },
-            ].map(({ quote, name }) => (
-              <div key={name} className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-brand-red">
+            ].map(({ quote, name }, i) => (
+              <div key={i} className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-brand-red">
                 <p className="text-gray-600 text-sm italic leading-relaxed mb-4">"{quote}"</p>
                 <p className="text-brand-dark font-semibold text-sm">{name}</p>
-                <p className="text-brand-red text-xs mt-0.5">★★★★★</p>
+                <p className="text-brand-red text-xs mt-0.5" aria-label="5 sterren">★★★★★</p>
               </div>
             ))}
           </div>
