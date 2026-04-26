@@ -110,7 +110,7 @@ const INITIAL_SETTINGS: AdminSettings = {
   companyKvk: companyConfig.contact.kvk,
   companyBtw: companyConfig.contact.btw,
   companyIban: companyConfig.contact.iban,
-  companyLogo: '/2023-10-02_12_09_56-BPM_Parket___Parket__PVC__Houten_Vloeren_en_nog_6_andere_pagina_s_-_Werk_-_Micro-removebg-preview.png'
+  companyLogo: '/logo.png'
 };
 
 const INITIAL_CUSTOMERS: Customer[] = [
