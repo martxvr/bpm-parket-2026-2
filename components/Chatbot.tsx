@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot } from 'lucide-react';
-import { sendMessageToGemini } from '../services/geminiService';
+import { sendMessageToClaude } from '../services/claudeService';
 import { ChatMessage } from '../types';
 
 const Chatbot: React.FC = () => {
@@ -41,12 +41,8 @@ const Chatbot: React.FC = () => {
 
     try {
       // Prepare history for Gemini (excluding IDs and timestamps)
-      const history = messages.map(m => ({
-        role: m.role === 'model' ? 'model' : 'user',
-        parts: [{ text: m.text }]
-      }));
-
-      const responseText = await sendMessageToGemini(history, userMessage.text);
+      const history = messages.map(m => ({ role: m.role, text: m.text }));
+      const responseText = await sendMessageToClaude(history, userMessage.text);
 
       const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
