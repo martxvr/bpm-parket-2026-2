@@ -139,7 +139,85 @@ const LandingPVC: React.FC = () => {
         </div>
       </section>
 
-      {/* placeholder for remaining sections */}
+      {/* ── 3. Trust bar ── */}
+      <section className="bg-brand-sand/20 py-8 px-4">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          {[
+            { icon: <Users className="h-5 w-5" />, label: 'Vader & zoon vakmannen' },
+            { icon: <Clock className="h-5 w-5" />, label: 'Legservice vaak in 1 dag' },
+            { icon: <MessageSquare className="h-5 w-5" />, label: 'Persoonlijk advies op maat' },
+            { icon: <FileText className="h-5 w-5" />, label: 'Gratis vrijblijvende offerte' },
+          ].map(({ icon, label }) => (
+            <div key={label} className="flex flex-col items-center gap-2">
+              <div className="text-brand-brown">{icon}</div>
+              <span className="text-sm font-medium text-brand-dark">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 4. Zo werkt het ── */}
+      <section className="bg-white py-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-brand-dark mb-12">Zo werkt het</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {[
+              { n: '1', title: 'Plan je bezoek', desc: 'Vul het formulier in — je kiest zelf een datum die je uitkomt.' },
+              { n: '2', title: 'Bekijk & voel', desc: 'Kom langs in onze showroom, zie de vloeren in het echt en krijg advies op maat.' },
+              { n: '3', title: 'Ontvang je offerte', desc: 'Je gaat weg met een vrijblijvende offerte — zonder verplichtingen.' },
+            ].map(({ n, title, desc }) => (
+              <div key={n} className="flex flex-col items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-brand-red text-white font-bold text-lg flex items-center justify-center flex-shrink-0">
+                  {n}
+                </div>
+                <h3 className="font-bold text-brand-dark">{title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. Reviews ── */}
+      <section className="bg-brand-sand/10 py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-brand-dark text-center mb-10">Wat klanten zeggen</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              {
+                quote: 'We zijn ontzettend tevreden met onze PVC vloer. Vakkundig gelegd door vader en zoon. Alles netjes afgewerkt en opgeruimd. Top service.',
+                name: 'Ingrid Zwart',
+              },
+              {
+                quote: 'Misschien wel de mooiste vloer die ik ooit in mijn woning heb gehad!',
+                name: 'Rick Adriaanslaan',
+              },
+              {
+                quote: 'Zo blij met mijn nieuwe pvc vloer. Ze zijn erg vakkundig, werken zeer netjes en geven je absoluut mooie en goede adviezen.',
+                name: 'Anja Kardol',
+              },
+            ].map(({ quote, name }) => (
+              <div key={name} className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-brand-red">
+                <p className="text-gray-600 text-sm italic leading-relaxed mb-4">"{quote}"</p>
+                <p className="text-brand-dark font-semibold text-sm">{name}</p>
+                <p className="text-brand-red text-xs mt-0.5">★★★★★</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Final CTA ── */}
+      <section className="bg-brand-dark py-16 px-4 text-center">
+        <h2 className="text-3xl font-bold text-white mb-3">Klaar om je nieuwe vloer te kiezen?</h2>
+        <p className="text-white/60 text-base mb-8">Plan je gratis showroombezoek — vrijblijvend, geen verplichtingen.</p>
+        <button
+          onClick={scrollToForm}
+          className="bg-brand-red text-white font-semibold px-10 py-4 rounded-full hover:bg-brand-red/90 transition-colors text-base"
+        >
+          Afspraak inplannen →
+        </button>
+      </section>
 
     </div>
   );
