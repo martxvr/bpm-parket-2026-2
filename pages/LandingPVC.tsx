@@ -5,6 +5,12 @@ import { createLead } from '../services/mockDatabase';
 const PHONE = '040 123 4567';
 const PVC_IMAGE = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=2000';
 
+const getTomorrow = (): string => {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return d.toISOString().split('T')[0];
+};
+
 const LandingPVC: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -14,13 +20,12 @@ const LandingPVC: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const today = new Date().toISOString().split('T')[0];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) { setError('Vul je naam in.'); return; }
     if (phone.replace(/\D/g, '').length < 10) { setError('Vul een geldig telefoonnummer in (10 cijfers).'); return; }
-    if (!date || date <= today) { setError('Kies een datum in de toekomst.'); return; }
+    const tomorrow = getTomorrow();
+    if (!date || date < tomorrow) { setError('Kies een datum in de toekomst.'); return; }
     setIsLoading(true);
     setError('');
     try {
@@ -114,7 +119,7 @@ const LandingPVC: React.FC = () => {
                   <input
                     type="date"
                     value={date}
-                    min={today}
+                    min={getTomorrow()}
                     onChange={e => setDate(e.target.value)}
                     className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red text-gray-500"
                   />
