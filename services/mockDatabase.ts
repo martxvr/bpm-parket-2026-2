@@ -96,7 +96,7 @@ const INITIAL_POLICIES: Policy[] = [
 const INITIAL_SETTINGS: AdminSettings = {
   adminName: 'Bodhi van Baar',
   adminRole: 'Eigenaar',
-  adminEmail: companyConfig.contact.email,
+  adminEmail: 'bodhi@bpmparket.nl',
   password: 'admin',
   adminAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100',
   chatbotEnabled: true,

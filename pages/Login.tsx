@@ -27,7 +27,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
       if (email === settings.adminEmail && password === settings.password) {
         onLogin();
       } else {
-        setError('Ongeldige inloggegevens. Gebruik de demo knop om in te loggen als Bodhi van Baar.');
+        setError('Ongeldige inloggegevens. Probeer bodhi@bpmparket.nl / admin');
         setLoading(false);
       }
     }, 800);
