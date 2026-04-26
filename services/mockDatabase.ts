@@ -24,7 +24,7 @@ const INITIAL_PROJECTS: Project[] = [
     title: 'PVC Designvloer',
     description: 'Stijlvolle en duurzame PVC vloer met de look van echt hout.',
     longDescription: 'Voor deze moderne woning hebben we een hoogwaardige PVC vloer geinstalleerd. PVC biedt de warme uitstraling van hout met het gemak van minimaal onderhoud en hoge slijtvastheid. Ideaal voor intensief gebruik.',
-    imageUrl: 'https://images.unsplash.com/photo-1581850518616-bcb8186c243c?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1000',
     areaSize: 45,
     location: 'Geldrop',
     date: '2024-01-20',
@@ -54,10 +54,10 @@ const INITIAL_PROJECTS: Project[] = [
 ];
 
 const INITIAL_GALLERY: GalleryImage[] = [
-  { id: '1', imageUrl: 'https://images.unsplash.com/photo-1581850518616-bcb8186c243c?auto=format&fit=crop&q=80&w=500', caption: 'Details visgraat leggen' },
+  { id: '1', imageUrl: 'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?auto=format&fit=crop&q=80&w=500', caption: 'Details visgraat leggen' },
   { id: '2', imageUrl: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&q=80&w=500', caption: 'Traprenovatie na' },
-  { id: '3', imageUrl: 'https://images.unsplash.com/photo-1549405180-4ca326551606?auto=format&fit=crop&q=80&w=500', caption: 'Maatwerk meubel detail' },
-  { id: '4', imageUrl: 'https://images.unsplash.com/photo-1448376561459-dbe87f80dfc5?auto=format&fit=crop&q=80&w=500', caption: 'Houtselectie in werkplaats' }
+  { id: '3', imageUrl: 'https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&q=80&w=500', caption: 'Maatwerk meubel detail' },
+  { id: '4', imageUrl: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=500', caption: 'Houtselectie in werkplaats' }
 ];
 
 const INITIAL_KNOWLEDGE: KnowledgeItem[] = [
@@ -151,6 +151,17 @@ const INITIAL_INVOICES: Invoice[] = [
     ]
   }
 ];
+
+// Bump when seeded media (project/gallery image URLs) changes so cached
+// localStorage entries get re-seeded instead of serving broken images.
+const SEED_VERSION = '2';
+if (typeof window !== 'undefined') {
+  if (localStorage.getItem('seed_version') !== SEED_VERSION) {
+    localStorage.removeItem('projects');
+    localStorage.removeItem('gallery');
+    localStorage.setItem('seed_version', SEED_VERSION);
+  }
+}
 
 // Helpers
 const getStorage = <T>(key: string, initial: T): T => {

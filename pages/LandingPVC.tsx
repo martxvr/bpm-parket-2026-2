@@ -2,23 +2,16 @@ import React, { useState } from 'react';
 import { Phone, Users, Clock, MessageSquare, FileText, CheckCircle } from 'lucide-react';
 import { createLead } from '../services/mockDatabase';
 import { companyConfig } from '../config';
+import DatePicker from '../components/DatePicker';
 
 const PHONE = companyConfig.contact.phone;
 const PVC_IMAGE = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=2000';
-
-const getTomorrow = (): string => {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  return `${d.getFullYear()}-${mm}-${dd}`;
-};
 
 const LandingPVC: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -27,8 +20,7 @@ const LandingPVC: React.FC = () => {
     e.preventDefault();
     if (!name.trim()) { setError('Vul je naam in.'); return; }
     if (phone.replace(/\D/g, '').length < 10) { setError('Vul een geldig telefoonnummer in (10 cijfers).'); return; }
-    const tomorrow = getTomorrow();
-    if (!date || date < tomorrow) { setError('Kies een datum in de toekomst.'); return; }
+    if (!date) { setError('Kies een datum & tijd.'); return; }
     setIsLoading(true);
     setError('');
     try {
@@ -38,7 +30,7 @@ const LandingPVC: React.FC = () => {
         phone: phone.trim(),
         floorType: 'pvc',
         areaSize: 0,
-        message: `Showroomafspraak via PVC-landingspagina — gewenste datum: ${date}`,
+        message: `Showroomafspraak via PVC-landingspagina — gewenste datum: ${date.toLocaleString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`,
       });
       setSubmitted(true);
     } catch {
@@ -126,15 +118,7 @@ const LandingPVC: React.FC = () => {
                     onChange={e => setEmail(e.target.value)}
                     className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
                   />
-                  <input
-                    type="date"
-                    value={date}
-                    required
-                    aria-label="Gewenste datum"
-                    min={getTomorrow()}
-                    onChange={e => setDate(e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red text-gray-500"
-                  />
+                  <DatePicker value={date} onChange={setDate} variant="light" />
                   {error && <p className="text-brand-red text-xs">{error}</p>}
                   <button
                     type="submit"

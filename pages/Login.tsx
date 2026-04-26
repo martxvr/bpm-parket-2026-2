@@ -40,13 +40,13 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
     <div className="min-h-screen flex bg-white">
       
       {/* Left Side - Visual */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-black overflow-hidden m-3 rounded-2xl">
-        <img 
-          src="https://images.unsplash.com/photo-1621252179027-94459d27d3ee?auto=format&fit=crop&q=80&w=2000" 
-          alt="Epoxy floor abstract" 
-          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
+      <div className="hidden lg:flex lg:w-1/2 relative bg-neutral-900 overflow-hidden m-3 rounded-2xl">
+        <img
+          src="https://www.bpmparket.nl/wp-content/uploads/2023/10/2023-10-02-12_27_45-WhatsApp-en-nog-9-andere-paginas-Werk-Microsoft%E2%80%8B-Edge-e1696335757551.png"
+          alt="BPM Parket"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40"></div>
         
         <div className="relative z-10 flex flex-col justify-between p-12 w-full h-full">
           <div className="flex items-center space-x-2 text-white/90">

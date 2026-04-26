@@ -13,7 +13,7 @@ interface HomeProps {
 const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
   const images = [
     "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000",
-    "https://images.unsplash.com/photo-1581850518616-bcb8186c243c?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=2000",
     "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=2000"
   ];
   const [currentImage, setCurrentImage] = useState(0);
