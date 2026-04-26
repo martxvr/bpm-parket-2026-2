@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import DatePicker from '../components/DatePicker';
-import { Star, ShieldCheck, Zap, Award, Layers, ArrowUpRight, CheckCircle2, Users, HardHat, PenTool, ArrowRight, ExternalLink } from 'lucide-react';
+import { Star, ShieldCheck, Zap, Award, Layers, ArrowUpRight, CheckCircle2, Users, HardHat, PenTool, ArrowRight, ExternalLink, Hammer, Sun, Sofa } from 'lucide-react';
 import { getProjects } from '../services/mockDatabase';
 import { Project } from '../types';
 
@@ -257,12 +257,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
             Van vloer tot meubel: alles voor uw houten interieur
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Layers, title: "Traditioneel Parket", desc: "Visgraat, Hongaarse punt of band en bies. Wij beheersen de oude ambacht tot in de puntjes." },
-              { icon: Zap, title: "Traprenovatie", desc: "Verander uw trap in een eyecatcher met onze massief eiken overzettreden, vaak binnen één dag." },
-              { icon: ShieldCheck, title: "PVC & Laminaat", desc: "Stijlvolle en onderhoudsvriendelijke vloeren die perfect passen bij een modern interieur." },
-              { icon: Star, title: "Onderhoud", desc: "Is uw vloer toe aan een opknapbeurt? Wij schuren en oliën uw parket weer als nieuw." }
+              { icon: Layers, title: "PVC en Laminaat", desc: "Stijlvol, duurzaam en onderhoudsvriendelijk." },
+              { icon: ShieldCheck, title: "Parket en Multiplanken", desc: "Traditioneel vakmanschap in massief hout." },
+              { icon: Hammer, title: "Legservice", desc: "Professionele plaatsing door onze specialisten." },
+              { icon: Zap, title: "Trap renovatie", desc: "Nieuwe uitstraling, vaak binnen één dag." },
+              { icon: Sun, title: "Buitenparket", desc: "Robuuste houten vloeren voor buiten." },
+              { icon: Sofa, title: "Interieurwerken", desc: "Maatwerk meubels en interieurafwerking." },
             ].map((service, i) => (
               <div key={i} className={`bg-white p-8 rounded-[2rem] hover:shadow-xl transition-all duration-300 reveal delay-${(i + 1) * 100}`}>
                 <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center mb-6 text-white">
