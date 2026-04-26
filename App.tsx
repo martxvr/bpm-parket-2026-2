@@ -59,6 +59,11 @@ const App: React.FC = () => {
     navigate('admin');
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    navigate('home');
+  };
+
   const handleProjectSelect = (project: Project) => {
     setSelectedProject(project);
   };
@@ -83,7 +88,7 @@ const App: React.FC = () => {
       case 'producten-interieur': return <Interieurwerken />;
       case 'over-ons': return <AboutUs onNavigate={navigate} />;
       case 'admin':
-        return isAuthenticated ? <Admin /> : <Login onLogin={handleLogin} onNavigate={navigate} />;
+        return isAuthenticated ? <Admin onLogout={handleLogout} /> : <Login onLogin={handleLogin} onNavigate={navigate} />;
       case 'login':
         return <Login onLogin={handleLogin} onNavigate={navigate} />;
       default: return <Home onNavigate={navigate} onProjectSelect={handleProjectSelect} />;

@@ -18,7 +18,7 @@ import {
     Shield, User, Bell, Briefcase, FileText, Printer, Send, CreditCard, ScrollText, Image
 } from 'lucide-react';
 
-const Admin: React.FC = () => {
+const Admin: React.FC<{ onLogout?: () => void }> = ({ onLogout }) => {
     const [activeTab, setActiveTab] = useState<'dashboard' | 'projects' | 'leads' | 'customers' | 'invoices' | 'calendar' | 'knowledge' | 'settings' | 'policies' | 'gallery'>('dashboard');
 
     // Data State
@@ -404,9 +404,15 @@ const Admin: React.FC = () => {
                     <TabButton id="settings" label="Instellingen" icon={Settings} />
                     <button
                         onClick={() => window.location.hash = 'home'}
-                        className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-brand-red hover:bg-brand-red/10 transition-colors mt-2"
+                        className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors mt-2"
                     >
-                        <LogOut size={18} /> <span>Terug naar Website</span>
+                        <LogOut size={18} className="rotate-180" /> <span>Terug naar Website</span>
+                    </button>
+                    <button
+                        onClick={onLogout}
+                        className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-brand-red hover:bg-brand-red/10 transition-colors"
+                    >
+                        <LogOut size={18} /> <span>Uitloggen</span>
                     </button>
                 </div>
             </div>
