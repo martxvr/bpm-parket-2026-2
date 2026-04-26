@@ -9,19 +9,14 @@ interface AboutUsProps {
 
 const team = [
   {
-    name: 'Bas van den Berg',
-    role: 'Oprichter & Meester-Parketteur',
-    bio: 'Met meer dan 20 jaar ervaring in het leggen van traditioneel parket is Bas de drijvende kracht achter BPM Parket. Zijn passie voor ambacht is in elk project zichtbaar.',
+    name: 'Bodhi van Baar',
+    role: 'Eigenaar & Meester-Parketteur',
+    bio: 'Bodhi is de drijvende kracht achter BPM Parket. Met een aangeboren passie voor ambacht en oog voor detail zorgt hij ervoor dat elk project wordt afgeleverd als ware het zijn eigen huis.',
   },
   {
-    name: 'Milan Pietersen',
-    role: 'Uitvoerder & PVC Specialist',
-    bio: 'Milan is gespecialiseerd in moderne PVC-vloeren en laminaat. Zijn nauwkeurigheid en werksnelheid zorgen ervoor dat projecten altijd op tijd en foutloos worden opgeleverd.',
-  },
-  {
-    name: 'Robin de Vries',
-    role: 'Traprenovatie & Interieur',
-    bio: 'Robin combineert technisch inzicht met een gevoel voor interieur. Van traprenovatie tot maatwerk interieurwerken — hij maakt elk detail af.',
+    name: 'Wil van Baar',
+    role: 'Uitvoerder & Specialist',
+    bio: 'Wil brengt jarenlange praktijkervaring mee op de werkvloer. Van traditioneel parket tot moderne PVC-vloeren en traprenovaties — zijn vakmanschap is in elk detail zichtbaar.',
   },
 ];
 

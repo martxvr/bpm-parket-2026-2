@@ -94,7 +94,7 @@ const INITIAL_POLICIES: Policy[] = [
 ];
 
 const INITIAL_SETTINGS: AdminSettings = {
-  adminName: 'BPM Parket Beheer',
+  adminName: 'Bodhi van Baar',
   adminRole: 'Eigenaar',
   adminEmail: companyConfig.contact.email,
   password: 'admin',

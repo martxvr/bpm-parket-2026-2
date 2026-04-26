@@ -27,7 +27,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
       if (email === settings.adminEmail && password === settings.password) {
         onLogin();
       } else {
-        setError('Ongeldige inloggegevens. Probeer demo: admin@epoxymaster.nl / admin');
+        setError('Ongeldige inloggegevens. Gebruik de demo knop om in te loggen als Bodhi van Baar.');
         setLoading(false);
       }
     }, 800);
@@ -55,7 +55,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
         <div className="relative z-10 flex flex-col justify-between p-12 w-full h-full">
           <div className="flex items-center space-x-2 text-white/90">
             <Hammer className="h-6 w-6" />
-            <span className="font-bold text-xl tracking-tight">EpoxyMaster</span>
+            <span className="font-bold text-xl tracking-tight">BPM Parket</span>
           </div>
 
           <div className="mb-8">
