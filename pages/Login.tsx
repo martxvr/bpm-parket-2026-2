@@ -20,11 +20,8 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
     setError('');
     setLoading(true);
 
-    // Mock authentication check against stored settings
-    setTimeout(async () => {
-      const settings = await getSettings();
-      
-      if (email === settings.adminEmail && password === settings.password) {
+    setTimeout(() => {
+      if (email === 'bodhi@bpmparket.nl' && password === 'admin') {
         onLogin();
       } else {
         setError('Ongeldige inloggegevens. Probeer bodhi@bpmparket.nl / admin');
@@ -33,10 +30,9 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
     }, 800);
   };
 
-  const fillDemoCredentials = async () => {
-    const settings = await getSettings();
-    setEmail(settings.adminEmail);
-    setPassword(settings.password || 'admin');
+  const fillDemoCredentials = () => {
+    setEmail('bodhi@bpmparket.nl');
+    setPassword('admin');
     setError('');
   };
 
