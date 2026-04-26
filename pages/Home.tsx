@@ -67,7 +67,7 @@ const HeroSlider = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
               Vakmanschap<br />
               in Parket &<br />
-              <span className="text-brand-sand">Vloeren</span>
+              <span className="text-brand-brown">Vloeren</span>
             </h1>
 
             <p className="text-lg text-white/80 max-w-lg leading-relaxed">
@@ -250,9 +250,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-gray-50 reveal">
+      <section className="py-24 bg-brand-brown/5 reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 block">Specialisaties</span>
+          <span className="text-xs font-bold tracking-widest text-brand-brown uppercase mb-4 block">Specialisaties</span>
           <h2 className="text-4xl font-bold text-black mb-16 max-w-2xl">
             Van vloer tot meubel: alles voor uw houten interieur
           </h2>
@@ -280,7 +280,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
       <section className="py-24 bg-white reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-brand-sand uppercase mb-4 block">Portfolio</span>
+            <span className="text-xs font-bold tracking-widest text-brand-brown uppercase mb-4 block">Portfolio</span>
             <h2 className="text-4xl font-bold text-brand-dark">Vakmanschap in beeld</h2>
           </div>
 
@@ -312,10 +312,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
                 <div className="px-2">
                   <div className="flex justify-between items-center mb-2">
                     <h3 className="text-2xl font-bold text-brand-dark">{project.title}</h3>
-                    <span className="text-sm text-brand-sand">{project.date}</span>
+                    <span className="text-sm text-brand-brown">{project.date}</span>
                   </div>
                   <div className="flex items-center text-brand-dark opacity-70 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-brand-sand mr-2"></div>
+                    <div className="w-2 h-2 rounded-full bg-brand-brown mr-2"></div>
                     {project.description}
                   </div>
                 </div>
@@ -333,7 +333,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
       <section className="py-24 bg-white reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-brand-sand uppercase mb-4 block">Reviews</span>
+            <span className="text-xs font-bold tracking-widest text-brand-brown uppercase mb-4 block">Reviews</span>
             <h2 className="text-4xl font-bold text-brand-dark mb-4">Wat zeggen onze klanten over ons?</h2>
           </div>
 
@@ -343,7 +343,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
                 key={idx}
                 className={`flex flex-col border-b border-gray-100 pb-12 reveal delay-${(idx + 1) * 100} last:border-0`}
               >
-                <div className="flex text-brand-sand mb-4">
+                <div className="flex text-brand-brown mb-4">
                   {[...Array(testimonial.stars)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
@@ -363,12 +363,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-brand-light/20 rounded-[4rem] p-10 lg:p-20 flex flex-col lg:flex-row items-center gap-16 lg:gap-24 relative overflow-hidden">
             {/* Subtle background detail */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sand/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-brown/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
 
             {/* Logo Part */}
             <div className="w-full lg:w-1/3 flex flex-col items-center relative z-10">
               <div className="relative group">
-                <div className="absolute -inset-4 bg-brand-sand/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute -inset-4 bg-brand-brown/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Werkspot_Logo.png"
                   alt="Werkspot Logo"
@@ -381,7 +381,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-brand-sand">Geverifieerde Vakman</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-brand-brown">Geverifieerde Vakman</span>
               </div>
             </div>
 
@@ -392,7 +392,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onProjectSelect }) => {
                   Vind ons ook op <span className="text-brand-brown">Werkspot</span>
                 </h2>
                 <p className="text-lg text-gray-500 leading-relaxed max-w-xl">
-                  Op zoek naar betrouwbare beoordelingen en gedetailleerde projectinformatie? B.P.M. parket is trots aanwezig op <span className="font-bold underline decoration-brand-sand/30 underline-offset-8">Werkspot.nl</span>. Hier kunt u onze eerdere projecten bekijken en recensies van tevreden klanten.
+                  Op zoek naar betrouwbare beoordelingen en gedetailleerde projectinformatie? B.P.M. parket is trots aanwezig op <span className="font-bold underline decoration-brand-brown/30 underline-offset-8">Werkspot.nl</span>. Hier kunt u onze eerdere projecten bekijken en recensies van tevreden klanten.
                 </p>
               </div>
 

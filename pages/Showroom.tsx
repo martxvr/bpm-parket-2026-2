@@ -66,7 +66,7 @@ const Showroom: React.FC = () => {
                     />
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <span className="text-brand-sand font-bold tracking-widest uppercase text-xs mb-4 block">Beleef onze vloeren</span>
+                    <span className="text-brand-brown font-bold tracking-widest uppercase text-xs mb-4 block">Beleef onze vloeren</span>
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">Onze Showroom</h1>
                     <p className="text-xl text-gray-300 max-w-2xl leading-relaxed">
                         Kom langs in Geldrop en laat u inspireren door onze uitgebreide collectie traditioneel parket, PVC en traprenovaties. Wij staan klaar met persoonlijk advies en een goede kop koffie.
@@ -132,7 +132,7 @@ const Showroom: React.FC = () => {
                     </div>
 
                     {/* Right: Booking Form */}
-                    <div className="bg-gray-50 rounded-[3rem] p-8 lg:p-12 border border-brand-light shadow-sm">
+                    <div className="bg-brand-brown/5 rounded-[3rem] p-8 lg:p-12 border border-brand-brown/10 shadow-sm">
                         <h2 className="text-3xl font-bold text-brand-dark mb-2">Afspraak plannen</h2>
                         <p className="text-gray-500 mb-8 font-medium">Plan direct een showroom bezoek in met een van onze adviseurs.</p>
 

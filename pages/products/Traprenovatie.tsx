@@ -50,7 +50,7 @@ const Traprenovatie = () => {
                                 <p>
                                     Door gebruik te maken van hoogwaardige overzet treden, beschikbaar in diverse houtsoorten en kleurenopties, garanderen we een naadloze afwerking die past bij elk interieur.
                                 </p>
-                                <div className="bg-brand-sand/10 p-8 rounded-3xl border border-brand-sand/20">
+                                <div className="bg-brand-brown/10 p-8 rounded-3xl border border-brand-brown/20">
                                     <p className="font-bold text-brand-dark italic">
                                         "Binnen slechts één dag kan uw trap een complete transformatie ondergaan, met minimale verstoring voor uw dagelijkse routine."
                                     </p>

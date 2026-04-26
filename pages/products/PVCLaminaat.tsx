@@ -80,7 +80,7 @@ const PVCLaminaat = () => {
             </section>
 
             {/* Content Section 2: Laminaat */}
-            <section className="py-24 bg-gray-50 reveal">
+            <section className="py-24 bg-brand-brown/5 reveal">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div className="order-2 lg:order-1 relative rounded-[3rem] overflow-hidden aspect-square shadow-2xl">

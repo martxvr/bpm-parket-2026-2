@@ -103,7 +103,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ onNavigate }) => {
       </section>
 
       {/* Statistieken */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-brand-brown/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat) => (
@@ -120,12 +120,12 @@ const AboutUs: React.FC<AboutUsProps> = ({ onNavigate }) => {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 block">Onze waarden</span>
+            <span className="text-xs font-bold tracking-widest text-brand-brown uppercase mb-4 block">Onze waarden</span>
             <h2 className="text-4xl font-bold text-black">Waar wij voor staan</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((val) => (
-              <div key={val.title} className="bg-gray-50 p-10 rounded-[2rem]">
+              <div key={val.title} className="bg-brand-brown/5 p-10 rounded-[2rem]">
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-6">
                   <val.icon className="w-6 h-6 text-white" />
                 </div>
@@ -138,10 +138,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ onNavigate }) => {
       </section>
 
       {/* Team */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-brand-brown/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 block">Het team</span>
+            <span className="text-xs font-bold tracking-widest text-brand-brown uppercase mb-4 block">Het team</span>
             <h2 className="text-4xl font-bold text-black">De mensen achter BPM Parket</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
