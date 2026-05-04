@@ -7,6 +7,7 @@ import { chatRequestSchema } from '@/lib/validation/chat';
 import { rateLimit } from '@/lib/rate-limit';
 import { hashIdentifier } from '@/lib/hash';
 import { getKnowledge } from '@/lib/db/knowledge';
+import { getAdminSettings } from '@/lib/db/admin-settings';
 import {
   insertAppointment,
   countAppointmentsForDate,
@@ -76,12 +77,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const settings = await getAdminSettings().catch(() => null);
+  if (settings && !settings.chatbot_enabled) {
+    return NextResponse.json({
+      text: `De chatbot staat momenteel uit. Bel ons gerust op ${companyConfig.contact.phone}.`,
+    });
+  }
+
   const knowledge = await getKnowledge();
   const knowledgeText = knowledge
     .map((k) => `[${k.topic}]: ${k.content}`)
     .join('\n');
 
-  const phone = companyConfig.contact.phone;
+  const adminExtra = settings?.system_prompt_extra
+    ? `\n\nEXTRA INSTRUCTIES VANUIT ADMIN:\n${settings.system_prompt_extra}\n`
+    : '';
+
+  const phone = settings?.phone || companyConfig.contact.phone;
   const address = `${companyConfig.contact.address}, ${companyConfig.contact.zipCity}`;
   const today = new Date().toLocaleDateString('nl-NL', {
     weekday: 'long',
@@ -118,7 +130,7 @@ AFSPRAAK INPLANNEN:
 
 Geef NOOIT prijzen. Verzin geen feiten buiten de kennisbank.
 
-Datum vandaag: ${today}.
+Datum vandaag: ${today}.${adminExtra}
 
 KENNISBANK:
 ${knowledgeText}`;
