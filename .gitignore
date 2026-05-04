@@ -7,10 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
-*.local
+
+# Env files
+.env*.local
+.env
+
+# Next.js
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Legacy build artifacts
+_legacy/.next/
 
 # Editor directories and files
 .vscode/*
@@ -22,4 +36,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Tooling
 .superpowers/
+.playwright-mcp/
+playwright-report/
+test-results/
