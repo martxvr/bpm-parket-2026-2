@@ -59,7 +59,7 @@ Migration in progress. See:
 - [Design spec](docs/superpowers/specs/2026-05-02-vite-to-nextjs-migration-design.md)
 - [Plan 1: Foundation](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-1-foundation.md) — done
 - [Plan 2: Public Site + Chatbot](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-2-public-site-and-chatbot.md) — done
-- Plan 3 (Admin) — pending
+- [Plan 3: Admin Features](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-3-admin-features.md) — done
 - Plan 4 (SEO + GDPR + Launch) — pending
 
 The old Vite version remains live on `master` branch until migration completes.
