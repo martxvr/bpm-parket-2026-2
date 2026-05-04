@@ -1,11 +1,19 @@
+import { Hero } from '@/components/marketing/Hero';
+import { USPRow } from '@/components/marketing/USPRow';
+import { ServicesGrid } from '@/components/marketing/ServicesGrid';
+import { ProjectsPreview } from '@/components/marketing/ProjectsPreview';
+import { ReviewsRow } from '@/components/marketing/ReviewsRow';
+import { CtaSection } from '@/components/marketing/CtaSection';
+
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-2xl px-6 py-24">
-      <h1 className="text-3xl font-semibold">BPM Parket</h1>
-      <p className="mt-4 text-black/70">
-        De nieuwe site komt binnenkort. Ondertussen blijft de huidige Vite-versie
-        beschikbaar tot de migratie klaar is.
-      </p>
-    </div>
+    <>
+      <Hero />
+      <USPRow />
+      <ServicesGrid />
+      <ProjectsPreview />
+      <ReviewsRow />
+      <CtaSection />
+    </>
   );
 }
