@@ -32,6 +32,11 @@ const schema = z.object({
     z.string().startsWith('re_').optional(),
   ),
 
+  SUPABASE_AUTH_EMAIL_HOOK_SECRET: z.preprocess(
+    (v) => (v === '' ? undefined : v),
+    z.string().min(20).optional(),
+  ),
+
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
 });
 

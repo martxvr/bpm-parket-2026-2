@@ -2,10 +2,14 @@
 
 import { headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
+import { render } from '@react-email/render';
 import { leadSchema } from '@/lib/validation/forms';
 import { insertLead } from '@/lib/db/leads';
 import { hashIdentifier } from '@/lib/hash';
 import { rateLimit } from '@/lib/rate-limit';
+import { sendEmail, ADMIN_EMAIL } from '@/lib/resend';
+import { LeadConfirmation } from '@/components/emails/transactional/LeadConfirmation';
+import { AdminLeadNotification } from '@/components/emails/transactional/AdminLeadNotification';
 
 export type CreateLeadState =
   | { status: 'idle' }
@@ -61,7 +65,31 @@ export async function createLeadAction(
       user_agent_hash: hashIdentifier(ua),
     });
 
-    // Email side-effects added in Task 23 (after Resend setup).
+    // Send confirmation to visitor + notification to admin.
+    // Email failures don't roll back the saved lead.
+    await Promise.all([
+      sendEmail({
+        to: parsed.data.email,
+        subject: 'We hebben je aanvraag ontvangen — BPM Parket',
+        html: await render(LeadConfirmation({ name: parsed.data.name })),
+      }).catch((e) => console.error('Lead confirmation email failed:', e)),
+      sendEmail({
+        to: ADMIN_EMAIL,
+        replyTo: parsed.data.email,
+        subject: `Nieuwe lead: ${parsed.data.name} (${parsed.data.source})`,
+        html: await render(
+          AdminLeadNotification({
+            name: parsed.data.name,
+            email: parsed.data.email,
+            phone: parsed.data.phone,
+            floorType: parsed.data.floor_type,
+            areaSize: parsed.data.area_size,
+            message: parsed.data.message,
+            source: parsed.data.source,
+          }),
+        ),
+      }).catch((e) => console.error('Admin notification email failed:', e)),
+    ]);
 
     revalidatePath('/admin/leads');
     return { status: 'success' };
