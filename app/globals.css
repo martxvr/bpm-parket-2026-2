@@ -13,9 +13,10 @@
   --color-warning: oklch(0.70 0.15 75);
   --color-danger: oklch(0.55 0.18 25);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-display-loaded), "Cormorant Garamond",
+    "Times New Roman", Georgia, serif;
 }
 
 html, body {

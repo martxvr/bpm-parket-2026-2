@@ -1,9 +1,23 @@
 import type { Metadata } from 'next';
+import { Inter, Cormorant_Garamond } from 'next/font/google';
 import { StructuredData } from '@/components/marketing/StructuredData';
 import { ConsentInit } from '@/components/layout/ConsentInit';
 import { AnalyticsLoader } from '@/components/analytics/AnalyticsLoader';
 import { localBusinessSchema } from '@/lib/seo';
 import './globals.css';
+
+const sans = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans-loaded',
+  display: 'swap',
+});
+
+const display = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['500'],
+  variable: '--font-display-loaded',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: { default: 'BPM Parket', template: '%s | BPM Parket' },
@@ -20,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl">
+    <html lang="nl" className={`${sans.variable} ${display.variable}`}>
       <ConsentInit />
       <body className="antialiased">
         <StructuredData schema={localBusinessSchema()} />
