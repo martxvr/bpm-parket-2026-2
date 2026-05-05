@@ -3,9 +3,14 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
+import { StructuredData } from '@/components/marketing/StructuredData';
 import { getProjectBySlug } from '@/lib/db/projects';
+import { projectSchema } from '@/lib/seo';
 
 type Props = { params: Promise<{ slug: string }> };
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://bpmparket.nl';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -13,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: p?.title ?? 'Project',
     description: p?.description ?? undefined,
+    alternates: { canonical: `${SITE_URL}/projecten/${slug}` },
   };
 }
 
@@ -23,6 +29,16 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <>
+      <StructuredData
+        schema={projectSchema({
+          title: project.title,
+          description: project.description ?? project.title,
+          slug: project.slug,
+          imageUrl: project.image_url,
+          completedDate: project.completed_date,
+          location: project.location,
+        })}
+      />
       {project.image_url && (
         <div className="relative h-72 md:h-[480px]">
           <Image
