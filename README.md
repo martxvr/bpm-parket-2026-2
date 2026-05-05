@@ -60,7 +60,7 @@ Migration in progress. See:
 - [Plan 1: Foundation](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-1-foundation.md) — done
 - [Plan 2: Public Site + Chatbot](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-2-public-site-and-chatbot.md) — done
 - [Plan 3: Admin Features](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-3-admin-features.md) — done
-- Plan 4 (SEO + GDPR + Launch) — pending
+- [Plan 4: SEO + GDPR + Launch](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-4-seo-gdpr-launch.md) — code done, [launch checklist](docs/launch-checklist.md) drives go-live
 
 The old Vite version remains live on `master` branch until migration completes.
 This Next.js work lives on the `next-migration` branch.
