@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { StructuredData } from '@/components/marketing/StructuredData';
+import { ConsentInit } from '@/components/layout/ConsentInit';
+import { AnalyticsLoader } from '@/components/analytics/AnalyticsLoader';
 import { localBusinessSchema } from '@/lib/seo';
 import './globals.css';
 
@@ -19,8 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl">
+      <ConsentInit />
       <body className="antialiased">
         <StructuredData schema={localBusinessSchema()} />
+        <AnalyticsLoader />
         {children}
       </body>
     </html>

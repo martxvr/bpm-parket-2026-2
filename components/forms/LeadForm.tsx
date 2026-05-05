@@ -1,7 +1,8 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { createLeadAction, type CreateLeadState } from '@/actions/leads';
+import { trackConversion } from '@/lib/analytics';
 
 const initialState: CreateLeadState = { status: 'idle' };
 
@@ -24,6 +25,12 @@ const FLOOR_TYPES = [
 
 export function LeadForm({ source, floorType = '', defaultMessage = '' }: Props) {
   const [state, formAction, pending] = useActionState(createLeadAction, initialState);
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      trackConversion({ name: 'lead_submit', source });
+    }
+  }, [state.status, source]);
 
   if (state.status === 'success') {
     return (

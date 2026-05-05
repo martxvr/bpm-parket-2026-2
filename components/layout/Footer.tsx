@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { CookiePrefsButton } from '@/components/layout/CookiePrefsButton';
 import { companyConfig } from '@/lib/company';
 
 const SERVICE_LINKS = [
@@ -107,12 +108,15 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-white/50">
           <span>© {new Date().getFullYear()} {companyConfig.legalName}. Alle rechten voorbehouden.</span>
-          <ul className="flex gap-4">
+          <ul className="flex flex-wrap gap-4">
             {POLICY_LINKS.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-white">{l.label}</Link>
               </li>
             ))}
+            <li>
+              <CookiePrefsButton />
+            </li>
           </ul>
         </div>
       </Container>

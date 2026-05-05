@@ -38,6 +38,15 @@ const schema = z.object({
   ),
 
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
+
+  NEXT_PUBLIC_GA_ID: z.preprocess(
+    (v) => (v === '' ? undefined : v),
+    z.string().optional(),
+  ),
+  NEXT_PUBLIC_GADS_ID: z.preprocess(
+    (v) => (v === '' ? undefined : v),
+    z.string().optional(),
+  ),
 });
 
 const parsed = schema.safeParse(process.env);
