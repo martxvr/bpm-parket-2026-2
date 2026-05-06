@@ -6,6 +6,7 @@ import {
   Calendar,
   BookOpen,
   FolderOpen,
+  Tag,
   Image as ImageIcon,
   Settings,
   LogOut,
@@ -17,6 +18,7 @@ const NAV = [
   { href: '/admin/afspraken', label: 'Afspraken', icon: Calendar },
   { href: '/admin/kennisbank', label: 'Kennisbank', icon: BookOpen },
   { href: '/admin/projecten', label: 'Projecten', icon: FolderOpen },
+  { href: '/admin/merken', label: 'Merken', icon: Tag },
   { href: '/admin/gallery', label: 'Gallery', icon: ImageIcon },
   { href: '/admin/instellingen', label: 'Instellingen', icon: Settings },
 ];
