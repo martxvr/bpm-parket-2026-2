@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { BrandCards } from '@/components/marketing/BrandCards';
 import { ServicePage } from '@/components/marketing/ServicePageTemplate';
 import { StructuredData } from '@/components/marketing/StructuredData';
 import { getServiceBySlug } from '@/lib/db/services';
@@ -31,6 +32,7 @@ export default async function Page() {
         />
       )}
       <ServicePage slug={SLUG} />
+      <BrandCards serviceSlug={SLUG} />
     </>
   );
 }
