@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/layout/Navbar';
+import { NavbarServer } from '@/components/layout/NavbarServer';
 import { Footer } from '@/components/layout/Footer';
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { CookieBanner } from '@/components/layout/CookieBanner';
@@ -12,7 +12,7 @@ export default function PublicLayout({
   return (
     <>
       <AnnouncementBar />
-      <Navbar />
+      <NavbarServer />
       <main>{children}</main>
       <Footer />
       <Chatbot />
