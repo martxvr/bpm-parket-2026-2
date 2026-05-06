@@ -59,3 +59,43 @@ export const adminSettingsSchema = z.object({
   phone: z.string().max(20).optional(),
   whatsapp: z.string().max(20).optional(),
 });
+
+const brandSlugRegex = /^[a-z0-9-]+$/;
+
+export const brandUpsertSchema = z.object({
+  id: z.string().uuid().optional(),
+  slug: z.string().min(1).max(80).regex(brandSlugRegex, 'Alleen kleine letters, cijfers en streepjes'),
+  name: z.string().min(1).max(200),
+  logo_url: z.string().url().optional().or(z.literal('')),
+  hero_image: z.string().url().optional().or(z.literal('')),
+  description: z.string().max(5000).optional(),
+  internal_notes: z.string().max(2000).optional(),
+  website_url: z.string().url().optional().or(z.literal('')),
+  sort_order: z.coerce.number().int().min(0).optional(),
+  is_active: z.coerce.boolean().optional(),
+});
+
+export const brandProductUpsertSchema = z.object({
+  id: z.string().uuid().optional(),
+  brand_id: z.string().uuid(),
+  service_id: z.string().uuid(),
+  slug: z.string().min(1).max(80).regex(brandSlugRegex, 'Alleen kleine letters, cijfers en streepjes'),
+  name: z.string().min(1).max(200),
+  description: z.string().max(10000).optional(),
+  hero_image: z.string().url().optional().or(z.literal('')),
+  gallery_image_urls: z.array(z.string().url()).optional(),
+  specs: z.record(z.string()).optional(),
+  decors: z.array(z.object({
+    name: z.string().min(1).max(100),
+    image_url: z.string().url(),
+  })).optional(),
+  spec_sheet_url: z.string().url().optional().or(z.literal('')),
+  sort_order: z.coerce.number().int().min(0).optional(),
+  is_active: z.coerce.boolean().optional(),
+});
+
+export const brandImageInsertSchema = z.object({
+  brand_id: z.string().uuid(),
+  image_url: z.string().url(),
+  caption: z.string().max(200).optional(),
+});
