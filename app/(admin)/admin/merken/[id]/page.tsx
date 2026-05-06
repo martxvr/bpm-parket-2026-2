@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { BrandForm } from '@/components/admin/BrandForm';
+import { BrandMoodGalleryUploader } from '@/components/admin/BrandMoodGalleryUploader';
 import { getBrandWithInternalsById, getBrandImagesForBrand } from '@/lib/db/brands';
 import { getAllProductsForBrandAdmin } from '@/lib/db/products';
 
@@ -45,12 +46,9 @@ export default async function EditBrandPage({ params }: Props) {
         <BrandForm brand={brand} />
       </div>
 
-      {/* Sfeerbeelden — BrandMoodGalleryUploader wordt toegevoegd in Task 8 */}
       <section>
         <h2 className="text-xl font-semibold mb-4">Sfeerbeelden</h2>
-        <div className="rounded-2xl border border-dashed border-black/10 p-6 text-sm text-black/60">
-          Sfeerbeelden upload UI volgt (Task 8). {images.length} afbeeldingen reeds in database.
-        </div>
+        <BrandMoodGalleryUploader brandId={id} images={images} />
       </section>
 
       {/* Producten — nested CRUD wordt toegevoegd in Task 10 */}
