@@ -1,26 +1,20 @@
 import type { Metadata } from 'next';
-import { Inter, Cormorant_Garamond } from 'next/font/google';
+import { Outfit } from 'next/font/google';
 import { StructuredData } from '@/components/marketing/StructuredData';
 import { ConsentInit } from '@/components/layout/ConsentInit';
 import { AnalyticsLoader } from '@/components/analytics/AnalyticsLoader';
 import { localBusinessSchema } from '@/lib/seo';
 import './globals.css';
 
-const sans = Inter({
+const outfit = Outfit({
   subsets: ['latin'],
-  variable: '--font-sans-loaded',
-  display: 'swap',
-});
-
-const display = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['500'],
-  variable: '--font-display-loaded',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-outfit',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: { default: 'BPM Parket', template: '%s | BPM Parket' },
+  title: { default: 'BPM Parket | Parket, PVC & Houten Vloeren', template: '%s | BPM Parket' },
   description:
     'Specialist in traditioneel parket, PVC vloeren en traprenovatie in Geldrop.',
   metadataBase: new URL(
@@ -34,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className={`${sans.variable} ${display.variable}`}>
+    <html lang="nl" className={outfit.variable}>
       <ConsentInit />
       <body className="antialiased">
         <StructuredData schema={localBusinessSchema()} />

@@ -1,31 +1,82 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: oklch(0.45 0.06 50);
-  --color-brand-primary-dark: oklch(0.32 0.07 50);
-  --color-brand-primary-light: oklch(0.62 0.05 50);
-  --color-brand-accent: oklch(0.60 0.15 40);
-  --color-brand-cream: oklch(0.97 0.01 80);
-  --color-brand-charcoal: oklch(0.20 0.01 0);
-  --color-brand-muted: oklch(0.50 0.01 0);
+  /* Vite brand palette — exact hex values from _legacy/index.html */
+  --color-brand-red: #E21E26;
+  --color-brand-brown: #7D5B41;
+  --color-brand-sand: #B6A699;
+  --color-brand-light: #E8EAEB;
+  --color-brand-dark: #2D2D2D;
 
+  /* Functional */
   --color-success: oklch(0.55 0.12 145);
   --color-warning: oklch(0.70 0.15 75);
-  --color-danger: oklch(0.55 0.18 25);
+  --color-danger: #E21E26;
 
-  --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui,
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: var(--font-display-loaded), "Cormorant Garamond",
-    "Times New Roman", Georgia, serif;
+  /* Typography — Outfit per Vite */
+  --font-sans: var(--font-outfit), 'Outfit', ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 html, body {
-  background: var(--color-brand-cream);
-  color: var(--color-brand-charcoal);
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-.heading-display {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+/* Hide scrollbar for clean UI in chat */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reveal Animations on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  filter: blur(10px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 120s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
