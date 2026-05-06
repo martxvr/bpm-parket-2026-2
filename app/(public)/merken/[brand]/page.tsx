@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { BrandHero } from '@/components/marketing/BrandHero';
-import { ProductCard } from '@/components/marketing/ProductCard';
 import { StructuredData } from '@/components/marketing/StructuredData';
+import { BrandHeroSection } from '@/components/marketing/brand/BrandHeroSection';
+import { ProductGridCard } from '@/components/marketing/brand/ProductGridCard';
+import { MoodGalleryStrip } from '@/components/marketing/brand/MoodGalleryStrip';
+import { PortfolioCTASection } from '@/components/marketing/brand/PortfolioCTASection';
+import { TrustBadgesSection } from '@/components/marketing/brand/TrustBadgesSection';
+import { PeerBrandsSection } from '@/components/marketing/brand/PeerBrandsSection';
+import { BrandCTASection } from '@/components/marketing/brand/BrandCTASection';
 import {
   getBrandBySlug,
   getBrandImagesForBrand,
+  getPeerBrandsByServiceId,
 } from '@/lib/db/brands';
 import { getProductsForBrand } from '@/lib/db/products';
 import { getServices } from '@/lib/db/services';
@@ -40,85 +43,74 @@ export default async function BrandDetailPage({ params }: Props) {
     getServices(),
   ]);
 
-  // Group products by service id
-  const byService: Record<string, typeof products> = {};
   const serviceById = new Map(services.map((s) => [s.id, s]));
-  for (const p of products) {
-    (byService[p.service_id] ??= []).push(p);
-  }
+
+  // Unique services this brand sells in (preserve sort order from services list)
+  const brandServiceIds = [...new Set(products.map((p) => p.service_id))];
+  const brandServices = brandServiceIds
+    .map((id) => serviceById.get(id))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+  // Peer brands per service (parallel)
+  const peerBrandsByService = await Promise.all(
+    brandServices.map(async (s) => ({
+      service: s,
+      peers: await getPeerBrandsByServiceId(brand.id, s.id),
+    })),
+  );
+
+  const heroVisualUrl = images[0]?.image_url ?? null;
+  const moodImages =
+    images.length > 1 ? images.slice(1, 5) : images.slice(0, 4);
 
   return (
     <>
       <StructuredData schema={brandSchema(brand)} />
 
-      <BrandHero brand={brand} />
+      <BrandHeroSection
+        brand={brand}
+        serviceTags={brandServices.map((s) => ({
+          slug: s.slug,
+          title: s.title,
+        }))}
+        heroVisualUrl={heroVisualUrl}
+      />
 
-      {images.length > 0 && (
-        <Container className="py-12">
-          <h2 className="heading-display text-2xl mb-6">Sfeerbeelden</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {images.map((img) => (
-              <div
-                key={img.id}
-                className="relative aspect-square rounded-xl overflow-hidden bg-black/5"
-              >
-                <Image
-                  src={img.image_url}
-                  alt={img.caption ?? ''}
-                  fill
-                  sizes="(max-width: 1024px) 33vw, 300px"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </Container>
-      )}
-
-      {Object.entries(byService).map(([sid, prods]) => {
-        const service = serviceById.get(sid);
-        if (!service) return null;
-        return (
-          <Container key={sid} className="py-12">
-            <h2 className="heading-display text-2xl mb-6">
-              {brand.name} {service.title.toLowerCase()}
+      {products.length > 0 && (
+        <section className="bg-white py-24">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-dark tracking-tight">
+              {brand.name} <span className="text-brand-red">producten</span>
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {prods.map((p) => (
-                <ProductCard key={p.id} product={p} brand={brand} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
+              {products.map((p) => (
+                <ProductGridCard
+                  key={p.id}
+                  product={p}
+                  brandSlug={brand.slug}
+                />
               ))}
             </div>
-          </Container>
-        );
-      })}
-
-      {products.length === 0 && (
-        <Container className="py-12">
-          <div className="rounded-2xl border border-dashed border-black/10 p-12 text-center text-sm text-black/60">
-            Productinformatie volgt binnenkort. Bel of mail ons voor de actuele
-            collectie van {brand.name}.
           </div>
-        </Container>
+        </section>
       )}
 
-      <section className="bg-[var(--color-brand-cream)] py-16">
-        <Container className="text-center">
-          <h2 className="heading-display text-2xl md:text-3xl">
-            Geïnteresseerd in {brand.name}?
-          </h2>
-          <p className="mt-3 text-black/70">
-            Plan een showroombezoek of vraag vrijblijvend een offerte aan.
-          </p>
-          <div className="mt-6 flex justify-center gap-3">
-            <Button href={`/offerte?brand=${brand.slug}`}>
-              Offerte aanvragen
-            </Button>
-            <Button href="/showroom" variant="outline">
-              Plan showroombezoek
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <MoodGalleryStrip brandName={brand.name} images={moodImages} />
+
+      <PortfolioCTASection brandName={brand.name} />
+
+      <TrustBadgesSection brandName={brand.name} />
+
+      {peerBrandsByService.map(({ service, peers }) => (
+        <PeerBrandsSection
+          key={service.id}
+          serviceTitle={service.title}
+          serviceSlug={service.slug}
+          brands={peers}
+        />
+      ))}
+
+      <BrandCTASection brandName={brand.name} brandSlug={brand.slug} />
     </>
   );
 }

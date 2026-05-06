@@ -105,3 +105,27 @@ export async function getBrandWithInternalsById(
   if (error) throw error;
   return data;
 }
+
+export const getPeerBrandsByServiceId = cache(
+  async (excludeBrandId: string, serviceId: string): Promise<Brand[]> => {
+    const supabase = await createClient();
+    const { data: products } = await supabase
+      .from('products')
+      .select('brand_id')
+      .eq('service_id', serviceId)
+      .eq('is_active', true);
+    const brandIds = [
+      ...new Set((products ?? []).map((p) => p.brand_id)),
+    ].filter((id) => id !== excludeBrandId);
+    if (brandIds.length === 0) return [];
+
+    const { data, error } = await supabase
+      .from('brands')
+      .select(PUBLIC_FIELDS)
+      .in('id', brandIds)
+      .eq('is_active', true)
+      .order('sort_order');
+    if (error) throw error;
+    return data ?? [];
+  },
+);
