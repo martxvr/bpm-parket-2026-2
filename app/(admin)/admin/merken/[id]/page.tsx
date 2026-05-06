@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ExternalLink, Plus } from 'lucide-react';
 import { BrandForm } from '@/components/admin/BrandForm';
 import { BrandMoodGalleryUploader } from '@/components/admin/BrandMoodGalleryUploader';
 import { DeleteButton } from '@/components/admin/DeleteButton';
 import { getBrandWithInternalsById, getBrandImagesForBrand } from '@/lib/db/brands';
 import { getAllProductsForBrandAdmin } from '@/lib/db/products';
+import { deleteBrandImageAction } from './../actions';
 import { deleteBrandProductAction } from './producten/actions';
 
 type Props = { params: Promise<{ id: string }> };
@@ -50,7 +52,38 @@ export default async function EditBrandPage({ params }: Props) {
 
       <section>
         <h2 className="text-xl font-semibold mb-4">Sfeerbeelden</h2>
-        <BrandMoodGalleryUploader brandId={id} images={images} />
+        <div className="space-y-4">
+          <BrandMoodGalleryUploader brandId={id} />
+          {images.length > 0 && (
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+              {images.map((img) => (
+                <div key={img.id} className="relative group">
+                  <div className="relative aspect-square rounded-xl overflow-hidden bg-black/5">
+                    <Image
+                      src={img.image_url}
+                      alt={img.caption ?? ''}
+                      fill
+                      sizes="200px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition rounded-full bg-white/95 p-1 shadow">
+                    <DeleteButton
+                      action={async () => {
+                        'use server';
+                        await deleteBrandImageAction(img.id, img.image_url, id);
+                      }}
+                      confirmMessage="Foto verwijderen?"
+                    />
+                  </div>
+                  {img.caption && (
+                    <p className="mt-1 text-xs text-black/50 truncate">{img.caption}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       <section>
