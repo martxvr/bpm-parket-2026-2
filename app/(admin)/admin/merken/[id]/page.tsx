@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Plus } from 'lucide-react';
 import { BrandForm } from '@/components/admin/BrandForm';
 import { BrandMoodGalleryUploader } from '@/components/admin/BrandMoodGalleryUploader';
+import { DeleteButton } from '@/components/admin/DeleteButton';
 import { getBrandWithInternalsById, getBrandImagesForBrand } from '@/lib/db/brands';
 import { getAllProductsForBrandAdmin } from '@/lib/db/products';
+import { deleteBrandProductAction } from './producten/actions';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -51,12 +53,53 @@ export default async function EditBrandPage({ params }: Props) {
         <BrandMoodGalleryUploader brandId={id} images={images} />
       </section>
 
-      {/* Producten — nested CRUD wordt toegevoegd in Task 10 */}
       <section>
-        <h2 className="text-xl font-semibold mb-4">Producten</h2>
-        <div className="rounded-2xl border border-dashed border-black/10 p-6 text-sm text-black/60">
-          Product-lijnen beheer volgt (Task 10). {products.length} producten reeds in database.
-        </div>
+        <header className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Producten</h2>
+          <Link
+            href={`/admin/merken/${id}/producten/nieuw`}
+            className="inline-flex items-center gap-1 text-sm text-[var(--color-brand-primary)] hover:underline"
+          >
+            <Plus className="h-4 w-4" /> Nieuw product
+          </Link>
+        </header>
+
+        {products.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-black/10 p-6 text-sm text-black/60">
+            Nog geen producten voor dit merk.
+          </div>
+        ) : (
+          <ul className="space-y-2">
+            {products.map((p) => (
+              <li
+                key={p.id}
+                className="rounded-xl bg-white p-4 shadow-sm flex items-center justify-between gap-4"
+              >
+                <Link
+                  href={`/admin/merken/${id}/producten/${p.id}`}
+                  className="flex-1 min-w-0"
+                >
+                  <div className="flex items-center gap-3">
+                    <p className="font-medium">{p.name}</p>
+                    {!p.is_active && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">
+                        Inactief
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-black/50 mt-0.5">/{p.slug}</p>
+                </Link>
+                <DeleteButton
+                  action={async () => {
+                    'use server';
+                    await deleteBrandProductAction(p.id, id);
+                  }}
+                  confirmMessage={`Product "${p.name}" verwijderen?`}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     </div>
   );
