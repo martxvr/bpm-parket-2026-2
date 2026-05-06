@@ -1,4 +1,6 @@
 import { companyConfig } from '@/lib/company';
+import type { Brand } from '@/lib/db/brands';
+import type { Product } from '@/lib/db/products';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bpmparket.nl';
 
@@ -86,5 +88,37 @@ export function projectSchema(input: {
       ? { '@type': 'Place', name: input.location }
       : undefined,
     creator: { '@id': `${SITE_URL}/#localbusiness` },
+  };
+}
+
+export function brandSchema(brand: Brand) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: brand.name,
+    url: `${SITE_URL}/merken/${brand.slug}`,
+    logo: brand.logo_url ?? undefined,
+    description: brand.description ?? undefined,
+  };
+}
+
+export function productSchema(product: Product, brand: Brand) {
+  const images = product.hero_image
+    ? [product.hero_image, ...product.gallery_image_urls]
+    : product.gallery_image_urls;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description ?? undefined,
+    image: images.length > 0 ? images : undefined,
+    brand: { '@type': 'Brand', name: brand.name },
+    url: `${SITE_URL}/merken/${brand.slug}/${product.slug}`,
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      price: '0',
+    },
   };
 }

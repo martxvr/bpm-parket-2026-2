@@ -8,8 +8,10 @@ import { Button } from '@/components/ui/Button';
 import { Markdown } from '@/components/marketing/Markdown';
 import { ProductSpecs } from '@/components/marketing/ProductSpecs';
 import { DecorGrid } from '@/components/marketing/DecorGrid';
+import { StructuredData } from '@/components/marketing/StructuredData';
 import { getBrandBySlug } from '@/lib/db/brands';
 import { getProductBySlugs } from '@/lib/db/products';
+import { productSchema } from '@/lib/seo';
 
 type Props = { params: Promise<{ brand: string; product: string }> };
 
@@ -39,7 +41,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <>
-      {/* Product JSON-LD wordt toegevoegd in Task 19 */}
+      <StructuredData schema={productSchema(product, brand)} />
 
       <Container className="py-8">
         <Link

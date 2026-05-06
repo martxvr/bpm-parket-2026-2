@@ -5,12 +5,14 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { BrandHero } from '@/components/marketing/BrandHero';
 import { ProductCard } from '@/components/marketing/ProductCard';
+import { StructuredData } from '@/components/marketing/StructuredData';
 import {
   getBrandBySlug,
   getBrandImagesForBrand,
 } from '@/lib/db/brands';
 import { getProductsForBrand } from '@/lib/db/products';
 import { getServices } from '@/lib/db/services';
+import { brandSchema } from '@/lib/seo';
 
 type Props = { params: Promise<{ brand: string }> };
 
@@ -47,7 +49,7 @@ export default async function BrandDetailPage({ params }: Props) {
 
   return (
     <>
-      {/* Brand JSON-LD wordt toegevoegd in Task 19 */}
+      <StructuredData schema={brandSchema(brand)} />
 
       <BrandHero brand={brand} />
 

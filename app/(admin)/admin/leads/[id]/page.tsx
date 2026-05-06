@@ -13,7 +13,7 @@ export default async function LeadDetailPage({ params }: Props) {
   const supabase = await createClient();
   const { data: lead } = await supabase
     .from('leads')
-    .select('*')
+    .select('*, brand:brands(slug, name), product:products(slug, name)')
     .eq('id', id)
     .maybeSingle();
   if (!lead) notFound();
@@ -85,6 +85,32 @@ export default async function LeadDetailPage({ params }: Props) {
                 <div>
                   <dt className="text-black/50 text-xs">Bericht</dt>
                   <dd className="whitespace-pre-line">{lead.message}</dd>
+                </div>
+              )}
+              {lead.brand && (
+                <div>
+                  <dt className="text-black/50 text-xs">Merkvoorkeur</dt>
+                  <dd>
+                    <Link
+                      href={`/admin/merken/${lead.brand_id}`}
+                      className="hover:underline"
+                    >
+                      {(Array.isArray(lead.brand) ? lead.brand[0] : lead.brand)?.name}
+                    </Link>
+                  </dd>
+                </div>
+              )}
+              {lead.product && lead.brand && (
+                <div>
+                  <dt className="text-black/50 text-xs">Product-lijn</dt>
+                  <dd>
+                    <Link
+                      href={`/admin/merken/${lead.brand_id}/producten/${lead.product_id}`}
+                      className="hover:underline"
+                    >
+                      {(Array.isArray(lead.product) ? lead.product[0] : lead.product)?.name}
+                    </Link>
+                  </dd>
                 </div>
               )}
             </dl>
