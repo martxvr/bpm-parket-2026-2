@@ -8,6 +8,7 @@ const csp = [
   "font-src 'self' data: https://fonts.gstatic.com",
   "connect-src 'self' https://*.supabase.co https://api.anthropic.com https://www.google-analytics.com https://*.upstash.io",
   "frame-ancestors 'none'",
+  "frame-src https://maps.google.com https://www.google.com",
   "base-uri 'self'",
   "form-action 'self'",
 ].join('; ');

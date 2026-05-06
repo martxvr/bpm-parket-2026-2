@@ -1,103 +1,102 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
+import { MapPin, Phone, Clock } from 'lucide-react';
+import { ShowroomForm } from '@/components/forms/ShowroomForm';
 import { companyConfig } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: 'Showroom',
   description:
-    'Bezoek onze showroom in Geldrop. Bekijk en voel onze vloeren in het echt — gratis advies van een vakman.',
+    'Kom langs in onze showroom in Geldrop. Bekijk en voel onze vloeren in het echt — gratis advies van een vakman.',
 };
-
-const HOURS = Object.entries(companyConfig.hours);
 
 export default function ShowroomPage() {
   return (
-    <>
-      <section className="relative h-72">
-        <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=2000"
-          alt="Showroom"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <Container className="absolute inset-0 flex items-end pb-10 text-white">
-          <h1 className="heading-display text-4xl md:text-5xl">Onze showroom</h1>
-        </Container>
+    <div className="bg-white min-h-screen">
+      {/* Hero Header */}
+      <section className="bg-brand-dark text-white py-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000"
+            alt="Showroom background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <span className="text-brand-brown font-bold tracking-widest uppercase text-xs mb-4 block">Beleef onze vloeren</span>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">Onze Showroom</h1>
+          <p className="text-xl text-gray-300 max-w-2xl leading-relaxed">
+            Kom langs in Geldrop en laat u inspireren door onze uitgebreide collectie traditioneel parket, PVC en traprenovaties. Wij staan klaar met persoonlijk advies en een goede kop koffie.
+          </p>
+        </div>
       </section>
 
-      <Container className="py-12 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <h2 className="heading-display text-2xl">Kom langs in Geldrop</h2>
-          <p className="mt-3 text-black/70">
-            In onze showroom kun je de vloeren in het echt zien en voelen. Onze
-            vakmensen geven je persoonlijk advies — zonder verkooppraatjes, mét
-            inzicht uit ruim 20 jaar ervaring.
-          </p>
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-          <div className="mt-8 space-y-4 text-sm">
-            <div className="flex items-start gap-3">
-              <MapPin className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-              <div>
-                <p className="font-medium">Adres</p>
-                <p className="text-black/70">
-                  {companyConfig.contact.address}, {companyConfig.contact.zipCity}
-                </p>
-                <a
-                  href={companyConfig.contact.mapsUrl}
-                  className="text-[var(--color-brand-primary)] underline mt-1 inline-block"
-                >
-                  Open in Google Maps
-                </a>
+          {/* Left: Info & Map */}
+          <div className="space-y-12">
+            <div>
+              <h2 className="text-3xl font-bold text-brand-dark mb-8">Bezoekinformatie</h2>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-brand-light p-3 rounded-xl text-brand-dark">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Locatie</h4>
+                    <p className="text-gray-500">{companyConfig.contact.address}<br />{companyConfig.contact.zipCity}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-brand-light p-3 rounded-xl text-brand-dark">
+                    <Clock size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Openingstijden</h4>
+                    <ul className="text-gray-500 text-sm space-y-1">
+                      <li className="flex justify-between w-48"><span>Ma - Vr:</span> <span>09:00 - 17:00</span></li>
+                      <li className="flex justify-between w-48"><span>Zaterdag:</span> <span>Op afspraak</span></li>
+                      <li className="flex justify-between w-48"><span>Zondag:</span> <span>Gesloten</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-brand-light p-3 rounded-xl text-brand-dark">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Telefoon</h4>
+                    <p className="text-gray-500">{companyConfig.contact.phone}</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <Phone className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-              <div>
-                <p className="font-medium">Telefoon</p>
-                <a href={`tel:${companyConfig.contact.phone.replace(/\s/g, '')}`}>
-                  {companyConfig.contact.phone}
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Mail className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-              <div>
-                <p className="font-medium">Email</p>
-                <a href={`mailto:${companyConfig.contact.email}`}>
-                  {companyConfig.contact.email}
-                </a>
-              </div>
+
+            {/* Map */}
+            <div className="rounded-[2rem] overflow-hidden h-[350px] shadow-lg border border-brand-light grayscale hover:grayscale-0 transition-all duration-700">
+              <iframe
+                src="https://maps.google.com/maps?q=Hooge+Akker+19,+5661+NG+Geldrop&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
 
-          <Button href="/offerte" className="mt-8">
-            Plan een afspraak
-          </Button>
-        </div>
+          {/* Right: Booking Form */}
+          <div className="bg-brand-brown/5 rounded-[3rem] p-8 lg:p-12 border border-brand-brown/10 shadow-sm">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Afspraak plannen</h2>
+            <p className="text-gray-500 mb-8 font-medium">Plan direct een showroom bezoek in met een van onze adviseurs.</p>
+            <ShowroomForm />
+          </div>
 
-        <div>
-          <h2 className="heading-display text-2xl flex items-center gap-2">
-            <Clock className="h-6 w-6" /> Openingstijden
-          </h2>
-          <dl className="mt-4 rounded-2xl bg-white p-6 shadow-sm divide-y divide-black/5">
-            {HOURS.map(([day, hours]) => (
-              <div key={day} className="flex justify-between py-2 text-sm">
-                <dt className="capitalize text-black/70">{day}</dt>
-                <dd className="font-medium">{hours}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="text-xs text-black/50 mt-3">
-            Tip: bel even voor je komt — dan staat er koffie klaar.
-          </p>
         </div>
-      </Container>
-    </>
+      </section>
+    </div>
   );
 }

@@ -1,64 +1,118 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Phone, Mail, MapPin } from 'lucide-react';
-import { Container } from '@/components/ui/Container';
+import Link from 'next/link';
+import { Phone, Facebook, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
 import { LeadForm } from '@/components/forms/LeadForm';
+import { RevealOnScroll } from '@/components/marketing/home/RevealOnScroll';
 import { companyConfig } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Neem contact op met BPM Parket in Geldrop. Bel, mail of vul het formulier in.',
+    'Neem contact op met BPM Parket in Geldrop. Bel, mail of vul het formulier in en we reageren binnen 24 uur.',
 };
 
 export default function ContactPage() {
   return (
-    <Container className="py-12 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <div>
-        <h1 className="heading-display text-4xl md:text-5xl">Contact</h1>
-        <p className="mt-3 text-black/70">
-          Vragen, een offerte of gewoon een goed gesprek? We staan voor je klaar.
-        </p>
+    <div className="bg-white min-h-screen pt-12 pb-20">
+      <RevealOnScroll />
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
 
-        <div className="mt-8 space-y-4 text-sm">
-          <div className="flex items-start gap-3">
-            <Phone className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium">Telefoon</p>
-              <a href={`tel:${companyConfig.contact.phone.replace(/\s/g, '')}`}>
-                {companyConfig.contact.phone}
-              </a>
+        {/* Breadcrumb */}
+        <div className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-12 flex items-center gap-2 reveal">
+          <Link href="/" className="hover:text-black transition-colors">Home</Link>
+          <span className="text-gray-300">/</span>
+          <span>Contact</span>
+        </div>
+
+        {/* Hero / Main Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
+
+          {/* Left: Content & Form */}
+          <div className="flex flex-col justify-center reveal">
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-16 tracking-tight leading-[1.05]">
+              Laten we uw<br />interieur<br />transformeren
+            </h1>
+
+            <div className="max-w-lg">
+              <Suspense fallback={null}>
+                <LeadForm source="contact-form" />
+              </Suspense>
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <Mail className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium">Email</p>
-              <a href={`mailto:${companyConfig.contact.email}`}>
-                {companyConfig.contact.email}
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <MapPin className="h-5 w-5 text-[var(--color-brand-primary)] shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium">Showroom</p>
-              <p className="text-black/70">
-                {companyConfig.contact.address}, {companyConfig.contact.zipCity}
-              </p>
+
+          {/* Right: Image */}
+          <div className="relative hidden lg:block reveal delay-100">
+            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-gray-100 relative shadow-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1000"
+                alt="Houten interieur"
+                className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+              />
+              <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 shadow-sm border border-white/50">
+                <Phone size={16} className="text-gray-900" />
+                <span className="text-xs font-bold text-gray-900">{companyConfig.contact.phone}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        <h2 className="heading-display text-2xl">Stuur ons een bericht</h2>
-        <div className="mt-4">
-          <Suspense fallback={null}>
-            <LeadForm source="contact-form" />
-          </Suspense>
+        {/* Info Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-100 pt-20 mb-24 reveal delay-200">
+          <div className="space-y-4 group">
+            <h3 className="text-xl font-bold text-gray-900">E-mail</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">Stuur ons uw vragen en wij reageren binnen 24 uur.</p>
+            <a href={`mailto:${companyConfig.contact.email}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
+              {companyConfig.contact.email}
+            </a>
+          </div>
+
+          <div className="space-y-4 group">
+            <h3 className="text-xl font-bold text-gray-900">Infoline</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">Bel ons voor direct advies bij vragen over uw project.</p>
+            <a href={`tel:${companyConfig.contact.phone}`} className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-block">
+              {companyConfig.contact.phone}
+            </a>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-gray-900">Socials</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">Volg ons online voor inspiratie en de laatste updates.</p>
+            <div className="flex gap-3 pt-1">
+              <a href={companyConfig.socials.facebook} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Facebook size={16} /></a>
+              <a href={companyConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Instagram size={16} /></a>
+              <a href={companyConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="bg-black text-white p-2.5 rounded-full hover:bg-gray-800 transition-colors"><Linkedin size={16} /></a>
+            </div>
+          </div>
+
+          <div className="space-y-4 group">
+            <h3 className="text-xl font-bold text-gray-900">Adres</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">Bezoek onze showroom voor stalen.</p>
+            <a href={companyConfig.contact.mapsUrl} target="_blank" rel="noreferrer" className="text-sm font-bold border-b border-gray-200 pb-0.5 group-hover:text-black group-hover:border-black transition-all inline-flex items-center">
+              {companyConfig.contact.address}, {companyConfig.contact.zipCity.split(' ')[1]} <ArrowUpRight size={12} className="ml-1" />
+            </a>
+          </div>
         </div>
+
+        {/* Map Section */}
+        <div className="w-full h-[400px] lg:h-[500px] bg-gray-100 rounded-[3rem] overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-1000 shadow-inner reveal delay-300">
+          <iframe
+            src="https://maps.google.com/maps?q=Hooge+Akker+19,+5661+NG+Geldrop&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            className="absolute inset-0 w-full h-full opacity-80 hover:opacity-100 transition-opacity"
+          />
+          <div className="absolute bottom-8 left-8 bg-white px-6 py-4 rounded-2xl shadow-xl z-10 hidden md:block">
+            <p className="font-bold text-gray-900">{companyConfig.name} HQ</p>
+            <p className="text-xs text-gray-500">{companyConfig.contact.address}, {companyConfig.contact.zipCity}</p>
+          </div>
+        </div>
+
       </div>
-    </Container>
+    </div>
   );
 }
