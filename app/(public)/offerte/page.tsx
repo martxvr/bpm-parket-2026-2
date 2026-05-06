@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/ui/Container';
 import { LeadForm } from '@/components/forms/LeadForm';
@@ -17,7 +18,9 @@ export default function QuotePage() {
         te nemen.
       </p>
       <div className="mt-8 rounded-2xl bg-white p-6 lg:p-8 shadow-sm">
-        <LeadForm source="quote-form" />
+        <Suspense fallback={null}>
+          <LeadForm source="quote-form" />
+        </Suspense>
       </div>
     </Container>
   );

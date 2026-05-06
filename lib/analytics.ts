@@ -1,7 +1,7 @@
 'use client';
 
 type ConversionEvent =
-  | { name: 'lead_submit'; source: string }
+  | { name: 'lead_submit'; source: string; brand?: string; product?: string }
   | { name: 'appointment_booked'; source: 'chatbot' | 'website' }
   | { name: 'phone_click' }
   | { name: 'whatsapp_click' };

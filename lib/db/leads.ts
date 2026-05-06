@@ -9,6 +9,8 @@ export type LeadInsert = {
   area_size?: number;
   message?: string;
   source: string;
+  brand_id?: string;
+  product_id?: string;
   ip_hash?: string;
   user_agent_hash?: string;
 };

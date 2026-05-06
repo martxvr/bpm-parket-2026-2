@@ -40,6 +40,8 @@ export async function createLeadAction(
     area_size: formData.get('area_size') || undefined,
     message: formData.get('message') || undefined,
     source: formData.get('source') ?? 'unknown',
+    brand_id: formData.get('brand_id') || undefined,
+    product_id: formData.get('product_id') || undefined,
     website: formData.get('website') || undefined,
   });
 
@@ -61,6 +63,8 @@ export async function createLeadAction(
       area_size: parsed.data.area_size,
       message: parsed.data.message,
       source: parsed.data.source,
+      brand_id: parsed.data.brand_id,
+      product_id: parsed.data.product_id,
       ip_hash: hashIdentifier(ip),
       user_agent_hash: hashIdentifier(ua),
     });

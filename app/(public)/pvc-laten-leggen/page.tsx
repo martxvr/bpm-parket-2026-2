@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Phone, CheckCircle, Clock, Users } from 'lucide-react';
@@ -78,11 +79,13 @@ export default function PvcLandingPage() {
           Vul dit formulier in en we nemen binnen 24 uur contact op.
         </p>
         <div className="mt-5">
-          <LeadForm
-            source="landing-pvc"
-            floorType="pvc"
-            defaultMessage="PVC vloer aanvraag via landingspagina"
-          />
+          <Suspense fallback={null}>
+            <LeadForm
+              source="landing-pvc"
+              floorType="pvc"
+              defaultMessage="PVC vloer aanvraag via landingspagina"
+            />
+          </Suspense>
         </div>
       </div>
     </Container>

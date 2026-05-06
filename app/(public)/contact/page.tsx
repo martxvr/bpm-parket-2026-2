@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
@@ -53,7 +54,9 @@ export default function ContactPage() {
       <div>
         <h2 className="heading-display text-2xl">Stuur ons een bericht</h2>
         <div className="mt-4">
-          <LeadForm source="contact-form" />
+          <Suspense fallback={null}>
+            <LeadForm source="contact-form" />
+          </Suspense>
         </div>
       </div>
     </Container>

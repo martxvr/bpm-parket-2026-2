@@ -12,6 +12,8 @@ export const leadSchema = z.object({
   area_size: z.coerce.number().int().min(0).max(10000).optional(),
   message: z.string().max(2000).optional(),
   source: z.string().max(50),
+  brand_id: z.string().uuid().optional(),
+  product_id: z.string().uuid().optional(),
   // Honeypot — must be empty
   website: z.string().max(0, 'Bot detected').optional(),
 });
