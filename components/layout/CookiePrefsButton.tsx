@@ -6,7 +6,7 @@ export function CookiePrefsButton() {
       onClick={() =>
         window.dispatchEvent(new Event('bpm:open-cookie-banner'))
       }
-      className="hover:text-white"
+      className="hover:text-gray-300"
     >
       Cookie-voorkeuren
     </button>

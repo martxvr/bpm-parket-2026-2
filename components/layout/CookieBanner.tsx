@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Cookie } from 'lucide-react';
 import {
   acceptAll,
   rejectAll,
@@ -14,7 +13,7 @@ import {
 type Prefs = Omit<ConsentCategories, 'necessary'>;
 
 export function CookieBanner() {
-  const [shown, setShown] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [prefs, setPrefs] = useState<Prefs>({
     functional: false,
@@ -23,135 +22,119 @@ export function CookieBanner() {
   });
 
   useEffect(() => {
-    setShown(!getConsent());
-    const handleReopen = () => setShown(true);
+    setVisible(!getConsent());
+    const handleReopen = () => setVisible(true);
     window.addEventListener('bpm:open-cookie-banner', handleReopen);
     return () =>
       window.removeEventListener('bpm:open-cookie-banner', handleReopen);
   }, []);
 
-  if (!shown) return null;
+  if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 inset-x-4 sm:inset-x-auto sm:right-4 sm:max-w-md z-50 rounded-2xl bg-white shadow-2xl border border-black/10 p-5 text-sm">
-      <div className="flex items-center gap-2 mb-2">
-        <Cookie className="h-5 w-5 text-[var(--color-brand-primary)]" />
-        <h3 className="font-semibold">Cookies op deze site</h3>
-      </div>
-
-      <p className="text-black/70 mb-3 text-xs">
-        We gebruiken cookies voor essentiële functies en — met je toestemming —
-        om de site te verbeteren en advertenties te tonen.{' '}
-        <Link href="/cookies" className="underline">
-          Meer info
-        </Link>
-        .
-      </p>
-
-      {showDetails && (
-        <div className="border-y border-black/5 py-3 my-3 space-y-2 text-xs">
-          <label className="flex items-start gap-2 opacity-60 cursor-not-allowed">
-            <input type="checkbox" checked disabled readOnly className="mt-0.5" />
-            <div>
-              <span className="font-medium">Noodzakelijk</span>
-              <p className="text-black/60">
-                Voor inlog, sessie, CSRF. Altijd actief.
-              </p>
-            </div>
-          </label>
-          <label className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              checked={prefs.functional}
-              onChange={(e) =>
-                setPrefs({ ...prefs, functional: e.target.checked })
-              }
-              className="mt-0.5"
-            />
-            <div>
-              <span className="font-medium">Functioneel</span>
-              <p className="text-black/60">
-                Onthoudt voorkeuren zoals taal of weergave.
-              </p>
-            </div>
-          </label>
-          <label className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              checked={prefs.analytics}
-              onChange={(e) =>
-                setPrefs({ ...prefs, analytics: e.target.checked })
-              }
-              className="mt-0.5"
-            />
-            <div>
-              <span className="font-medium">Analytisch</span>
-              <p className="text-black/60">
-                Anonieme bezoekersstatistieken (Google Analytics).
-              </p>
-            </div>
-          </label>
-          <label className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              checked={prefs.marketing}
-              onChange={(e) =>
-                setPrefs({ ...prefs, marketing: e.target.checked })
-              }
-              className="mt-0.5"
-            />
-            <div>
-              <span className="font-medium">Marketing</span>
-              <p className="text-black/60">
-                Conversiemeting voor Google Ads.
-              </p>
-            </div>
-          </label>
-        </div>
-      )}
-
-      {showDetails ? (
-        <div className="flex gap-2">
-          <button
-            onClick={() => {
-              setConsent(prefs);
-              setShown(false);
-            }}
-            className="flex-1 rounded-lg bg-[var(--color-brand-primary)] text-white px-3 py-2 text-xs font-medium hover:bg-[var(--color-brand-primary-dark)]"
-          >
-            Voorkeuren opslaan
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                rejectAll();
-                setShown(false);
-              }}
-              className="flex-1 rounded-lg border border-black/10 px-3 py-2 text-xs font-medium hover:bg-black/5"
-            >
-              Alleen noodzakelijk
-            </button>
-            <button
-              onClick={() => {
-                acceptAll();
-                setShown(false);
-              }}
-              className="flex-1 rounded-lg bg-[var(--color-brand-primary)] text-white px-3 py-2 text-xs font-medium hover:bg-[var(--color-brand-primary-dark)]"
-            >
-              Alles accepteren
-            </button>
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-white border-t border-gray-200 shadow-2xl px-4 py-5 sm:px-8">
+      <div className="max-w-7xl mx-auto flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-sm text-gray-600 max-w-2xl">
+            Wij gebruiken cookies om uw ervaring te verbeteren en onze website te analyseren.{' '}
+            <Link href="/privacy" className="underline hover:text-black transition-colors">
+              Lees ons privacybeleid
+            </Link>
+            .
+          </p>
+          <div className="flex gap-3 flex-shrink-0">
+            {showDetails ? (
+              <button
+                onClick={() => {
+                  setConsent(prefs);
+                  setVisible(false);
+                }}
+                className="px-5 py-2 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors whitespace-nowrap"
+              >
+                Voorkeuren opslaan
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    rejectAll();
+                    setVisible(false);
+                  }}
+                  className="px-5 py-2 rounded-full border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors whitespace-nowrap"
+                >
+                  Alleen noodzakelijk
+                </button>
+                <button
+                  onClick={() => {
+                    acceptAll();
+                    setVisible(false);
+                  }}
+                  className="px-5 py-2 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors whitespace-nowrap"
+                >
+                  Accepteren
+                </button>
+              </>
+            )}
           </div>
+        </div>
+
+        {showDetails && (
+          <div className="border-t border-gray-200 pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <label className="flex items-start gap-2 opacity-60 cursor-not-allowed">
+              <input type="checkbox" checked disabled readOnly className="mt-0.5" />
+              <div>
+                <span className="font-medium">Noodzakelijk</span>
+                <p className="text-gray-500">Voor inlog, sessie, CSRF. Altijd actief.</p>
+              </div>
+            </label>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={prefs.functional}
+                onChange={(e) => setPrefs({ ...prefs, functional: e.target.checked })}
+                className="mt-0.5"
+              />
+              <div>
+                <span className="font-medium">Functioneel</span>
+                <p className="text-gray-500">Onthoudt voorkeuren zoals taal of weergave.</p>
+              </div>
+            </label>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={prefs.analytics}
+                onChange={(e) => setPrefs({ ...prefs, analytics: e.target.checked })}
+                className="mt-0.5"
+              />
+              <div>
+                <span className="font-medium">Analytisch</span>
+                <p className="text-gray-500">Anonieme bezoekersstatistieken (Google Analytics).</p>
+              </div>
+            </label>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={prefs.marketing}
+                onChange={(e) => setPrefs({ ...prefs, marketing: e.target.checked })}
+                className="mt-0.5"
+              />
+              <div>
+                <span className="font-medium">Marketing</span>
+                <p className="text-gray-500">Conversiemeting voor Google Ads.</p>
+              </div>
+            </label>
+          </div>
+        )}
+
+        {!showDetails && (
           <button
             onClick={() => setShowDetails(true)}
-            className="w-full text-xs text-black/60 hover:text-black underline"
+            className="self-start text-xs text-gray-500 hover:text-black underline"
           >
             Voorkeuren aanpassen
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
