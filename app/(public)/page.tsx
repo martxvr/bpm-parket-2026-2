@@ -139,11 +139,13 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-20 relative rounded-[3rem] overflow-hidden h-[500px] w-full group reveal delay-100">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://www.bpmparket.nl/wp-content/uploads/2023/10/2023-10-02-12_27_45-WhatsApp-en-nog-9-andere-paginas-Werk-Microsoft%E2%80%8B-Edge-e1696335757551.png"
+            <Image
+              src="/onze-passie.png"
               alt="Vakmanschap"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1280px"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              priority
             />
             {/* Floating Tags on Image */}
             <div className="absolute top-10 left-10 bg-white px-4 py-2 rounded-full flex items-center shadow-lg">
@@ -295,10 +297,11 @@ export default async function HomePage() {
             <div className="w-full lg:w-1/3 flex flex-col items-center relative z-10">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-brand-brown/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Werkspot_Logo.png"
+                <Image
+                  src="/werkspot-logo.png"
                   alt="Werkspot Logo"
+                  width={256}
+                  height={256}
                   className="relative w-48 lg:w-64 h-auto transform transition-all duration-700 group-hover:scale-105"
                 />
               </div>
