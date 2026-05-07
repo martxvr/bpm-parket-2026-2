@@ -57,12 +57,15 @@ export default async function HomePage() {
   const featuredProjects = featured.slice(0, 2);
 
   const brands = await getActiveBrands();
-  // Repeat enough times so translateX(-50%) loop is seamless even with few brands.
+  // For seamless translateX(-50%) loop the first half of the rendered list must
+  // exceed the widest expected viewport (~3440px ultrawide). Each logo cell ≈
+  // 256px (max-w 160 + mx-12 spacing), so we render brands × 12 = at least 48
+  // cells for 4 brands → first half ≈ 6000px. Keeps the marquee continuously
+  // filled regardless of brand count.
+  const REPEAT = Math.max(12, Math.ceil(24 / Math.max(1, brands.length)) * 2);
   const marqueeBrands =
     brands.length > 0
-      ? Array.from({ length: Math.max(2, Math.ceil(16 / brands.length)) }).flatMap(
-          () => brands,
-        )
+      ? Array.from({ length: REPEAT }).flatMap(() => brands)
       : [];
 
   return (
