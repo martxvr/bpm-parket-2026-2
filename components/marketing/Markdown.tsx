@@ -26,7 +26,7 @@ const COMPONENTS = {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-[var(--color-brand-primary)] underline hover:text-[var(--color-brand-primary-dark)]"
+      className="text-[var(--color-brand-red)] underline hover:text-[var(--color-brand-red)]"
       {...rest}
     />
   ),

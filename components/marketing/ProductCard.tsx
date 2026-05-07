@@ -20,7 +20,7 @@ export function ProductCard({ product, brand }: { product: Product; brand: Brand
           />
         </div>
       ) : (
-        <div className="aspect-[4/3] bg-gradient-to-br from-[var(--color-brand-primary-light)]/30 to-[var(--color-brand-cream)]" />
+        <div className="aspect-[4/3] bg-gradient-to-br from-[var(--color-brand-red-light)]/30 to-[var(--color-brand-light)]" />
       )}
       <div className="p-4">
         <h3 className="font-medium">{product.name}</h3>

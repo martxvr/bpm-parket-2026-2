@@ -17,7 +17,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen flex bg-[var(--color-brand-cream)]">
+    <div className="min-h-screen flex bg-[var(--color-brand-light)]">
       <Sidebar userEmail={user.email ?? ''} />
       <main className="flex-1 p-8">{children}</main>
     </div>

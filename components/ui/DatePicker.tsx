@@ -120,7 +120,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, variant = 'dar
         ref={triggerRef}
         type="button"
         onClick={openPicker}
-        className={`w-full p-4 rounded-xl text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 transition-all border ${
+        className={`w-full p-4 rounded-xl text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)]/50 transition-all border ${
           isDark
             ? 'bg-white/5 border-white/10'
             : 'bg-white border-gray-200'
@@ -128,7 +128,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, variant = 'dar
       >
         <span className={
           (pickedDate && pickedTime)
-            ? isDark ? 'text-white' : 'text-[var(--color-brand-charcoal)]'
+            ? isDark ? 'text-white' : 'text-[var(--color-brand-dark)]'
             : isDark ? 'text-white/50' : 'text-gray-400'
         }>
           {label}
@@ -173,8 +173,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, variant = 'dar
                   className={`
                     h-8 w-full rounded-lg text-sm font-medium transition-colors
                     ${past ? 'text-white/20 cursor-not-allowed' : 'hover:bg-white/10 cursor-pointer'}
-                    ${isSelectedDay(day) ? 'bg-[var(--color-brand-primary)] text-white hover:bg-[var(--color-brand-primary-dark)]' : ''}
-                    ${isToday(day) && !isSelectedDay(day) ? 'text-[var(--color-brand-primary-light)] font-bold' : 'text-white/80'}
+                    ${isSelectedDay(day) ? 'bg-[var(--color-brand-red)] text-white hover:bg-[var(--color-brand-red)]' : ''}
+                    ${isToday(day) && !isSelectedDay(day) ? 'text-[var(--color-brand-red-light)] font-bold' : 'text-white/80'}
                   `}
                 >
                   {day}
@@ -194,7 +194,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, variant = 'dar
                     onClick={() => selectTime(slot)}
                     className={`
                       py-2 rounded-lg text-xs font-semibold transition-colors
-                      ${pickedTime === slot ? 'bg-[var(--color-brand-primary)] text-white' : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'}
+                      ${pickedTime === slot ? 'bg-[var(--color-brand-red)] text-white' : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'}
                     `}
                   >
                     {slot}

@@ -91,7 +91,7 @@ export default async function EditBrandPage({ params }: Props) {
           <h2 className="text-xl font-semibold">Producten</h2>
           <Link
             href={`/admin/merken/${id}/producten/nieuw`}
-            className="inline-flex items-center gap-1 text-sm text-[var(--color-brand-primary)] hover:underline"
+            className="inline-flex items-center gap-1 text-sm text-[var(--color-brand-red)] hover:underline"
           >
             <Plus className="h-4 w-4" /> Nieuw product
           </Link>

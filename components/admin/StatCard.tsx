@@ -14,7 +14,7 @@ export function StatCard({ label, value, hint, icon: Icon }: Props) {
         <span className="text-xs uppercase tracking-wider text-black/50">
           {label}
         </span>
-        <Icon className="h-5 w-5 text-[var(--color-brand-primary)]" />
+        <Icon className="h-5 w-5 text-[var(--color-brand-red)]" />
       </div>
       <p className="mt-3 text-3xl font-semibold">{value}</p>
       {hint && <p className="mt-1 text-xs text-black/50">{hint}</p>}

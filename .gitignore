@@ -42,3 +42,4 @@ _legacy/.next/
 .playwright-mcp/
 playwright-report/
 test-results/
+.vercel

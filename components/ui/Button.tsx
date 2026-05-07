@@ -10,10 +10,10 @@ const BASE =
 
 const VARIANTS: Record<Variant, string> = {
   primary:
-    'bg-[var(--color-brand-primary)] text-white hover:bg-[var(--color-brand-primary-dark)]',
-  secondary: 'bg-white text-[var(--color-brand-charcoal)] hover:bg-black/5',
+    'bg-[var(--color-brand-red)] text-white hover:bg-[var(--color-brand-red)]',
+  secondary: 'bg-white text-[var(--color-brand-dark)] hover:bg-black/5',
   outline:
-    'border border-[var(--color-brand-charcoal)]/20 hover:bg-black/5',
+    'border border-[var(--color-brand-dark)]/20 hover:bg-black/5',
   ghost: 'hover:bg-black/5',
 };
 

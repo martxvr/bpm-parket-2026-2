@@ -66,7 +66,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         )}
         <div>
-          <p className="text-sm text-[var(--color-brand-primary)]">{brand.name}</p>
+          <p className="text-sm text-[var(--color-brand-red)]">{brand.name}</p>
           <h1 className="heading-display text-3xl md:text-4xl mt-1">
             {product.name}
           </h1>

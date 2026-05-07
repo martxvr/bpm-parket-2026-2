@@ -97,7 +97,7 @@ export function ServiceForm({ service }: { service: Service }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-lg bg-[var(--color-brand-primary)] text-white px-5 py-2 text-sm font-medium disabled:opacity-50"
+        className="rounded-lg bg-[var(--color-brand-red)] text-white px-5 py-2 text-sm font-medium disabled:opacity-50"
       >
         {pending ? 'Opslaan…' : 'Opslaan'}
       </button>

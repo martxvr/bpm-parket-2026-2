@@ -58,7 +58,7 @@ export function SpecsEditor({ name, defaultValue = {} }: Props) {
       <button
         type="button"
         onClick={() => setRows((r) => [...r, ['', '']])}
-        className="text-xs text-[var(--color-brand-primary)] hover:underline inline-flex items-center gap-1"
+        className="text-xs text-[var(--color-brand-red)] hover:underline inline-flex items-center gap-1"
       >
         <Plus className="h-3 w-3" /> Spec toevoegen
       </button>

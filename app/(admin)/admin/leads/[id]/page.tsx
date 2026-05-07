@@ -135,7 +135,7 @@ export default async function LeadDetailPage({ params }: Props) {
             </select>
             <button
               type="submit"
-              className="w-full rounded-lg bg-[var(--color-brand-primary)] text-white px-3 py-2 text-sm font-medium"
+              className="w-full rounded-lg bg-[var(--color-brand-red)] text-white px-3 py-2 text-sm font-medium"
             >
               Opslaan
             </button>

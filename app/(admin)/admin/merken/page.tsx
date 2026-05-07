@@ -93,7 +93,7 @@ export default async function BrandsListPage() {
               <div className="mt-4 flex items-center justify-between">
                 <Link
                   href={`/admin/merken/${b.id}`}
-                  className="text-xs text-[var(--color-brand-primary)] hover:underline inline-flex items-center gap-1"
+                  className="text-xs text-[var(--color-brand-red)] hover:underline inline-flex items-center gap-1"
                 >
                   <Pencil className="h-3 w-3" /> Bewerk
                 </Link>

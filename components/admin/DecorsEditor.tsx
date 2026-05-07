@@ -33,7 +33,7 @@ export function DecorsEditor({ name, defaultValue = [] }: Props) {
       <button
         type="button"
         onClick={() => setDecors((curr) => [...curr, { name: '', image_url: '' }])}
-        className="text-xs text-[var(--color-brand-primary)] hover:underline inline-flex items-center gap-1"
+        className="text-xs text-[var(--color-brand-red)] hover:underline inline-flex items-center gap-1"
       >
         <Plus className="h-3 w-3" /> Decor toevoegen
       </button>

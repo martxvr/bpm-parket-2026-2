@@ -91,14 +91,14 @@ export function Chatbot() {
       <button
         onClick={() => setOpen((s) => !s)}
         aria-label={open ? 'Sluit chat' : 'Open chat'}
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[var(--color-brand-primary)] text-white shadow-lg flex items-center justify-center hover:bg-[var(--color-brand-primary-dark)]"
+        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-brand-red text-white shadow-lg flex items-center justify-center hover:bg-brand-red/90"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </button>
 
       {open && (
         <div className="fixed bottom-24 right-6 z-50 w-80 max-w-[calc(100vw-32px)] h-[28rem] rounded-2xl bg-white shadow-2xl border border-black/10 flex flex-col overflow-hidden">
-          <div className="bg-[var(--color-brand-charcoal)] text-white px-4 py-3 text-sm font-medium">
+          <div className="bg-brand-dark text-white px-4 py-3 text-sm font-medium">
             Vraag het de assistent
           </div>
 
@@ -108,7 +108,7 @@ export function Chatbot() {
                 key={i}
                 className={
                   m.role === 'user'
-                    ? 'text-sm bg-[var(--color-brand-primary)] text-white px-3 py-2 rounded-2xl rounded-br-sm ml-8'
+                    ? 'text-sm bg-brand-red text-white px-3 py-2 rounded-2xl rounded-br-sm ml-8'
                     : 'text-sm bg-black/5 px-3 py-2 rounded-2xl rounded-bl-sm mr-8'
                 }
               >
@@ -133,12 +133,12 @@ export function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Stel je vraag…"
               disabled={pending}
-              className="flex-1 rounded-full border border-black/10 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)]"
+              className="flex-1 rounded-full border border-black/10 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
             />
             <button
               type="submit"
               disabled={pending || !input.trim()}
-              className="rounded-full bg-[var(--color-brand-primary)] text-white p-2 disabled:opacity-50"
+              className="rounded-full bg-brand-red text-white p-2 disabled:opacity-50"
               aria-label="Verstuur"
             >
               <Send className="h-4 w-4" />
