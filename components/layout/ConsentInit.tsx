@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 const INIT = `
 window.dataLayer = window.dataLayer || [];
 function gtag(){window.dataLayer.push(arguments);}
@@ -32,13 +30,15 @@ try {
 } catch (e) {}
 `;
 
+// Sets Consent Mode v2 default-denied before any analytics tag loads — required
+// by Google's CMP spec. Rendered as a plain inline <script> inside <head> so
+// it executes synchronously before <body>; next/script was being placed
+// outside the document tree which broke hydration. INIT is a file-local
+// constant so this is not an XSS vector.
 export function ConsentInit() {
-  // INIT is fully static (no user input). Sets Consent Mode v2 default-denied
-  // before any analytics tag loads — required by Google's CMP spec.
   return (
-    <Script
+    <script
       id="consent-init"
-      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: INIT }}
     />
   );

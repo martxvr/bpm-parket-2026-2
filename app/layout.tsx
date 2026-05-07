@@ -29,7 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className={outfit.variable}>
-      <ConsentInit />
+      <head>
+        <ConsentInit />
+      </head>
       <body className="antialiased">
         <StructuredData schema={localBusinessSchema()} />
         <AnalyticsLoader />

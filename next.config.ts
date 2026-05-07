@@ -1,8 +1,15 @@
 import type { NextConfig } from 'next';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
+// React + Turbopack reconstruct error-overlay callstacks via runtime code
+// evaluation in dev only. Production never needs the relaxed directive.
+const scriptSrcDev = "'unsafe-eval'";
+const scriptSrcExtras = isDev ? ` ${scriptSrcDev}` : '';
+
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  `script-src 'self' 'unsafe-inline'${scriptSrcExtras} https://www.googletagmanager.com https://www.google-analytics.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://www.google-analytics.com",
   "font-src 'self' data: https://fonts.gstatic.com",
