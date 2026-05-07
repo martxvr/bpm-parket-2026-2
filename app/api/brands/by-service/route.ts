@@ -27,14 +27,22 @@ export async function GET(req: NextRequest) {
     id: string;
     slug: string;
     name: string;
+    hero_image: string | null;
+    specs: Record<string, string> | null;
     brand_id: string;
-    brands: { id: string; slug: string; name: string; is_active: boolean } | null;
+    brands: {
+      id: string;
+      slug: string;
+      name: string;
+      logo_url: string | null;
+      is_active: boolean;
+    } | null;
   };
 
   const { data: products } = await supabase
     .from('products')
     .select(
-      'id, slug, name, brand_id, brands!inner(id, slug, name, is_active)',
+      'id, slug, name, hero_image, specs, brand_id, brands!inner(id, slug, name, logo_url, is_active)',
     )
     .eq('service_id', service.id)
     .eq('is_active', true)
@@ -47,7 +55,14 @@ export async function GET(req: NextRequest) {
       id: string;
       slug: string;
       name: string;
-      products: Array<{ id: string; slug: string; name: string }>;
+      logo_url: string | null;
+      products: Array<{
+        id: string;
+        slug: string;
+        name: string;
+        hero_image: string | null;
+        specs: Record<string, string> | null;
+      }>;
     }
   >();
   for (const row of (products ?? []) as unknown as ProductRow[]) {
@@ -56,9 +71,16 @@ export async function GET(req: NextRequest) {
       id: row.brands.id,
       slug: row.brands.slug,
       name: row.brands.name,
+      logo_url: row.brands.logo_url,
       products: [],
     };
-    brand.products.push({ id: row.id, slug: row.slug, name: row.name });
+    brand.products.push({
+      id: row.id,
+      slug: row.slug,
+      name: row.name,
+      hero_image: row.hero_image,
+      specs: row.specs,
+    });
     brandMap.set(row.brand_id, brand);
   }
 
