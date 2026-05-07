@@ -195,10 +195,38 @@ export function LeadFormWizard() {
     return selectedBrand?.products.find((p) => p.slug === productSlug);
   }, [selectedBrand, productSlug]);
 
+  // Refs mirror the latest values of fields that influence skip-logic so the
+  // deferred setStep() inside selectAndAdvance evaluates against fresh state
+  // even when fired ~220ms after the user click.
+  const floorValueRef = useRef(floorValue);
+  const brandSlugRef = useRef(brandSlug);
+  const brandsRef = useRef(brands);
+  const brandsLoadingRef = useRef(brandsLoading);
+  const selectedBrandRef = useRef(selectedBrand);
+  useEffect(() => {
+    floorValueRef.current = floorValue;
+  }, [floorValue]);
+  useEffect(() => {
+    brandSlugRef.current = brandSlug;
+  }, [brandSlug]);
+  useEffect(() => {
+    brandsRef.current = brands;
+  }, [brands]);
+  useEffect(() => {
+    brandsLoadingRef.current = brandsLoading;
+  }, [brandsLoading]);
+  useEffect(() => {
+    selectedBrandRef.current = selectedBrand;
+  }, [selectedBrand]);
+
   // Skip-aware navigation helpers
-  const skipBrandStep = () => floorValue === 'anders' || (!brandsLoading && brands.length === 0);
+  const skipBrandStep = () =>
+    floorValueRef.current === 'anders' ||
+    (!brandsLoadingRef.current && brandsRef.current.length === 0);
   const skipVariantStep = () =>
-    brandSlug === NOG_GEEN_IDEE || !selectedBrand || selectedBrand.products.length === 0;
+    brandSlugRef.current === NOG_GEEN_IDEE ||
+    !selectedBrandRef.current ||
+    selectedBrandRef.current.products.length === 0;
 
   const nextStep = (s: number): number => {
     let n = s + 1;
@@ -221,20 +249,72 @@ export function LeadFormWizard() {
     return true;
   };
 
+  const goNext = () => setStep((s) => nextStep(s));
+  const goPrev = () => setStep((s) => prevStep(s));
+
+  // Tile-click handler: applies the state mutation immediately (so the user
+  // sees the selected state) then advances after a short delay.
+  const selectAndAdvance = (setter: () => void) => {
+    setter();
+    setTimeout(() => {
+      setStep((s) => nextStep(s));
+    }, 220);
+  };
+
   const handleFloorPick = (value: string) => {
-    setFloorValue(value);
-    // Reset downstream state when changing floor
-    setBrandSlug('');
-    setProductSlug('');
+    // Synchronously prime refs and mark brands as loading for floors that have
+    // a service, so the deferred nextStep() call inside selectAndAdvance does
+    // not falsely treat the brand list as "empty" before the fetch resolves.
+    const entry = FLOOR_TYPES.find((f) => f.value === value);
+    const hasService = Boolean(entry?.service_slug);
+    floorValueRef.current = value;
+    brandSlugRef.current = '';
+    if (hasService) {
+      brandsRef.current = [];
+      brandsLoadingRef.current = true;
+      selectedBrandRef.current = undefined;
+    }
+    selectAndAdvance(() => {
+      setFloorValue(value);
+      // Reset downstream state when changing floor
+      setBrandSlug('');
+      setProductSlug('');
+      if (hasService) {
+        // Mark loading synchronously so the deferred nextStep() picks step 2.
+        // The serviceSlug effect will overwrite this when the fetch resolves.
+        setBrandsLoading(true);
+      }
+    });
   };
 
   const handleBrandPick = (slug: string) => {
-    setBrandSlug(slug);
-    setProductSlug('');
+    // Prime refs synchronously for skip-logic in nextStep().
+    brandSlugRef.current = slug;
+    if (slug === NOG_GEEN_IDEE) {
+      selectedBrandRef.current = undefined;
+    } else {
+      selectedBrandRef.current = brandsRef.current.find((b) => b.slug === slug);
+    }
+    selectAndAdvance(() => {
+      setBrandSlug(slug);
+      setProductSlug('');
+    });
   };
 
-  const goNext = () => setStep((s) => nextStep(s));
-  const goPrev = () => setStep((s) => prevStep(s));
+  const handleProductPick = (slug: string) => {
+    selectAndAdvance(() => {
+      setProductSlug(slug);
+    });
+  };
+
+  // If the user lands on step 2 but the brand fetch resolves with zero brands
+  // (e.g. traprenovatie / schuren-onderhoud), auto-skip to step 4 — same
+  // outcome the manual "Volgende stap" button would produce, no fade flicker.
+  useEffect(() => {
+    if (step === 2 && !brandsLoading && brands.length === 0 && floorValue && floorValue !== 'anders') {
+      setStep(4);
+    }
+  }, [step, brandsLoading, brands.length, floorValue]);
 
   // Track conversion on success
   useEffect(() => {
@@ -261,7 +341,7 @@ export function LeadFormWizard() {
           <SuccessPane />
         ) : (
           <>
-            <div className="flex-1">
+            <div key={step} className="flex-1 animate-step-fade">
               {step === 1 && <Step1 floorValue={floorValue} onPick={handleFloorPick} />}
               {step === 2 && (
                 <Step2
@@ -276,7 +356,7 @@ export function LeadFormWizard() {
                 <Step3
                   brand={selectedBrand}
                   productSlug={productSlug}
-                  onPick={(slug) => setProductSlug(slug)}
+                  onPick={handleProductPick}
                 />
               )}
               {step === 4 && (
@@ -370,7 +450,7 @@ function Sidebar({
               <li key={label} className="flex items-center gap-4">
                 <span
                   className={[
-                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors',
+                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300',
                     isActive
                       ? 'bg-brand-red text-white'
                       : isCompleted
@@ -383,7 +463,7 @@ function Sidebar({
                 </span>
                 <span
                   className={[
-                    'text-sm',
+                    'text-sm transition-colors duration-300',
                     isActive
                       ? 'font-bold text-brand-dark'
                       : isCompleted
