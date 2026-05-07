@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -14,6 +15,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { getFeaturedProjects, getProjects } from '@/lib/db/projects';
+import { getActiveBrands } from '@/lib/db/brands';
 import { HeroSlider } from '@/components/marketing/home/HeroSlider';
 import { RevealOnScroll } from '@/components/marketing/home/RevealOnScroll';
 
@@ -35,7 +37,6 @@ const TESTIMONIALS = [
   },
 ];
 
-const LOGOS = ['LOGO', 'LOGO', 'LOGO', 'LOGO', 'LOGO', 'LOGO', 'LOGO', 'LOGO'];
 
 const SERVICES = [
   { icon: Layers, title: 'PVC en Laminaat', desc: 'Stijlvol, duurzaam en onderhoudsvriendelijk.' },
@@ -55,6 +56,15 @@ export default async function HomePage() {
   }
   const featuredProjects = featured.slice(0, 2);
 
+  const brands = await getActiveBrands();
+  // Repeat enough times so translateX(-50%) loop is seamless even with few brands.
+  const marqueeBrands =
+    brands.length > 0
+      ? Array.from({ length: Math.max(2, Math.ceil(16 / brands.length)) }).flatMap(
+          () => brands,
+        )
+      : [];
+
   return (
     <div className="flex flex-col w-full overflow-hidden bg-white text-brand-dark">
       <RevealOnScroll />
@@ -62,31 +72,37 @@ export default async function HomePage() {
       {/* Hero Section */}
       <HeroSlider />
 
-      {/* Logos Strip */}
-      <section className="py-12 border-y border-gray-100 reveal delay-100 overflow-hidden">
-        <div className="w-full relative opacity-50 grayscale hover:opacity-100 transition-opacity duration-500">
-          <div className="animate-marquee flex items-center">
-            {/* Repeat the logos array completely symmetrical so translateX(-50%) loops perfectly */}
-            {[
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-              ...LOGOS,
-            ].map((logo, i) => (
-              <span
-                key={i}
-                className="text-xl font-bold font-sans text-brand-dark tracking-widest mx-12 whitespace-nowrap"
-              >
-                {logo}
-              </span>
-            ))}
+      {/* Brand Logos Strip */}
+      {marqueeBrands.length > 0 && (
+        <section className="py-12 border-y border-gray-100 reveal delay-100 overflow-hidden">
+          <div className="w-full relative opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+            <div className="animate-marquee flex items-center">
+              {marqueeBrands.map((b, i) => (
+                <Link
+                  key={`${b.id}-${i}`}
+                  href={`/merken/${b.slug}`}
+                  className="mx-12 flex items-center justify-center h-16 shrink-0"
+                  aria-label={b.name}
+                >
+                  {b.logo_url ? (
+                    <Image
+                      src={b.logo_url}
+                      alt={b.name}
+                      width={160}
+                      height={64}
+                      className="h-12 w-auto max-w-[160px] object-contain"
+                    />
+                  ) : (
+                    <span className="text-xl font-bold font-sans text-brand-dark tracking-widest whitespace-nowrap">
+                      {b.name}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* About Section */}
       <section className="py-24 lg:py-32 bg-white reveal">
