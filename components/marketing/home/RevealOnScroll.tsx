@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 
 /**
  * Adds the `reveal-active` class to all `.reveal` elements once they
- * intersect the viewport. Mirrors the IntersectionObserver setup from
- * the Vite Home page so the existing CSS animations play 1:1.
+ * intersect the viewport, so the CSS reveal animations play.
  */
 export function RevealOnScroll() {
   useEffect(() => {

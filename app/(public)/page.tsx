@@ -48,7 +48,7 @@ const SERVICES = [
 ];
 
 export default async function HomePage() {
-  // Try featured projects first; fall back to first 3 projects (mirrors Vite behaviour).
+  // Try featured projects first; fall back to first 3 projects.
   let featured = await getFeaturedProjects();
   if (!featured.length) {
     const all = await getProjects();

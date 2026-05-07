@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Vite brand palette — exact hex values from _legacy/index.html */
+  /* BPM Parket brand palette */
   --color-brand-red: #E21E26;
   --color-brand-brown: #7D5B41;
   --color-brand-sand: #B6A699;
@@ -13,7 +13,7 @@
   --color-warning: oklch(0.70 0.15 75);
   --color-danger: #E21E26;
 
-  /* Typography — Outfit per Vite */
+  /* Typography — Outfit */
   --font-sans: var(--font-outfit), 'Outfit', ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }

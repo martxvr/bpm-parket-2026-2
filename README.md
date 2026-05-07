@@ -51,23 +51,26 @@ npm run dev
 - `lib/` — Supabase clients, auth helpers, env validation
 - `supabase/migrations/` — database schema and RLS
 - `tests/e2e/` — Playwright tests
-- `_legacy/` — old Vite codebase, kept for component reference during migration
 
-## Status
+## History
 
-Migration in progress. See:
+This codebase was migrated from a Vite SPA to Next.js. Historical references:
 - [Design spec](docs/superpowers/specs/2026-05-02-vite-to-nextjs-migration-design.md)
-- [Plan 1: Foundation](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-1-foundation.md) — done
-- [Plan 2: Public Site + Chatbot](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-2-public-site-and-chatbot.md) — done
-- [Plan 3: Admin Features](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-3-admin-features.md) — done
-- [Plan 4: SEO + GDPR + Launch](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-4-seo-gdpr-launch.md) — code done, [launch checklist](docs/launch-checklist.md) drives go-live
+- [Plan 1: Foundation](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-1-foundation.md)
+- [Plan 2: Public Site + Chatbot](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-2-public-site-and-chatbot.md)
+- [Plan 3: Admin Features](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-3-admin-features.md)
+- [Plan 4: SEO + GDPR + Launch](docs/superpowers/plans/2026-05-04-nextjs-migration-plan-4-seo-gdpr-launch.md)
+- [Launch checklist](docs/launch-checklist.md)
 
-The old Vite version remains live on `master` branch until migration completes.
-This Next.js work lives on the `next-migration` branch.
+## Required env vars
 
-## Required env vars (Plan 2 additions)
+Supabase:
 
-In addition to Plan 1's Supabase env vars:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (server-only)
+
+Additional services:
 
 - `ANTHROPIC_API_KEY` (chatbot — `sk-ant-...`)
 - `RESEND_API_KEY` (email — `re_...`)
