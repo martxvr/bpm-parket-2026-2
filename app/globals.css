@@ -74,7 +74,7 @@ html, body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 120s linear infinite;
+  animation: marquee 50s linear infinite;
 }
 
 .animate-marquee:hover {
