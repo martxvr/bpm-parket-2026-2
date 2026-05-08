@@ -12,7 +12,7 @@ const POLICY_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white pt-24 pb-12 mt-12">
+    <footer className="bg-black text-white pt-24 pb-12 mt-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
 
         {/* Top Section: CTA & Brand */}

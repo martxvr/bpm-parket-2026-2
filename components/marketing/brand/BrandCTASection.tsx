@@ -7,7 +7,7 @@ type Props = {
 
 export function BrandCTASection({ brandName, brandSlug }: Props) {
   return (
-    <section className="bg-black text-white py-24">
+    <section className="bg-black text-white py-24 -mb-12">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
