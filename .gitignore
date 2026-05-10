@@ -43,3 +43,6 @@ _legacy/.next/
 playwright-report/
 test-results/
 .vercel
+
+# PPC decor scrape — local image cache (regenerable, ~23MB)
+scripts/data/ppc-decors/_local/
