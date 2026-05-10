@@ -226,12 +226,15 @@ export default async function HomePage() {
                   </div>
                 </div>
                 <div className="px-2">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-2xl font-bold text-brand-dark">{project.title}</h3>
-                    {project.completed_date && (
-                      <span className="text-sm text-brand-brown">{project.completed_date}</span>
-                    )}
-                  </div>
+                  {project.completed_date && (
+                    <p className="text-xs font-medium uppercase tracking-wider text-brand-brown mb-1">
+                      {new Date(project.completed_date).toLocaleDateString('nl-NL', {
+                        month: 'long',
+                        year: 'numeric',
+                      }).replace(/^\w/, (c) => c.toUpperCase())}
+                    </p>
+                  )}
+                  <h3 className="text-2xl font-bold text-brand-dark mb-2">{project.title}</h3>
                   <div className="flex items-center text-brand-dark opacity-70 text-sm">
                     <div className="w-2 h-2 rounded-full bg-brand-brown mr-2"></div>
                     {project.description}
