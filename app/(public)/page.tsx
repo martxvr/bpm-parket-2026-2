@@ -235,10 +235,7 @@ export default async function HomePage() {
                     </p>
                   )}
                   <h3 className="text-2xl font-bold text-brand-dark mb-2">{project.title}</h3>
-                  <div className="flex items-center text-brand-dark opacity-70 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-brand-brown mr-2"></div>
-                    {project.description}
-                  </div>
+                  <p className="text-brand-dark opacity-70 text-sm">{project.description}</p>
                 </div>
               </Link>
             ))}
