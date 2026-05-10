@@ -46,3 +46,4 @@ test-results/
 
 # PPC decor scrape — local image cache (regenerable, ~23MB)
 scripts/data/ppc-decors/_local/
+scripts/data/fb-projects/_local/
