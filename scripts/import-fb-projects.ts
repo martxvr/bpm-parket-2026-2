@@ -194,6 +194,14 @@ async function existingPostIds(): Promise<Set<string>> {
   return new Set(data.map((r) => r.source_post_id as string));
 }
 
+/** Posts manually excluded as promo / non-project (see scripts/cleanup-promo-projects.ts). */
+async function excludedPostIds(): Promise<Set<string>> {
+  const path = join(DATA_DIR, 'excluded-post-ids.json');
+  if (!(await exists(path))) return new Set();
+  const json = JSON.parse(await readFile(path, 'utf8')) as { excluded: { postId: string }[] };
+  return new Set(json.excluded.map((e) => e.postId));
+}
+
 async function main() {
   await mkdir(CACHE_DIR, { recursive: true });
 
@@ -201,9 +209,14 @@ async function main() {
   const photoPosts = posts.filter((p) => photoUrls(p).length > 0);
   console.log(`${photoPosts.length}/${posts.length} posts have photos`);
 
-  const skip = await existingPostIds();
-  const toImport = photoPosts.filter((p) => !skip.has(p.id));
-  console.log(`${toImport.length} new posts to import (skipping ${photoPosts.length - toImport.length} already in DB)`);
+  const [skip, excluded] = await Promise.all([existingPostIds(), excludedPostIds()]);
+  const toImport = photoPosts.filter((p) => !skip.has(p.id) && !excluded.has(p.id));
+  console.log(
+    `${toImport.length} new posts to import ` +
+      `(skipping ${photoPosts.length - toImport.length}: ` +
+      `${[...skip].filter((id) => photoPosts.some((p) => p.id === id)).length} already in DB, ` +
+      `${[...excluded].filter((id) => photoPosts.some((p) => p.id === id)).length} on exclusion list)`,
+  );
 
   let i = 0;
   for (const post of toImport) {

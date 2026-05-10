@@ -24,6 +24,7 @@ export const getProjects = cache(async (): Promise<Project[]> => {
   const { data, error } = await supabase
     .from('projects')
     .select('*')
+    .order('completed_date', { ascending: false, nullsFirst: false })
     .order('sort_order', { ascending: true });
   if (error) throw error;
   return data ?? [];
@@ -35,7 +36,8 @@ export const getFeaturedProjects = cache(async (): Promise<Project[]> => {
     .from('projects')
     .select('*')
     .eq('is_featured', true)
-    .order('sort_order')
+    .order('completed_date', { ascending: false, nullsFirst: false })
+    .order('sort_order', { ascending: true })
     .limit(6);
   if (error) throw error;
   return data ?? [];

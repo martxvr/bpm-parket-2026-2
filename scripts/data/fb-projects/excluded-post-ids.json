@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-05-10T09:10:37.044Z",
+  "note": "FB post IDs to skip on re-import (promo / non-project content).",
+  "excluded": [
+    {
+      "postId": "729958783823940_1208222788036175",
+      "reason": "Showroom update"
+    },
+    {
+      "postId": "729958783823940_1187494806775640",
+      "reason": "Reviews collage"
+    },
+    {
+      "postId": "729958783823940_984599933731796",
+      "reason": "Actie alert"
+    },
+    {
+      "postId": "729958783823940_895332009325256",
+      "reason": "Sales pitch"
+    },
+    {
+      "postId": "729958783823940_874424441416013",
+      "reason": "Showroom display DD"
+    },
+    {
+      "postId": "729958783823940_877369187788205",
+      "reason": "Trap content marketing"
+    },
+    {
+      "postId": "729958783823940_868773938647730",
+      "reason": "Sales pitch (dup)"
+    },
+    {
+      "postId": "729958783823940_794189609439497",
+      "reason": "Vlonder/kunstgras (off-topic)"
+    },
+    {
+      "postId": "729958783823940_767580488767076",
+      "reason": "Voorjaarsactie"
+    },
+    {
+      "postId": "729958783823940_2182490955237375",
+      "reason": "Kunstwerk Remon Baan"
+    },
+    {
+      "postId": "729958783823940_1407987672687711",
+      "reason": "Vinyl product launch"
+    },
+    {
+      "postId": "729958783823940_747029092116909",
+      "reason": "Voorjaarsaanbieding"
+    }
+  ]
+}
